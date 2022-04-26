@@ -1,0 +1,1402 @@
+ARM GAS  /tmp/cctKQfgE.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"exti.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.EXTI0_IRQHandler,"ax",%progbits
+  16              		.align	1
+  17              		.global	EXTI0_IRQHandler
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	EXTI0_IRQHandler:
+  25              	.LFB63:
+  26              		.file 1 "hardware/src/exti.c"
+   1:hardware/src/exti.c **** #include "exti.h"
+   2:hardware/src/exti.c **** #include "delay.h" 
+   3:hardware/src/exti.c **** #include "ov7670.h"
+   4:hardware/src/exti.c **** 
+   5:hardware/src/exti.c **** extern char KEY0_PUSH;
+   6:hardware/src/exti.c **** extern char KEY1_PUSH;
+   7:hardware/src/exti.c **** 
+   8:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ0∑˛ŒÒ≥Ã–Ú
+   9:hardware/src/exti.c **** void EXTI0_IRQHandler(void)
+  10:hardware/src/exti.c **** {
+  27              		.loc 1 10 1
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_register 7
+  11:hardware/src/exti.c **** 	delay_ms(15);	//œ˚∂∂
+  39              		.loc 1 11 2
+  40 0004 0F20     		movs	r0, #15
+  41 0006 FFF7FEFF 		bl	delay_ms
+  12:hardware/src/exti.c ****   // printf("get exti0\r\n");
+  13:hardware/src/exti.c ****   KEY0_PUSH = 1;
+  42              		.loc 1 13 13
+  43 000a 044B     		ldr	r3, .L2
+  44 000c 0122     		movs	r2, #1
+  45 000e 1A70     		strb	r2, [r3]
+ARM GAS  /tmp/cctKQfgE.s 			page 2
+
+
+  14:hardware/src/exti.c ****   EXTI_ClearITPendingBit(EXTI_Line0);  //«Â≥˝EXTI0œﬂ¬∑π“∆Œª  
+  46              		.loc 1 14 3
+  47 0010 0120     		movs	r0, #1
+  48 0012 FFF7FEFF 		bl	EXTI_ClearITPendingBit
+  15:hardware/src/exti.c **** }
+  49              		.loc 1 15 1
+  50 0016 00BF     		nop
+  51 0018 80BD     		pop	{r7, pc}
+  52              	.L3:
+  53 001a 00BF     		.align	2
+  54              	.L2:
+  55 001c 00000000 		.word	KEY0_PUSH
+  56              		.cfi_endproc
+  57              	.LFE63:
+  59              		.section	.text.EXTI0_Init,"ax",%progbits
+  60              		.align	1
+  61              		.global	EXTI0_Init
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  65              		.fpu softvfp
+  67              	EXTI0_Init:
+  68              	.LFB64:
+  16:hardware/src/exti.c **** void EXTI0_Init(void)
+  17:hardware/src/exti.c **** {
+  69              		.loc 1 17 1
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 16
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              	.LCFI2:
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 7, -8
+  77              		.cfi_offset 14, -4
+  78 0002 84B0     		sub	sp, sp, #16
+  79              	.LCFI3:
+  80              		.cfi_def_cfa_offset 24
+  81 0004 00AF     		add	r7, sp, #0
+  82              	.LCFI4:
+  83              		.cfi_def_cfa_register 7
+  18:hardware/src/exti.c ****  //GPIOA.0	  ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√ œ¬Ωµ—ÿ¥•∑¢
+  19:hardware/src/exti.c ****   EXTI_InitTypeDef EXTI_InitStructure;
+  20:hardware/src/exti.c ****  	NVIC_InitTypeDef NVIC_InitStructure;
+  21:hardware/src/exti.c **** 
+  22:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource0);
+  84              		.loc 1 22 3
+  85 0006 0021     		movs	r1, #0
+  86 0008 0020     		movs	r0, #0
+  87 000a FFF7FEFF 		bl	GPIO_EXTILineConfig
+  23:hardware/src/exti.c **** 
+  24:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line0;
+  88              		.loc 1 24 31
+  89 000e 0123     		movs	r3, #1
+  90 0010 BB60     		str	r3, [r7, #8]
+  25:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+  91              		.loc 1 25 32
+  92 0012 0023     		movs	r3, #0
+ARM GAS  /tmp/cctKQfgE.s 			page 3
+
+
+  93 0014 3B73     		strb	r3, [r7, #12]
+  26:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+  94              		.loc 1 26 35
+  95 0016 0C23     		movs	r3, #12
+  96 0018 7B73     		strb	r3, [r7, #13]
+  27:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  97              		.loc 1 27 35
+  98 001a 0123     		movs	r3, #1
+  99 001c BB73     		strb	r3, [r7, #14]
+  28:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	  	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 100              		.loc 1 28 3
+ 101 001e 07F10803 		add	r3, r7, #8
+ 102 0022 1846     		mov	r0, r3
+ 103 0024 FFF7FEFF 		bl	EXTI_Init
+  29:hardware/src/exti.c **** 
+  30:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 104              		.loc 1 30 38
+ 105 0028 0623     		movs	r3, #6
+ 106 002a 3B71     		strb	r3, [r7, #4]
+  31:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2 
+ 107              		.loc 1 31 56
+ 108 002c 0223     		movs	r3, #2
+ 109 002e 7B71     		strb	r3, [r7, #5]
+  32:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;					//◊””≈œ»º∂1 
+ 110              		.loc 1 32 49
+ 111 0030 0123     		movs	r3, #1
+ 112 0032 BB71     		strb	r3, [r7, #6]
+  33:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 113              		.loc 1 33 41
+ 114 0034 0123     		movs	r3, #1
+ 115 0036 FB71     		strb	r3, [r7, #7]
+  34:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜
+ 116              		.loc 1 34 3
+ 117 0038 3B1D     		adds	r3, r7, #4
+ 118 003a 1846     		mov	r0, r3
+ 119 003c FFF7FEFF 		bl	NVIC_Init
+  35:hardware/src/exti.c **** }
+ 120              		.loc 1 35 1
+ 121 0040 00BF     		nop
+ 122 0042 1037     		adds	r7, r7, #16
+ 123              	.LCFI5:
+ 124              		.cfi_def_cfa_offset 8
+ 125 0044 BD46     		mov	sp, r7
+ 126              	.LCFI6:
+ 127              		.cfi_def_cfa_register 13
+ 128              		@ sp needed
+ 129 0046 80BD     		pop	{r7, pc}
+ 130              		.cfi_endproc
+ 131              	.LFE64:
+ 133              		.section	.text.EXTI2_IRQHandler,"ax",%progbits
+ 134              		.align	1
+ 135              		.global	EXTI2_IRQHandler
+ 136              		.syntax unified
+ 137              		.thumb
+ 138              		.thumb_func
+ 139              		.fpu softvfp
+ 141              	EXTI2_IRQHandler:
+ARM GAS  /tmp/cctKQfgE.s 			page 4
+
+
+ 142              	.LFB65:
+  36:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ2∑˛ŒÒ≥Ã–Ú
+  37:hardware/src/exti.c **** void EXTI2_IRQHandler(void)
+  38:hardware/src/exti.c **** {
+ 143              		.loc 1 38 1
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 1, uses_anonymous_args = 0
+ 147 0000 80B5     		push	{r7, lr}
+ 148              	.LCFI7:
+ 149              		.cfi_def_cfa_offset 8
+ 150              		.cfi_offset 7, -8
+ 151              		.cfi_offset 14, -4
+ 152 0002 00AF     		add	r7, sp, #0
+ 153              	.LCFI8:
+ 154              		.cfi_def_cfa_register 7
+  39:hardware/src/exti.c **** 	delay_ms(10);	//œ˚∂∂
+ 155              		.loc 1 39 2
+ 156 0004 0A20     		movs	r0, #10
+ 157 0006 FFF7FEFF 		bl	delay_ms
+  40:hardware/src/exti.c ****   EXTI_ClearITPendingBit(EXTI_Line2);  //«Â≥˝EXTI0œﬂ¬∑π“∆Œª
+ 158              		.loc 1 40 3
+ 159 000a 0420     		movs	r0, #4
+ 160 000c FFF7FEFF 		bl	EXTI_ClearITPendingBit
+  41:hardware/src/exti.c **** }
+ 161              		.loc 1 41 1
+ 162 0010 00BF     		nop
+ 163 0012 80BD     		pop	{r7, pc}
+ 164              		.cfi_endproc
+ 165              	.LFE65:
+ 167              		.section	.text.EXTI3_IRQHandler,"ax",%progbits
+ 168              		.align	1
+ 169              		.global	EXTI3_IRQHandler
+ 170              		.syntax unified
+ 171              		.thumb
+ 172              		.thumb_func
+ 173              		.fpu softvfp
+ 175              	EXTI3_IRQHandler:
+ 176              	.LFB66:
+  42:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ3∑˛ŒÒ≥Ã–Ú
+  43:hardware/src/exti.c **** void EXTI3_IRQHandler(void)
+  44:hardware/src/exti.c **** {
+ 177              		.loc 1 44 1
+ 178              		.cfi_startproc
+ 179              		@ args = 0, pretend = 0, frame = 0
+ 180              		@ frame_needed = 1, uses_anonymous_args = 0
+ 181 0000 80B5     		push	{r7, lr}
+ 182              	.LCFI9:
+ 183              		.cfi_def_cfa_offset 8
+ 184              		.cfi_offset 7, -8
+ 185              		.cfi_offset 14, -4
+ 186 0002 00AF     		add	r7, sp, #0
+ 187              	.LCFI10:
+ 188              		.cfi_def_cfa_register 7
+  45:hardware/src/exti.c **** 	delay_ms(15);	//œ˚∂∂
+ 189              		.loc 1 45 2
+ 190 0004 0F20     		movs	r0, #15
+ARM GAS  /tmp/cctKQfgE.s 			page 5
+
+
+ 191 0006 FFF7FEFF 		bl	delay_ms
+  46:hardware/src/exti.c ****   KEY0_PUSH = 1;
+ 192              		.loc 1 46 13
+ 193 000a 044B     		ldr	r3, .L7
+ 194 000c 0122     		movs	r2, #1
+ 195 000e 1A70     		strb	r2, [r3]
+  47:hardware/src/exti.c ****   // printf("push key 0!\r\n");
+  48:hardware/src/exti.c **** 	EXTI_ClearITPendingBit(EXTI_Line3);  //«Â≥˝EXTI0œﬂ¬∑π“∆Œª
+ 196              		.loc 1 48 2
+ 197 0010 0820     		movs	r0, #8
+ 198 0012 FFF7FEFF 		bl	EXTI_ClearITPendingBit
+  49:hardware/src/exti.c **** }
+ 199              		.loc 1 49 1
+ 200 0016 00BF     		nop
+ 201 0018 80BD     		pop	{r7, pc}
+ 202              	.L8:
+ 203 001a 00BF     		.align	2
+ 204              	.L7:
+ 205 001c 00000000 		.word	KEY0_PUSH
+ 206              		.cfi_endproc
+ 207              	.LFE66:
+ 209              		.section	.text.EXTI3_Init,"ax",%progbits
+ 210              		.align	1
+ 211              		.global	EXTI3_Init
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 215              		.fpu softvfp
+ 217              	EXTI3_Init:
+ 218              	.LFB67:
+  50:hardware/src/exti.c **** void EXTI3_Init(void)
+  51:hardware/src/exti.c **** {
+ 219              		.loc 1 51 1
+ 220              		.cfi_startproc
+ 221              		@ args = 0, pretend = 0, frame = 16
+ 222              		@ frame_needed = 1, uses_anonymous_args = 0
+ 223 0000 80B5     		push	{r7, lr}
+ 224              	.LCFI11:
+ 225              		.cfi_def_cfa_offset 8
+ 226              		.cfi_offset 7, -8
+ 227              		.cfi_offset 14, -4
+ 228 0002 84B0     		sub	sp, sp, #16
+ 229              	.LCFI12:
+ 230              		.cfi_def_cfa_offset 24
+ 231 0004 00AF     		add	r7, sp, #0
+ 232              	.LCFI13:
+ 233              		.cfi_def_cfa_register 7
+  52:hardware/src/exti.c ****  //GPIOE.3	  ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√ œ¬Ωµ—ÿ¥•∑¢
+  53:hardware/src/exti.c ****   EXTI_InitTypeDef EXTI_InitStructure;
+  54:hardware/src/exti.c ****  	NVIC_InitTypeDef NVIC_InitStructure;
+  55:hardware/src/exti.c **** 
+  56:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOE,GPIO_PinSource3);
+ 234              		.loc 1 56 3
+ 235 0006 0321     		movs	r1, #3
+ 236 0008 0420     		movs	r0, #4
+ 237 000a FFF7FEFF 		bl	GPIO_EXTILineConfig
+  57:hardware/src/exti.c **** 
+ARM GAS  /tmp/cctKQfgE.s 			page 6
+
+
+  58:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line3;
+ 238              		.loc 1 58 31
+ 239 000e 0823     		movs	r3, #8
+ 240 0010 BB60     		str	r3, [r7, #8]
+  59:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 241              		.loc 1 59 32
+ 242 0012 0023     		movs	r3, #0
+ 243 0014 3B73     		strb	r3, [r7, #12]
+  60:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+ 244              		.loc 1 60 35
+ 245 0016 0C23     		movs	r3, #12
+ 246 0018 7B73     		strb	r3, [r7, #13]
+  61:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 247              		.loc 1 61 35
+ 248 001a 0123     		movs	r3, #1
+ 249 001c BB73     		strb	r3, [r7, #14]
+  62:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	  	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 250              		.loc 1 62 3
+ 251 001e 07F10803 		add	r3, r7, #8
+ 252 0022 1846     		mov	r0, r3
+ 253 0024 FFF7FEFF 		bl	EXTI_Init
+  63:hardware/src/exti.c **** 
+  64:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 254              		.loc 1 64 38
+ 255 0028 0923     		movs	r3, #9
+ 256 002a 3B71     		strb	r3, [r7, #4]
+  65:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2 
+ 257              		.loc 1 65 56
+ 258 002c 0223     		movs	r3, #2
+ 259 002e 7B71     		strb	r3, [r7, #5]
+  66:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;					//◊””≈œ»º∂1 
+ 260              		.loc 1 66 49
+ 261 0030 0123     		movs	r3, #1
+ 262 0032 BB71     		strb	r3, [r7, #6]
+  67:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 263              		.loc 1 67 41
+ 264 0034 0123     		movs	r3, #1
+ 265 0036 FB71     		strb	r3, [r7, #7]
+  68:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜
+ 266              		.loc 1 68 3
+ 267 0038 3B1D     		adds	r3, r7, #4
+ 268 003a 1846     		mov	r0, r3
+ 269 003c FFF7FEFF 		bl	NVIC_Init
+  69:hardware/src/exti.c **** }
+ 270              		.loc 1 69 1
+ 271 0040 00BF     		nop
+ 272 0042 1037     		adds	r7, r7, #16
+ 273              	.LCFI14:
+ 274              		.cfi_def_cfa_offset 8
+ 275 0044 BD46     		mov	sp, r7
+ 276              	.LCFI15:
+ 277              		.cfi_def_cfa_register 13
+ 278              		@ sp needed
+ 279 0046 80BD     		pop	{r7, pc}
+ 280              		.cfi_endproc
+ 281              	.LFE67:
+ 283              		.section	.text.EXTI4_IRQHandler,"ax",%progbits
+ARM GAS  /tmp/cctKQfgE.s 			page 7
+
+
+ 284              		.align	1
+ 285              		.global	EXTI4_IRQHandler
+ 286              		.syntax unified
+ 287              		.thumb
+ 288              		.thumb_func
+ 289              		.fpu softvfp
+ 291              	EXTI4_IRQHandler:
+ 292              	.LFB68:
+  70:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ4∑˛ŒÒ≥Ã–Ú
+  71:hardware/src/exti.c **** void EXTI4_IRQHandler(void)
+  72:hardware/src/exti.c **** {
+ 293              		.loc 1 72 1
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 1, uses_anonymous_args = 0
+ 297 0000 80B5     		push	{r7, lr}
+ 298              	.LCFI16:
+ 299              		.cfi_def_cfa_offset 8
+ 300              		.cfi_offset 7, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 00AF     		add	r7, sp, #0
+ 303              	.LCFI17:
+ 304              		.cfi_def_cfa_register 7
+  73:hardware/src/exti.c **** 	delay_ms(15);	//œ˚∂∂
+ 305              		.loc 1 73 2
+ 306 0004 0F20     		movs	r0, #15
+ 307 0006 FFF7FEFF 		bl	delay_ms
+  74:hardware/src/exti.c ****   KEY1_PUSH = 1;
+ 308              		.loc 1 74 13
+ 309 000a 044B     		ldr	r3, .L11
+ 310 000c 0122     		movs	r2, #1
+ 311 000e 1A70     		strb	r2, [r3]
+  75:hardware/src/exti.c ****   // printf("push key 1!\r\n");
+  76:hardware/src/exti.c ****   // JumpToISP();
+  77:hardware/src/exti.c **** 	EXTI_ClearITPendingBit(EXTI_Line4);  //«Â≥˝EXTI0œﬂ¬∑π“∆Œª
+ 312              		.loc 1 77 2
+ 313 0010 1020     		movs	r0, #16
+ 314 0012 FFF7FEFF 		bl	EXTI_ClearITPendingBit
+  78:hardware/src/exti.c **** }		   
+ 315              		.loc 1 78 1
+ 316 0016 00BF     		nop
+ 317 0018 80BD     		pop	{r7, pc}
+ 318              	.L12:
+ 319 001a 00BF     		.align	2
+ 320              	.L11:
+ 321 001c 00000000 		.word	KEY1_PUSH
+ 322              		.cfi_endproc
+ 323              	.LFE68:
+ 325              		.section	.text.EXTI4_Init,"ax",%progbits
+ 326              		.align	1
+ 327              		.global	EXTI4_Init
+ 328              		.syntax unified
+ 329              		.thumb
+ 330              		.thumb_func
+ 331              		.fpu softvfp
+ 333              	EXTI4_Init:
+ 334              	.LFB69:
+ARM GAS  /tmp/cctKQfgE.s 			page 8
+
+
+  79:hardware/src/exti.c **** 
+  80:hardware/src/exti.c **** void EXTI4_Init(void)
+  81:hardware/src/exti.c **** {
+ 335              		.loc 1 81 1
+ 336              		.cfi_startproc
+ 337              		@ args = 0, pretend = 0, frame = 16
+ 338              		@ frame_needed = 1, uses_anonymous_args = 0
+ 339 0000 80B5     		push	{r7, lr}
+ 340              	.LCFI18:
+ 341              		.cfi_def_cfa_offset 8
+ 342              		.cfi_offset 7, -8
+ 343              		.cfi_offset 14, -4
+ 344 0002 84B0     		sub	sp, sp, #16
+ 345              	.LCFI19:
+ 346              		.cfi_def_cfa_offset 24
+ 347 0004 00AF     		add	r7, sp, #0
+ 348              	.LCFI20:
+ 349              		.cfi_def_cfa_register 7
+  82:hardware/src/exti.c ****   EXTI_InitTypeDef EXTI_InitStructure;
+  83:hardware/src/exti.c ****  	NVIC_InitTypeDef NVIC_InitStructure;
+  84:hardware/src/exti.c **** 
+  85:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOE,GPIO_PinSource4);
+ 350              		.loc 1 85 3
+ 351 0006 0421     		movs	r1, #4
+ 352 0008 0420     		movs	r0, #4
+ 353 000a FFF7FEFF 		bl	GPIO_EXTILineConfig
+  86:hardware/src/exti.c **** 
+  87:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line4;
+ 354              		.loc 1 87 31
+ 355 000e 1023     		movs	r3, #16
+ 356 0010 BB60     		str	r3, [r7, #8]
+  88:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 357              		.loc 1 88 32
+ 358 0012 0023     		movs	r3, #0
+ 359 0014 3B73     		strb	r3, [r7, #12]
+  89:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+ 360              		.loc 1 89 35
+ 361 0016 0C23     		movs	r3, #12
+ 362 0018 7B73     		strb	r3, [r7, #13]
+  90:hardware/src/exti.c ****   // EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+  91:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 363              		.loc 1 91 35
+ 364 001a 0123     		movs	r3, #1
+ 365 001c BB73     		strb	r3, [r7, #14]
+  92:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	  	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 366              		.loc 1 92 3
+ 367 001e 07F10803 		add	r3, r7, #8
+ 368 0022 1846     		mov	r0, r3
+ 369 0024 FFF7FEFF 		bl	EXTI_Init
+  93:hardware/src/exti.c **** 
+  94:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 370              		.loc 1 94 38
+ 371 0028 0A23     		movs	r3, #10
+ 372 002a 3B71     		strb	r3, [r7, #4]
+  95:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2 
+ 373              		.loc 1 95 56
+ 374 002c 0223     		movs	r3, #2
+ARM GAS  /tmp/cctKQfgE.s 			page 9
+
+
+ 375 002e 7B71     		strb	r3, [r7, #5]
+  96:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					//◊””≈œ»º∂0 
+ 376              		.loc 1 96 49
+ 377 0030 0023     		movs	r3, #0
+ 378 0032 BB71     		strb	r3, [r7, #6]
+  97:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 379              		.loc 1 97 41
+ 380 0034 0123     		movs	r3, #1
+ 381 0036 FB71     		strb	r3, [r7, #7]
+  98:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜
+ 382              		.loc 1 98 3
+ 383 0038 3B1D     		adds	r3, r7, #4
+ 384 003a 1846     		mov	r0, r3
+ 385 003c FFF7FEFF 		bl	NVIC_Init
+  99:hardware/src/exti.c **** }
+ 386              		.loc 1 99 1
+ 387 0040 00BF     		nop
+ 388 0042 1037     		adds	r7, r7, #16
+ 389              	.LCFI21:
+ 390              		.cfi_def_cfa_offset 8
+ 391 0044 BD46     		mov	sp, r7
+ 392              	.LCFI22:
+ 393              		.cfi_def_cfa_register 13
+ 394              		@ sp needed
+ 395 0046 80BD     		pop	{r7, pc}
+ 396              		.cfi_endproc
+ 397              	.LFE69:
+ 399              		.section	.text.EXTIX_Init,"ax",%progbits
+ 400              		.align	1
+ 401              		.global	EXTIX_Init
+ 402              		.syntax unified
+ 403              		.thumb
+ 404              		.thumb_func
+ 405              		.fpu softvfp
+ 407              	EXTIX_Init:
+ 408              	.LFB70:
+ 100:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ≥ı ºªØ≥Ã–Ú
+ 101:hardware/src/exti.c **** //≥ı ºªØPA0/PE2/PE3/PE4Œ™÷–∂œ ‰»Î.
+ 102:hardware/src/exti.c **** void EXTIX_Init(void)
+ 103:hardware/src/exti.c **** {
+ 409              		.loc 1 103 1
+ 410              		.cfi_startproc
+ 411              		@ args = 0, pretend = 0, frame = 16
+ 412              		@ frame_needed = 1, uses_anonymous_args = 0
+ 413 0000 80B5     		push	{r7, lr}
+ 414              	.LCFI23:
+ 415              		.cfi_def_cfa_offset 8
+ 416              		.cfi_offset 7, -8
+ 417              		.cfi_offset 14, -4
+ 418 0002 84B0     		sub	sp, sp, #16
+ 419              	.LCFI24:
+ 420              		.cfi_def_cfa_offset 24
+ 421 0004 00AF     		add	r7, sp, #0
+ 422              	.LCFI25:
+ 423              		.cfi_def_cfa_register 7
+ 104:hardware/src/exti.c **** 	EXTI_InitTypeDef EXTI_InitStructure;
+ 105:hardware/src/exti.c ****  	NVIC_InitTypeDef NVIC_InitStructure;
+ARM GAS  /tmp/cctKQfgE.s 			page 10
+
+
+ 106:hardware/src/exti.c **** 
+ 107:hardware/src/exti.c ****   //GPIOE.2 ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√   œ¬Ωµ—ÿ¥•∑¢
+ 108:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOE,GPIO_PinSource2);
+ 424              		.loc 1 108 3
+ 425 0006 0221     		movs	r1, #2
+ 426 0008 0420     		movs	r0, #4
+ 427 000a FFF7FEFF 		bl	GPIO_EXTILineConfig
+ 109:hardware/src/exti.c **** 
+ 110:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line2;
+ 428              		.loc 1 110 31
+ 429 000e 0423     		movs	r3, #4
+ 430 0010 BB60     		str	r3, [r7, #8]
+ 111:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 431              		.loc 1 111 32
+ 432 0012 0023     		movs	r3, #0
+ 433 0014 3B73     		strb	r3, [r7, #12]
+ 112:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+ 434              		.loc 1 112 35
+ 435 0016 0C23     		movs	r3, #12
+ 436 0018 7B73     		strb	r3, [r7, #13]
+ 113:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 437              		.loc 1 113 35
+ 438 001a 0123     		movs	r3, #1
+ 439 001c BB73     		strb	r3, [r7, #14]
+ 114:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	 	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 440              		.loc 1 114 3
+ 441 001e 07F10803 		add	r3, r7, #8
+ 442 0022 1846     		mov	r0, r3
+ 443 0024 FFF7FEFF 		bl	EXTI_Init
+ 115:hardware/src/exti.c **** 
+ 116:hardware/src/exti.c ****  //GPIOE.3	  ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√ œ¬Ωµ—ÿ¥•∑¢
+ 117:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOE,GPIO_PinSource3);
+ 444              		.loc 1 117 3
+ 445 0028 0321     		movs	r1, #3
+ 446 002a 0420     		movs	r0, #4
+ 447 002c FFF7FEFF 		bl	GPIO_EXTILineConfig
+ 118:hardware/src/exti.c **** 
+ 119:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line3;
+ 448              		.loc 1 119 31
+ 449 0030 0823     		movs	r3, #8
+ 450 0032 BB60     		str	r3, [r7, #8]
+ 120:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 451              		.loc 1 120 32
+ 452 0034 0023     		movs	r3, #0
+ 453 0036 3B73     		strb	r3, [r7, #12]
+ 121:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+ 454              		.loc 1 121 35
+ 455 0038 0C23     		movs	r3, #12
+ 456 003a 7B73     		strb	r3, [r7, #13]
+ 122:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 457              		.loc 1 122 35
+ 458 003c 0123     		movs	r3, #1
+ 459 003e BB73     		strb	r3, [r7, #14]
+ 123:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	  	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 460              		.loc 1 123 3
+ 461 0040 07F10803 		add	r3, r7, #8
+ 462 0044 1846     		mov	r0, r3
+ARM GAS  /tmp/cctKQfgE.s 			page 11
+
+
+ 463 0046 FFF7FEFF 		bl	EXTI_Init
+ 124:hardware/src/exti.c **** 
+ 125:hardware/src/exti.c ****  //GPIOE.4	  ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√  œ¬Ωµ—ÿ¥•∑¢
+ 126:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOE,GPIO_PinSource4);
+ 464              		.loc 1 126 3
+ 465 004a 0421     		movs	r1, #4
+ 466 004c 0420     		movs	r0, #4
+ 467 004e FFF7FEFF 		bl	GPIO_EXTILineConfig
+ 127:hardware/src/exti.c **** 
+ 128:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Line=EXTI_Line4;
+ 468              		.loc 1 128 31
+ 469 0052 1023     		movs	r3, #16
+ 470 0054 BB60     		str	r3, [r7, #8]
+ 129:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 471              		.loc 1 129 32
+ 472 0056 0023     		movs	r3, #0
+ 473 0058 3B73     		strb	r3, [r7, #12]
+ 130:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+ 474              		.loc 1 130 35
+ 475 005a 0C23     		movs	r3, #12
+ 476 005c 7B73     		strb	r3, [r7, #13]
+ 131:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 477              		.loc 1 131 35
+ 478 005e 0123     		movs	r3, #1
+ 479 0060 BB73     		strb	r3, [r7, #14]
+ 132:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);	  	//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 480              		.loc 1 132 3
+ 481 0062 07F10803 		add	r3, r7, #8
+ 482 0066 1846     		mov	r0, r3
+ 483 0068 FFF7FEFF 		bl	EXTI_Init
+ 133:hardware/src/exti.c **** 
+ 134:hardware/src/exti.c ****   //GPIOA.0	  ÷–∂œœﬂ“‘º∞÷–∂œ≥ı ºªØ≈‰÷√ …œ…˝—ÿ¥•∑¢
+ 135:hardware/src/exti.c ****  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource0);
+ 484              		.loc 1 135 3
+ 485 006c 0021     		movs	r1, #0
+ 486 006e 0020     		movs	r0, #0
+ 487 0070 FFF7FEFF 		bl	GPIO_EXTILineConfig
+ 136:hardware/src/exti.c **** 
+ 137:hardware/src/exti.c ****  	EXTI_InitStructure.EXTI_Line=EXTI_Line0;
+ 488              		.loc 1 137 31
+ 489 0074 0123     		movs	r3, #1
+ 490 0076 BB60     		str	r3, [r7, #8]
+ 138:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 491              		.loc 1 138 32
+ 492 0078 0023     		movs	r3, #0
+ 493 007a 3B73     		strb	r3, [r7, #12]
+ 139:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+ 494              		.loc 1 139 35
+ 495 007c 0823     		movs	r3, #8
+ 496 007e 7B73     		strb	r3, [r7, #13]
+ 140:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 497              		.loc 1 140 35
+ 498 0080 0123     		movs	r3, #1
+ 499 0082 BB73     		strb	r3, [r7, #14]
+ 141:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);		//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 500              		.loc 1 141 3
+ 501 0084 07F10803 		add	r3, r7, #8
+ARM GAS  /tmp/cctKQfgE.s 			page 12
+
+
+ 502 0088 1846     		mov	r0, r3
+ 503 008a FFF7FEFF 		bl	EXTI_Init
+ 142:hardware/src/exti.c **** 
+ 143:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 504              		.loc 1 143 38
+ 505 008e 0623     		movs	r3, #6
+ 506 0090 3B71     		strb	r3, [r7, #4]
+ 144:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2£¨ 
+ 507              		.loc 1 144 56
+ 508 0092 0223     		movs	r3, #2
+ 509 0094 7B71     		strb	r3, [r7, #5]
+ 145:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x03;					//◊””≈œ»º∂3
+ 510              		.loc 1 145 49
+ 511 0096 0323     		movs	r3, #3
+ 512 0098 BB71     		strb	r3, [r7, #6]
+ 146:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 513              		.loc 1 146 41
+ 514 009a 0123     		movs	r3, #1
+ 515 009c FB71     		strb	r3, [r7, #7]
+ 147:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure); 
+ 516              		.loc 1 147 3
+ 517 009e 3B1D     		adds	r3, r7, #4
+ 518 00a0 1846     		mov	r0, r3
+ 519 00a2 FFF7FEFF 		bl	NVIC_Init
+ 148:hardware/src/exti.c **** 
+ 149:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 520              		.loc 1 149 38
+ 521 00a6 0823     		movs	r3, #8
+ 522 00a8 3B71     		strb	r3, [r7, #4]
+ 150:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2£¨ 
+ 523              		.loc 1 150 56
+ 524 00aa 0223     		movs	r3, #2
+ 525 00ac 7B71     		strb	r3, [r7, #5]
+ 151:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x02;					//◊””≈œ»º∂2
+ 526              		.loc 1 151 49
+ 527 00ae 0223     		movs	r3, #2
+ 528 00b0 BB71     		strb	r3, [r7, #6]
+ 152:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 529              		.loc 1 152 41
+ 530 00b2 0123     		movs	r3, #1
+ 531 00b4 FB71     		strb	r3, [r7, #7]
+ 153:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);
+ 532              		.loc 1 153 3
+ 533 00b6 3B1D     		adds	r3, r7, #4
+ 534 00b8 1846     		mov	r0, r3
+ 535 00ba FFF7FEFF 		bl	NVIC_Init
+ 154:hardware/src/exti.c **** 
+ 155:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 536              		.loc 1 155 38
+ 537 00be 0923     		movs	r3, #9
+ 538 00c0 3B71     		strb	r3, [r7, #4]
+ 156:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2 
+ 539              		.loc 1 156 56
+ 540 00c2 0223     		movs	r3, #2
+ 541 00c4 7B71     		strb	r3, [r7, #5]
+ 157:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;					//◊””≈œ»º∂1 
+ 542              		.loc 1 157 49
+ARM GAS  /tmp/cctKQfgE.s 			page 13
+
+
+ 543 00c6 0123     		movs	r3, #1
+ 544 00c8 BB71     		strb	r3, [r7, #6]
+ 158:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 545              		.loc 1 158 41
+ 546 00ca 0123     		movs	r3, #1
+ 547 00cc FB71     		strb	r3, [r7, #7]
+ 159:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜
+ 548              		.loc 1 159 3
+ 549 00ce 3B1D     		adds	r3, r7, #4
+ 550 00d0 1846     		mov	r0, r3
+ 551 00d2 FFF7FEFF 		bl	NVIC_Init
+ 160:hardware/src/exti.c **** 
+ 161:hardware/src/exti.c **** 	NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 552              		.loc 1 161 37
+ 553 00d6 0A23     		movs	r3, #10
+ 554 00d8 3B71     		strb	r3, [r7, #4]
+ 162:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//«¿’º”≈œ»º∂2 
+ 555              		.loc 1 162 56
+ 556 00da 0223     		movs	r3, #2
+ 557 00dc 7B71     		strb	r3, [r7, #5]
+ 163:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					//◊””≈œ»º∂0 
+ 558              		.loc 1 163 49
+ 559 00de 0023     		movs	r3, #0
+ 560 00e0 BB71     		strb	r3, [r7, #6]
+ 164:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 561              		.loc 1 164 41
+ 562 00e2 0123     		movs	r3, #1
+ 563 00e4 FB71     		strb	r3, [r7, #7]
+ 165:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜
+ 564              		.loc 1 165 3
+ 565 00e6 3B1D     		adds	r3, r7, #4
+ 566 00e8 1846     		mov	r0, r3
+ 567 00ea FFF7FEFF 		bl	NVIC_Init
+ 166:hardware/src/exti.c **** }
+ 568              		.loc 1 166 1
+ 569 00ee 00BF     		nop
+ 570 00f0 1037     		adds	r7, r7, #16
+ 571              	.LCFI26:
+ 572              		.cfi_def_cfa_offset 8
+ 573 00f2 BD46     		mov	sp, r7
+ 574              	.LCFI27:
+ 575              		.cfi_def_cfa_register 13
+ 576              		@ sp needed
+ 577 00f4 80BD     		pop	{r7, pc}
+ 578              		.cfi_endproc
+ 579              	.LFE70:
+ 581              		.global	ov_sta
+ 582              		.section	.bss.ov_sta,"aw",%nobits
+ 585              	ov_sta:
+ 586 0000 00       		.space	1
+ 587              		.section	.text.EXTI15_10_IRQHandler,"ax",%progbits
+ 588              		.align	1
+ 589              		.global	EXTI15_10_IRQHandler
+ 590              		.syntax unified
+ 591              		.thumb
+ 592              		.thumb_func
+ 593              		.fpu softvfp
+ARM GAS  /tmp/cctKQfgE.s 			page 14
+
+
+ 595              	EXTI15_10_IRQHandler:
+ 596              	.LFB71:
+ 167:hardware/src/exti.c **** u8 ov_sta;	//÷°÷–∂œ±Íº«
+ 168:hardware/src/exti.c ****  //Õ‚≤ø÷–∂œ5~9∑˛ŒÒ≥Ã–Ú
+ 169:hardware/src/exti.c **** void EXTI15_10_IRQHandler(void)
+ 170:hardware/src/exti.c **** {		 		
+ 597              		.loc 1 170 1
+ 598              		.cfi_startproc
+ 599              		@ args = 0, pretend = 0, frame = 0
+ 600              		@ frame_needed = 1, uses_anonymous_args = 0
+ 601 0000 80B5     		push	{r7, lr}
+ 602              	.LCFI28:
+ 603              		.cfi_def_cfa_offset 8
+ 604              		.cfi_offset 7, -8
+ 605              		.cfi_offset 14, -4
+ 606 0002 00AF     		add	r7, sp, #0
+ 607              	.LCFI29:
+ 608              		.cfi_def_cfa_register 7
+ 171:hardware/src/exti.c **** 	if(EXTI_GetITStatus(EXTI_Line12)==SET)// «8œﬂµƒ÷–∂œ
+ 609              		.loc 1 171 5
+ 610 0004 4FF48050 		mov	r0, #4096
+ 611 0008 FFF7FEFF 		bl	EXTI_GetITStatus
+ 612 000c 0346     		mov	r3, r0
+ 613              		.loc 1 171 4
+ 614 000e 012B     		cmp	r3, #1
+ 615 0010 20D1     		bne	.L16
+ 172:hardware/src/exti.c **** 	{     
+ 173:hardware/src/exti.c **** 		if(ov_sta<2)
+ 616              		.loc 1 173 12
+ 617 0012 134B     		ldr	r3, .L19
+ 618 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 619              		.loc 1 173 5
+ 620 0016 012B     		cmp	r3, #1
+ 621 0018 1CD8     		bhi	.L16
+ 174:hardware/src/exti.c **** 		{
+ 175:hardware/src/exti.c **** 			if(ov_sta==0)
+ 622              		.loc 1 175 13
+ 623 001a 114B     		ldr	r3, .L19
+ 624 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 625              		.loc 1 175 6
+ 626 001e 002B     		cmp	r3, #0
+ 627 0020 09D1     		bne	.L17
+ 176:hardware/src/exti.c **** 			{
+ 177:hardware/src/exti.c **** 				OV7670_WRST=0;	 	//∏¥Œª–¥÷∏’Î		  		 
+ 628              		.loc 1 177 5
+ 629 0022 104B     		ldr	r3, .L19+4
+ 630              		.loc 1 177 16
+ 631 0024 0022     		movs	r2, #0
+ 632 0026 1A60     		str	r2, [r3]
+ 178:hardware/src/exti.c **** 				OV7670_WRST=1;	
+ 633              		.loc 1 178 5
+ 634 0028 0E4B     		ldr	r3, .L19+4
+ 635              		.loc 1 178 16
+ 636 002a 0122     		movs	r2, #1
+ 637 002c 1A60     		str	r2, [r3]
+ 179:hardware/src/exti.c **** 				OV7670_WREN=1;		//‘ –Ì–¥»ÎFIFO
+ 638              		.loc 1 179 5
+ARM GAS  /tmp/cctKQfgE.s 			page 15
+
+
+ 639 002e 0E4B     		ldr	r3, .L19+8
+ 640              		.loc 1 179 16
+ 641 0030 0122     		movs	r2, #1
+ 642 0032 1A60     		str	r2, [r3]
+ 643 0034 08E0     		b	.L18
+ 644              	.L17:
+ 180:hardware/src/exti.c **** 			}else 
+ 181:hardware/src/exti.c **** 			{
+ 182:hardware/src/exti.c **** 				OV7670_WREN=0;		//Ω˚÷π–¥»ÎFIFO 
+ 645              		.loc 1 182 5
+ 646 0036 0C4B     		ldr	r3, .L19+8
+ 647              		.loc 1 182 16
+ 648 0038 0022     		movs	r2, #0
+ 649 003a 1A60     		str	r2, [r3]
+ 183:hardware/src/exti.c **** 				OV7670_WRST=0;	 	//∏¥Œª–¥÷∏’Î		  		 
+ 650              		.loc 1 183 5
+ 651 003c 094B     		ldr	r3, .L19+4
+ 652              		.loc 1 183 16
+ 653 003e 0022     		movs	r2, #0
+ 654 0040 1A60     		str	r2, [r3]
+ 184:hardware/src/exti.c **** 				OV7670_WRST=1;	
+ 655              		.loc 1 184 5
+ 656 0042 084B     		ldr	r3, .L19+4
+ 657              		.loc 1 184 16
+ 658 0044 0122     		movs	r2, #1
+ 659 0046 1A60     		str	r2, [r3]
+ 660              	.L18:
+ 185:hardware/src/exti.c **** 			}
+ 186:hardware/src/exti.c **** 			ov_sta++;
+ 661              		.loc 1 186 10
+ 662 0048 054B     		ldr	r3, .L19
+ 663 004a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 664 004c 0133     		adds	r3, r3, #1
+ 665 004e DAB2     		uxtb	r2, r3
+ 666 0050 034B     		ldr	r3, .L19
+ 667 0052 1A70     		strb	r2, [r3]
+ 668              	.L16:
+ 187:hardware/src/exti.c **** 		}
+ 188:hardware/src/exti.c **** 	}
+ 189:hardware/src/exti.c **** 	EXTI_ClearITPendingBit(EXTI_Line12);  //«Â≥˝EXTI8œﬂ¬∑π“∆Œª						  
+ 669              		.loc 1 189 2
+ 670 0054 4FF48050 		mov	r0, #4096
+ 671 0058 FFF7FEFF 		bl	EXTI_ClearITPendingBit
+ 190:hardware/src/exti.c **** } 
+ 672              		.loc 1 190 1
+ 673 005c 00BF     		nop
+ 674 005e 80BD     		pop	{r7, pc}
+ 675              	.L20:
+ 676              		.align	2
+ 677              	.L19:
+ 678 0060 00000000 		.word	ov_sta
+ 679 0064 84012342 		.word	1109590404
+ 680 0068 8C012342 		.word	1109590412
+ 681              		.cfi_endproc
+ 682              	.LFE71:
+ 684              		.section	.text.EXTI11_Init,"ax",%progbits
+ 685              		.align	1
+ARM GAS  /tmp/cctKQfgE.s 			page 16
+
+
+ 686              		.global	EXTI11_Init
+ 687              		.syntax unified
+ 688              		.thumb
+ 689              		.thumb_func
+ 690              		.fpu softvfp
+ 692              	EXTI11_Init:
+ 693              	.LFB72:
+ 191:hardware/src/exti.c **** 
+ 192:hardware/src/exti.c **** //Õ‚≤ø÷–∂œ8≥ı ºªØ
+ 193:hardware/src/exti.c **** void EXTI11_Init(void)
+ 194:hardware/src/exti.c **** {												  
+ 694              		.loc 1 194 1
+ 695              		.cfi_startproc
+ 696              		@ args = 0, pretend = 0, frame = 16
+ 697              		@ frame_needed = 1, uses_anonymous_args = 0
+ 698 0000 80B5     		push	{r7, lr}
+ 699              	.LCFI30:
+ 700              		.cfi_def_cfa_offset 8
+ 701              		.cfi_offset 7, -8
+ 702              		.cfi_offset 14, -4
+ 703 0002 84B0     		sub	sp, sp, #16
+ 704              	.LCFI31:
+ 705              		.cfi_def_cfa_offset 24
+ 706 0004 00AF     		add	r7, sp, #0
+ 707              	.LCFI32:
+ 708              		.cfi_def_cfa_register 7
+ 195:hardware/src/exti.c **** 	EXTI_InitTypeDef EXTI_InitStructure;
+ 196:hardware/src/exti.c **** 	NVIC_InitTypeDef NVIC_InitStructure;
+ 197:hardware/src/exti.c **** 	
+ 198:hardware/src/exti.c ****   GPIO_EXTILineConfig(GPIO_PortSourceGPIOC,GPIO_PinSource12);//PA8∂‘÷–∂œœﬂ8
+ 709              		.loc 1 198 3
+ 710 0006 0C21     		movs	r1, #12
+ 711 0008 0220     		movs	r0, #2
+ 712 000a FFF7FEFF 		bl	GPIO_EXTILineConfig
+ 199:hardware/src/exti.c ****  	   	 
+ 200:hardware/src/exti.c **** 	EXTI_InitStructure.EXTI_Line=EXTI_Line12;
+ 713              		.loc 1 200 30
+ 714 000e 4FF48053 		mov	r3, #4096
+ 715 0012 BB60     		str	r3, [r7, #8]
+ 201:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+ 716              		.loc 1 201 32
+ 717 0014 0023     		movs	r3, #0
+ 718 0016 3B73     		strb	r3, [r7, #12]
+ 202:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+ 719              		.loc 1 202 35
+ 720 0018 0823     		movs	r3, #8
+ 721 001a 7B73     		strb	r3, [r7, #13]
+ 203:hardware/src/exti.c ****   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+ 722              		.loc 1 203 35
+ 723 001c 0123     		movs	r3, #1
+ 724 001e BB73     		strb	r3, [r7, #14]
+ 204:hardware/src/exti.c ****   EXTI_Init(&EXTI_InitStructure);		//∏˘æ›EXTI_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËEXTIºƒ¥Ê∆˜
+ 725              		.loc 1 204 3
+ 726 0020 07F10803 		add	r3, r7, #8
+ 727 0024 1846     		mov	r0, r3
+ 728 0026 FFF7FEFF 		bl	EXTI_Init
+ 205:hardware/src/exti.c **** 	
+ARM GAS  /tmp/cctKQfgE.s 			page 17
+
+
+ 206:hardware/src/exti.c **** 	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;			// πƒ‹∞¥º¸À˘‘⁄µƒÕ‚≤ø÷–∂œÕ®µ¿
+ 729              		.loc 1 206 37
+ 730 002a 2823     		movs	r3, #40
+ 731 002c 3B71     		strb	r3, [r7, #4]
+ 207:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;	//«¿’º”≈œ»º∂0 
+ 732              		.loc 1 207 56
+ 733 002e 0023     		movs	r3, #0
+ 734 0030 7B71     		strb	r3, [r7, #5]
+ 208:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;					//◊””≈œ»º∂0 
+ 735              		.loc 1 208 49
+ 736 0032 0023     		movs	r3, #0
+ 737 0034 BB71     		strb	r3, [r7, #6]
+ 209:hardware/src/exti.c ****   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								// πƒ‹Õ‚≤ø÷–∂œÕ®µ¿
+ 738              		.loc 1 209 41
+ 739 0036 0123     		movs	r3, #1
+ 740 0038 FB71     		strb	r3, [r7, #7]
+ 210:hardware/src/exti.c ****   NVIC_Init(&NVIC_InitStructure);  	  //∏˘æ›NVIC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËNVICºƒ¥Ê∆˜   
+ 741              		.loc 1 210 3
+ 742 003a 3B1D     		adds	r3, r7, #4
+ 743 003c 1846     		mov	r0, r3
+ 744 003e FFF7FEFF 		bl	NVIC_Init
+ 211:hardware/src/exti.c **** }
+ 745              		.loc 1 211 1
+ 746 0042 00BF     		nop
+ 747 0044 1037     		adds	r7, r7, #16
+ 748              	.LCFI33:
+ 749              		.cfi_def_cfa_offset 8
+ 750 0046 BD46     		mov	sp, r7
+ 751              	.LCFI34:
+ 752              		.cfi_def_cfa_register 13
+ 753              		@ sp needed
+ 754 0048 80BD     		pop	{r7, pc}
+ 755              		.cfi_endproc
+ 756              	.LFE72:
+ 758              		.section	.rodata
+ 759              		.align	2
+ 760              	.LC0:
+ 761 0000 0D0A4A75 		.ascii	"\015\012Jumping to ISP...\000"
+ 761      6D70696E 
+ 761      6720746F 
+ 761      20495350 
+ 761      2E2E2E00 
+ 762              		.section	.text.JumpToISP,"ax",%progbits
+ 763              		.align	1
+ 764              		.global	JumpToISP
+ 765              		.syntax unified
+ 766              		.thumb
+ 767              		.thumb_func
+ 768              		.fpu softvfp
+ 770              	JumpToISP:
+ 771              	.LFB73:
+ 212:hardware/src/exti.c **** 
+ 213:hardware/src/exti.c **** #define ISPAddress 0x1FFFF000 
+ 214:hardware/src/exti.c **** //IAPºº ı‘≠¿Ì.pdf
+ 215:hardware/src/exti.c **** void JumpToISP(void)
+ 216:hardware/src/exti.c **** {
+ 772              		.loc 1 216 1
+ARM GAS  /tmp/cctKQfgE.s 			page 18
+
+
+ 773              		.cfi_startproc
+ 774              		@ args = 0, pretend = 0, frame = 16
+ 775              		@ frame_needed = 1, uses_anonymous_args = 0
+ 776 0000 80B5     		push	{r7, lr}
+ 777              	.LCFI35:
+ 778              		.cfi_def_cfa_offset 8
+ 779              		.cfi_offset 7, -8
+ 780              		.cfi_offset 14, -4
+ 781 0002 84B0     		sub	sp, sp, #16
+ 782              	.LCFI36:
+ 783              		.cfi_def_cfa_offset 24
+ 784 0004 00AF     		add	r7, sp, #0
+ 785              	.LCFI37:
+ 786              		.cfi_def_cfa_register 7
+ 217:hardware/src/exti.c ****     //≥Ã–ÚÃ¯◊™≤ª∏¥ŒªÕ‚…Ë£¨Ω®“È∂‘“ª–©ø…ƒ‹µº÷¬Œ Ã‚µƒÕ‚…ËΩ¯––∑¥≥ı ºªØDeInit£¨»ÁSysTick°£
+ 218:hardware/src/exti.c ****     //ø¥√≈π∑“ªµ©≥ı ºªØ≤ªƒ‹±ªπÿ±’£¨“Ú¥À»Áπ˚ π”√¡Àø¥√≈π∑£¨‘Ú‘⁄µ˜”√∏√∫Ø ˝«∞£¨±ÿ–Îœ»∏¥ŒªœµÕ≥£¨≤¢‘⁄≥ı ºª
+ 219:hardware/src/exti.c ****     uint32_t ispJumpAddr;//ISP≥Ã–ÚµƒÃ¯◊™µÿ÷∑£¨º»≥Ã–Ú»Îø⁄
+ 220:hardware/src/exti.c ****     uint32_t ispSpValue;//ISP≥Ã–ÚµƒSP≥ı÷µ£¨º¥’ª÷∏’Î
+ 221:hardware/src/exti.c ****     void (*Jump_To_ISP)(void);//∂®“Â“ª∏ˆ∫Ø ˝÷∏’Î
+ 222:hardware/src/exti.c **** 
+ 223:hardware/src/exti.c ****     printf("\r\nJumping to ISP...");
+ 787              		.loc 1 223 5
+ 788 0006 1248     		ldr	r0, .L25
+ 789 0008 FFF7FEFF 		bl	printf
+ 224:hardware/src/exti.c ****     SysTick->CTRL=0x00;       //πÿ±’º∆ ˝∆˜
+ 790              		.loc 1 224 12
+ 791 000c 114B     		ldr	r3, .L25+4
+ 792              		.loc 1 224 18
+ 793 000e 0022     		movs	r2, #0
+ 794 0010 1A60     		str	r2, [r3]
+ 225:hardware/src/exti.c ****     SysTick->VAL =0X00;       //«Âø’º∆ ˝∆˜	
+ 795              		.loc 1 225 12
+ 796 0012 104B     		ldr	r3, .L25+4
+ 797              		.loc 1 225 18
+ 798 0014 0022     		movs	r2, #0
+ 799 0016 9A60     		str	r2, [r3, #8]
+ 226:hardware/src/exti.c **** //  __set_FAULTMASK(1);        //πÿ±’À˘”–÷–∂œ
+ 227:hardware/src/exti.c **** //  __set_CONTROL(0);		  //Ω´PSP÷∏’Î«–ªªŒ™MSP÷∏’Î£¨  ”√”⁄APP π”√OS«Èøˆ
+ 228:hardware/src/exti.c **** 
+ 229:hardware/src/exti.c ****     if (((*(__IO uint32_t*)ISPAddress) & 0x2FFE0000 ) == 0x20000000)//SP->RAM,RAM => 0x20000000
+ 800              		.loc 1 229 11
+ 801 0018 0F4B     		ldr	r3, .L25+8
+ 802 001a 1A68     		ldr	r2, [r3]
+ 803              		.loc 1 229 40
+ 804 001c 0F4B     		ldr	r3, .L25+12
+ 805 001e 1340     		ands	r3, r3, r2
+ 806              		.loc 1 229 8
+ 807 0020 B3F1005F 		cmp	r3, #536870912
+ 808 0024 0FD1     		bne	.L24
+ 230:hardware/src/exti.c ****     { 
+ 231:hardware/src/exti.c ****         ispSpValue  = *(__IO uint32_t*)ISPAddress;
+ 809              		.loc 1 231 23
+ 810 0026 0C4B     		ldr	r3, .L25+8
+ 811              		.loc 1 231 21
+ 812 0028 1B68     		ldr	r3, [r3]
+ 813 002a FB60     		str	r3, [r7, #12]
+ 232:hardware/src/exti.c ****         ispJumpAddr = *(__IO uint32_t*)(ISPAddress+4);
+ARM GAS  /tmp/cctKQfgE.s 			page 19
+
+
+ 814              		.loc 1 232 23
+ 815 002c 0C4B     		ldr	r3, .L25+16
+ 816              		.loc 1 232 21
+ 817 002e 1B68     		ldr	r3, [r3]
+ 818 0030 BB60     		str	r3, [r7, #8]
+ 819 0032 FB68     		ldr	r3, [r7, #12]
+ 820 0034 3B60     		str	r3, [r7]
+ 821              	.LBB4:
+ 822              	.LBB5:
+ 823              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS Cortex-M Core Function/Instruction Header File
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V4.30
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     20. October 2015
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Copyright (c) 2009 - 2015 ARM LIMITED
+   8:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****    All rights reserved.
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****    Redistribution and use in source and binary forms, with or without
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****    modification, are permitted provided that the following conditions are met:
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Redistributions of source code must retain the above copyright
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****      notice, this list of conditions and the following disclaimer.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Redistributions in binary form must reproduce the above copyright
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****      notice, this list of conditions and the following disclaimer in the
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****      documentation and/or other materials provided with the distribution.
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Neither the name of ARM nor the names of its contributors may be used
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****      to endorse or promote products derived from this software without
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****      specific prior written permission.
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****    *
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:Drivers/CMSIS/Include/cmsis_gcc.h ****    ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDERS AND CONTRIBUTORS BE
+  25:Drivers/CMSIS/Include/cmsis_gcc.h ****    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:Drivers/CMSIS/Include/cmsis_gcc.h ****    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:Drivers/CMSIS/Include/cmsis_gcc.h ****    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:Drivers/CMSIS/Include/cmsis_gcc.h ****    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:Drivers/CMSIS/Include/cmsis_gcc.h ****    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:Drivers/CMSIS/Include/cmsis_gcc.h ****    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:Drivers/CMSIS/Include/cmsis_gcc.h ****    POSSIBILITY OF SUCH DAMAGE.
+  32:Drivers/CMSIS/Include/cmsis_gcc.h ****    ---------------------------------------------------------------------------*/
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  36:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** #if defined ( __GNUC__ )
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  41:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  44:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  47:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+ARM GAS  /tmp/cctKQfgE.s 			page 20
+
+
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+  49:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+  51:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  53:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  54:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+  55:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+  57:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __enable_irq(void)
+  59:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  60:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  62:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
+  66:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+  67:Drivers/CMSIS/Include/cmsis_gcc.h ****   Can only be executed in Privileged modes.
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __disable_irq(void)
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
+  72:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  73:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  74:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  75:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register
+  77:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the Control Register.
+  78:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Control Register value
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  80:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_CONTROL(void)
+  81:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+  83:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control" : "=r" (result) );
+  85:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  87:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  88:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  89:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the Control Register.
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
+  93:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_CONTROL(uint32_t control)
+  95:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+  97:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  98:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  99:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get IPSR Register
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the IPSR Register.
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               IPSR Register value
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  /tmp/cctKQfgE.s 			page 21
+
+
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_IPSR(void)
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get APSR Register
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the APSR Register.
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               APSR Register value
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_APSR(void)
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get xPSR Register
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the xPSR Register.
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h ****     \return               xPSR Register value
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_xPSR(void)
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 143:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 144:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Process Stack Pointer
+ 145:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer (PSP).
+ 146:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
+ 147:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 148:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PSP(void)
+ 149:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 150:Drivers/CMSIS/Include/cmsis_gcc.h ****   register uint32_t result;
+ 151:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 152:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, psp\n"  : "=r" (result) );
+ 153:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 154:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 155:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 156:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 157:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 158:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer
+ 159:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Process Stack Pointer (PSP).
+ 160:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfProcStack  Process Stack Pointer value to set
+ 161:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  /tmp/cctKQfgE.s 			page 22
+
+
+ 162:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PSP(uint32_t topOfProcStack)
+ 163:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 164:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack) : "sp");
+ 165:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 166:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 167:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 168:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 169:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Main Stack Pointer
+ 170:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Main Stack Pointer (MSP).
+ 171:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               MSP Register value
+ 172:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 173:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_MSP(void)
+ 174:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 175:Drivers/CMSIS/Include/cmsis_gcc.h ****   register uint32_t result;
+ 176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 177:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp\n" : "=r" (result) );
+ 178:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 179:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 181:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 182:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 183:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer
+ 184:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Main Stack Pointer (MSP).
+ 185:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 186:Drivers/CMSIS/Include/cmsis_gcc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
+ 187:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 188:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_MSP(uint32_t topOfMainStack)
+ 189:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 190:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack) : "sp");
+ 824              		.loc 2 190 3
+ 825 0036 3B68     		ldr	r3, [r7]
+ 826              		.syntax unified
+ 827              	@ 190 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 828 0038 83F30888 		MSR msp, r3
+ 829              	
+ 830              	@ 0 "" 2
+ 191:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 831              		.loc 2 191 1
+ 832              		.thumb
+ 833              		.syntax unified
+ 834 003c 00BF     		nop
+ 835              	.LBE5:
+ 836              	.LBE4:
+ 233:hardware/src/exti.c ****         
+ 234:hardware/src/exti.c **** 
+ 235:hardware/src/exti.c ****         /* ≥ı ºªØ Stack Pointer */
+ 236:hardware/src/exti.c ****         __set_MSP(ispSpValue);
+ 237:hardware/src/exti.c **** 
+ 238:hardware/src/exti.c ****         /* Jump to isp */
+ 239:hardware/src/exti.c ****         Jump_To_ISP = (void (*)(void))ispJumpAddr;
+ 837              		.loc 1 239 21
+ 838 003e BB68     		ldr	r3, [r7, #8]
+ 839 0040 7B60     		str	r3, [r7, #4]
+ 240:hardware/src/exti.c ****         Jump_To_ISP();
+ 840              		.loc 1 240 9
+ 841 0042 7B68     		ldr	r3, [r7, #4]
+ 842 0044 9847     		blx	r3
+ARM GAS  /tmp/cctKQfgE.s 			page 23
+
+
+ 843              	.LVL0:
+ 844              	.L24:
+ 241:hardware/src/exti.c ****     }
+ 242:hardware/src/exti.c **** }
+ 845              		.loc 1 242 1
+ 846 0046 00BF     		nop
+ 847 0048 1037     		adds	r7, r7, #16
+ 848              	.LCFI38:
+ 849              		.cfi_def_cfa_offset 8
+ 850 004a BD46     		mov	sp, r7
+ 851              	.LCFI39:
+ 852              		.cfi_def_cfa_register 13
+ 853              		@ sp needed
+ 854 004c 80BD     		pop	{r7, pc}
+ 855              	.L26:
+ 856 004e 00BF     		.align	2
+ 857              	.L25:
+ 858 0050 00000000 		.word	.LC0
+ 859 0054 10E000E0 		.word	-536813552
+ 860 0058 00F0FF1F 		.word	536866816
+ 861 005c 0000FE2F 		.word	805175296
+ 862 0060 04F0FF1F 		.word	536866820
+ 863              		.cfi_endproc
+ 864              	.LFE73:
+ 866              		.text
+ 867              	.Letext0:
+ 868              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+ 869              		.file 4 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 870              		.file 5 "Drivers/CMSIS/Include/core_cm3.h"
+ 871              		.file 6 "Inc/stm32f10x.h"
+ 872              		.file 7 "Drivers/Inc/stm32f10x_exti.h"
+ 873              		.file 8 "Drivers/Inc/misc.h"
+ 874              		.file 9 "<built-in>"
+ARM GAS  /tmp/cctKQfgE.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 exti.c
+     /tmp/cctKQfgE.s:16     .text.EXTI0_IRQHandler:0000000000000000 $t
+     /tmp/cctKQfgE.s:24     .text.EXTI0_IRQHandler:0000000000000000 EXTI0_IRQHandler
+     /tmp/cctKQfgE.s:55     .text.EXTI0_IRQHandler:000000000000001c $d
+     /tmp/cctKQfgE.s:60     .text.EXTI0_Init:0000000000000000 $t
+     /tmp/cctKQfgE.s:67     .text.EXTI0_Init:0000000000000000 EXTI0_Init
+     /tmp/cctKQfgE.s:134    .text.EXTI2_IRQHandler:0000000000000000 $t
+     /tmp/cctKQfgE.s:141    .text.EXTI2_IRQHandler:0000000000000000 EXTI2_IRQHandler
+     /tmp/cctKQfgE.s:168    .text.EXTI3_IRQHandler:0000000000000000 $t
+     /tmp/cctKQfgE.s:175    .text.EXTI3_IRQHandler:0000000000000000 EXTI3_IRQHandler
+     /tmp/cctKQfgE.s:205    .text.EXTI3_IRQHandler:000000000000001c $d
+     /tmp/cctKQfgE.s:210    .text.EXTI3_Init:0000000000000000 $t
+     /tmp/cctKQfgE.s:217    .text.EXTI3_Init:0000000000000000 EXTI3_Init
+     /tmp/cctKQfgE.s:284    .text.EXTI4_IRQHandler:0000000000000000 $t
+     /tmp/cctKQfgE.s:291    .text.EXTI4_IRQHandler:0000000000000000 EXTI4_IRQHandler
+     /tmp/cctKQfgE.s:321    .text.EXTI4_IRQHandler:000000000000001c $d
+     /tmp/cctKQfgE.s:326    .text.EXTI4_Init:0000000000000000 $t
+     /tmp/cctKQfgE.s:333    .text.EXTI4_Init:0000000000000000 EXTI4_Init
+     /tmp/cctKQfgE.s:400    .text.EXTIX_Init:0000000000000000 $t
+     /tmp/cctKQfgE.s:407    .text.EXTIX_Init:0000000000000000 EXTIX_Init
+     /tmp/cctKQfgE.s:585    .bss.ov_sta:0000000000000000 ov_sta
+     /tmp/cctKQfgE.s:586    .bss.ov_sta:0000000000000000 $d
+     /tmp/cctKQfgE.s:588    .text.EXTI15_10_IRQHandler:0000000000000000 $t
+     /tmp/cctKQfgE.s:595    .text.EXTI15_10_IRQHandler:0000000000000000 EXTI15_10_IRQHandler
+     /tmp/cctKQfgE.s:678    .text.EXTI15_10_IRQHandler:0000000000000060 $d
+     /tmp/cctKQfgE.s:685    .text.EXTI11_Init:0000000000000000 $t
+     /tmp/cctKQfgE.s:692    .text.EXTI11_Init:0000000000000000 EXTI11_Init
+     /tmp/cctKQfgE.s:759    .rodata:0000000000000000 $d
+     /tmp/cctKQfgE.s:763    .text.JumpToISP:0000000000000000 $t
+     /tmp/cctKQfgE.s:770    .text.JumpToISP:0000000000000000 JumpToISP
+     /tmp/cctKQfgE.s:858    .text.JumpToISP:0000000000000050 $d
+
+UNDEFINED SYMBOLS
+delay_ms
+EXTI_ClearITPendingBit
+KEY0_PUSH
+GPIO_EXTILineConfig
+EXTI_Init
+NVIC_Init
+KEY1_PUSH
+EXTI_GetITStatus
+printf

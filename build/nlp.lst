@@ -1,0 +1,1510 @@
+ARM GAS  /tmp/ccMQokYu.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"nlp.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	same_str
+  16              		.section	.bss.same_str,"aw",%nobits
+  17              		.align	2
+  20              	same_str:
+  21 0000 00000000 		.space	50
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  22              		.global	same_index
+  23              		.section	.bss.same_index,"aw",%nobits
+  24              		.align	2
+  27              	same_index:
+  28 0000 00000000 		.space	4
+  29              		.global	nlp_key
+  30              		.section	.data.nlp_key,"aw"
+  31              		.align	2
+  34              	nlp_key:
+  35 0000 6B457933 		.ascii	"kEy3701a0635063d428\000"
+  35      37303161 
+  35      30363335 
+  35      30363364 
+  35      34323800 
+  36              		.global	wifi_ssid
+  37              		.section	.data.wifi_ssid,"aw"
+  38              		.align	2
+  41              	wifi_ssid:
+  42 0000 68656C6C 		.ascii	"helloworld123456\000"
+  42      6F776F72 
+  42      6C643132 
+  42      33343536 
+  42      00
+  43              		.global	wifi_password
+  44              		.section	.data.wifi_password,"aw"
+  45              		.align	2
+  48              	wifi_password:
+  49 0000 48656C6C 		.ascii	"HelloWorld123456\000"
+  49      6F576F72 
+  49      6C643132 
+  49      33343536 
+  49      00
+  50              		.section	.rodata
+  51              		.align	2
+ARM GAS  /tmp/ccMQokYu.s 			page 2
+
+
+  52              	.LC0:
+  53 0000 4F4B00   		.ascii	"OK\000"
+  54 0003 00       		.align	2
+  55              	.LC1:
+  56 0004 415400   		.ascii	"AT\000"
+  57 0007 00       		.align	2
+  58              	.LC2:
+  59 0008 73656E64 		.ascii	"send AT success\015\012\000"
+  59      20415420 
+  59      73756363 
+  59      6573730D 
+  59      0A00
+  60 001a 0000     		.align	2
+  61              	.LC3:
+  62 001c 73656E64 		.ascii	"send AT fail\015\012\000"
+  62      20415420 
+  62      6661696C 
+  62      0D0A00
+  63 002b 00       		.align	2
+  64              	.LC4:
+  65 002c 6E6C705F 		.ascii	"nlp_key\000"
+  65      6B657900 
+  66              		.align	2
+  67              	.LC5:
+  68 0034 72656164 		.ascii	"ready to send nlp_key\015\012\000"
+  68      7920746F 
+  68      2073656E 
+  68      64206E6C 
+  68      705F6B65 
+  69              		.align	2
+  70              	.LC6:
+  71 004c 73656E64 		.ascii	"send nlp_key not ready\015\012\000"
+  71      206E6C70 
+  71      5F6B6579 
+  71      206E6F74 
+  71      20726561 
+  72 0065 000000   		.align	2
+  73              	.LC7:
+  74 0068 73656E64 		.ascii	"send nlp_key content success\015\012\000"
+  74      206E6C70 
+  74      5F6B6579 
+  74      20636F6E 
+  74      74656E74 
+  75 0087 00       		.align	2
+  76              	.LC8:
+  77 0088 73656E64 		.ascii	"send nlp_key content fail\015\012\000"
+  77      206E6C70 
+  77      5F6B6579 
+  77      20636F6E 
+  77      74656E74 
+  78              		.align	2
+  79              	.LC9:
+  80 00a4 77696669 		.ascii	"wifi_ssid\000"
+  80      5F737369 
+  80      6400
+  81 00ae 0000     		.align	2
+  82              	.LC10:
+ARM GAS  /tmp/ccMQokYu.s 			page 3
+
+
+  83 00b0 72656164 		.ascii	"ready to send wifi_ssid\015\012\000"
+  83      7920746F 
+  83      2073656E 
+  83      64207769 
+  83      66695F73 
+  84 00ca 0000     		.align	2
+  85              	.LC11:
+  86 00cc 73656E64 		.ascii	"send wifi_ssid not ready\015\012\000"
+  86      20776966 
+  86      695F7373 
+  86      6964206E 
+  86      6F742072 
+  87 00e7 00       		.align	2
+  88              	.LC12:
+  89 00e8 73656E64 		.ascii	"send wifi_ssid content success\015\012\000"
+  89      20776966 
+  89      695F7373 
+  89      69642063 
+  89      6F6E7465 
+  90 0109 000000   		.align	2
+  91              	.LC13:
+  92 010c 73656E64 		.ascii	"send wifi_ssid content fail\015\012\000"
+  92      20776966 
+  92      695F7373 
+  92      69642063 
+  92      6F6E7465 
+  93 012a 0000     		.align	2
+  94              	.LC14:
+  95 012c 77696669 		.ascii	"wifi_password\000"
+  95      5F706173 
+  95      73776F72 
+  95      6400
+  96 013a 0000     		.align	2
+  97              	.LC15:
+  98 013c 72656164 		.ascii	"ready to send wifi_password\015\012\000"
+  98      7920746F 
+  98      2073656E 
+  98      64207769 
+  98      66695F70 
+  99 015a 0000     		.align	2
+ 100              	.LC16:
+ 101 015c 73656E64 		.ascii	"send wifi_password not ready\015\012\000"
+ 101      20776966 
+ 101      695F7061 
+ 101      7373776F 
+ 101      7264206E 
+ 102 017b 00       		.align	2
+ 103              	.LC17:
+ 104 017c 73656E64 		.ascii	"send wifi_password content success\015\012\000"
+ 104      20776966 
+ 104      695F7061 
+ 104      7373776F 
+ 104      72642063 
+ 105 01a1 000000   		.align	2
+ 106              	.LC18:
+ 107 01a4 73656E64 		.ascii	"send wifi_password content fail\015\012\000"
+ 107      20776966 
+ARM GAS  /tmp/ccMQokYu.s 			page 4
+
+
+ 107      695F7061 
+ 107      7373776F 
+ 107      72642063 
+ 108              		.section	.text.setup_nlp,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	setup_nlp
+ 111              		.arch armv7-m
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 115              		.fpu softvfp
+ 117              	setup_nlp:
+ 118              	.LFB66:
+ 119              		.file 1 "hardware/src/nlp.c"
+   1:hardware/src/nlp.c **** #include "led_c8.h"
+   2:hardware/src/nlp.c **** #include "stm32f10x.h"
+   3:hardware/src/nlp.c **** #include "stdio.h"
+   4:hardware/src/nlp.c **** #include "usart.h"
+   5:hardware/src/nlp.c **** #include "esp8266.h"
+   6:hardware/src/nlp.c **** 
+   7:hardware/src/nlp.c **** #define PRINT_NLP_INFO    0
+   8:hardware/src/nlp.c **** /*    used for same string calcu    */
+   9:hardware/src/nlp.c **** #define EQUAL   1   //EQUAL表示c[i][j]是由c[i-1][j-1]+1来的=此时两个序列有相同的字
+  10:hardware/src/nlp.c **** #define UP      2   //UP表示c[i][j]是由c[i-1][j]来的========此时两个序列没有相同的
+  11:hardware/src/nlp.c **** #define LEFT    3   //LEFT表示c[i][j]是由[ci][j-1]来的======此时两个序列没有相同的
+  12:hardware/src/nlp.c **** #define SAME_STR_NUM  50
+  13:hardware/src/nlp.c **** 
+  14:hardware/src/nlp.c **** char same_str[SAME_STR_NUM] = {0};
+  15:hardware/src/nlp.c **** int same_index = 0;
+  16:hardware/src/nlp.c **** 
+  17:hardware/src/nlp.c **** /*    info used send to esp    */
+  18:hardware/src/nlp.c **** unsigned char nlp_key[] = "kEy3701a0635063d428";
+  19:hardware/src/nlp.c **** unsigned char wifi_ssid[] = "helloworld123456";
+  20:hardware/src/nlp.c **** unsigned char wifi_password[] = "HelloWorld123456";
+  21:hardware/src/nlp.c **** 
+  22:hardware/src/nlp.c **** uint8_t setup_nlp(char *nlp_data[3])
+  23:hardware/src/nlp.c **** {
+ 120              		.loc 1 23 1
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 8
+ 123              		@ frame_needed = 1, uses_anonymous_args = 0
+ 124 0000 80B5     		push	{r7, lr}
+ 125              	.LCFI0:
+ 126              		.cfi_def_cfa_offset 8
+ 127              		.cfi_offset 7, -8
+ 128              		.cfi_offset 14, -4
+ 129 0002 82B0     		sub	sp, sp, #8
+ 130              	.LCFI1:
+ 131              		.cfi_def_cfa_offset 16
+ 132 0004 00AF     		add	r7, sp, #0
+ 133              	.LCFI2:
+ 134              		.cfi_def_cfa_register 7
+ 135 0006 7860     		str	r0, [r7, #4]
+  24:hardware/src/nlp.c **** 	uart1_init(115200);
+ 136              		.loc 1 24 2
+ 137 0008 4FF4E130 		mov	r0, #115200
+ 138 000c FFF7FEFF 		bl	uart1_init
+ARM GAS  /tmp/ccMQokYu.s 			page 5
+
+
+  25:hardware/src/nlp.c **** 	Usart2_Init(115200);
+ 139              		.loc 1 25 2
+ 140 0010 4FF4E130 		mov	r0, #115200
+ 141 0014 FFF7FEFF 		bl	Usart2_Init
+  26:hardware/src/nlp.c **** 	reset_esp_process();
+ 142              		.loc 1 26 2
+ 143 0018 FFF7FEFF 		bl	reset_esp_process
+  27:hardware/src/nlp.c **** 	ESP8266_Clear();
+ 144              		.loc 1 27 2
+ 145 001c FFF7FEFF 		bl	ESP8266_Clear
+  28:hardware/src/nlp.c ****     ESP8266_SendCmd("AT","OK");
+ 146              		.loc 1 28 5
+ 147 0020 5149     		ldr	r1, .L23
+ 148 0022 5248     		ldr	r0, .L23+4
+ 149 0024 FFF7FEFF 		bl	ESP8266_SendCmd
+  29:hardware/src/nlp.c **** 
+  30:hardware/src/nlp.c **** /*    AT command test    */
+  31:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd("AT","OK")){
+ 150              		.loc 1 31 6
+ 151 0028 4F49     		ldr	r1, .L23
+ 152 002a 5048     		ldr	r0, .L23+4
+ 153 002c FFF7FEFF 		bl	ESP8266_SendCmd
+ 154 0030 0346     		mov	r3, r0
+ 155              		.loc 1 31 5
+ 156 0032 83F00103 		eor	r3, r3, #1
+ 157 0036 DBB2     		uxtb	r3, r3
+ 158              		.loc 1 31 4
+ 159 0038 002B     		cmp	r3, #0
+ 160 003a 0ED0     		beq	.L2
+  32:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send AT success\r\n");
+ 161              		.loc 1 32 3
+ 162 003c 4C49     		ldr	r1, .L23+8
+ 163 003e 4D48     		ldr	r0, .L23+12
+ 164 0040 FFF7FEFF 		bl	UsartPrintf
+  33:hardware/src/nlp.c **** 	}
+  34:hardware/src/nlp.c **** 	else{
+  35:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send AT fail\r\n");
+  36:hardware/src/nlp.c ****         return 1;
+  37:hardware/src/nlp.c **** 	}
+  38:hardware/src/nlp.c **** /*    send nlp key string    */
+  39:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd("nlp_key","OK")){
+ 165              		.loc 1 39 6
+ 166 0044 4849     		ldr	r1, .L23
+ 167 0046 4C48     		ldr	r0, .L23+16
+ 168 0048 FFF7FEFF 		bl	ESP8266_SendCmd
+ 169 004c 0346     		mov	r3, r0
+ 170              		.loc 1 39 5
+ 171 004e 83F00103 		eor	r3, r3, #1
+ 172 0052 DBB2     		uxtb	r3, r3
+ 173              		.loc 1 39 4
+ 174 0054 002B     		cmp	r3, #0
+ 175 0056 17D0     		beq	.L5
+ 176 0058 05E0     		b	.L17
+ 177              	.L2:
+  35:hardware/src/nlp.c ****         return 1;
+ 178              		.loc 1 35 3
+ 179 005a 4849     		ldr	r1, .L23+20
+ARM GAS  /tmp/ccMQokYu.s 			page 6
+
+
+ 180 005c 4548     		ldr	r0, .L23+12
+ 181 005e FFF7FEFF 		bl	UsartPrintf
+  36:hardware/src/nlp.c **** 	}
+ 182              		.loc 1 36 16
+ 183 0062 0123     		movs	r3, #1
+ 184 0064 7BE0     		b	.L4
+ 185              	.L17:
+  40:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "ready to send nlp_key\r\n");
+ 186              		.loc 1 40 3
+ 187 0066 4649     		ldr	r1, .L23+24
+ 188 0068 4248     		ldr	r0, .L23+12
+ 189 006a FFF7FEFF 		bl	UsartPrintf
+  41:hardware/src/nlp.c **** 	}
+  42:hardware/src/nlp.c **** 	else{
+  43:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send nlp_key not ready\r\n");
+  44:hardware/src/nlp.c ****         return 1;
+  45:hardware/src/nlp.c **** 	}
+  46:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd(*nlp_data,"OK")){
+ 190              		.loc 1 46 6
+ 191 006e 7B68     		ldr	r3, [r7, #4]
+ 192 0070 1B68     		ldr	r3, [r3]
+ 193 0072 3D49     		ldr	r1, .L23
+ 194 0074 1846     		mov	r0, r3
+ 195 0076 FFF7FEFF 		bl	ESP8266_SendCmd
+ 196 007a 0346     		mov	r3, r0
+ 197              		.loc 1 46 5
+ 198 007c 83F00103 		eor	r3, r3, #1
+ 199 0080 DBB2     		uxtb	r3, r3
+ 200              		.loc 1 46 4
+ 201 0082 002B     		cmp	r3, #0
+ 202 0084 15D0     		beq	.L7
+ 203 0086 05E0     		b	.L18
+ 204              	.L5:
+  43:hardware/src/nlp.c ****         return 1;
+ 205              		.loc 1 43 3
+ 206 0088 3E49     		ldr	r1, .L23+28
+ 207 008a 3A48     		ldr	r0, .L23+12
+ 208 008c FFF7FEFF 		bl	UsartPrintf
+  44:hardware/src/nlp.c **** 	}
+ 209              		.loc 1 44 16
+ 210 0090 0123     		movs	r3, #1
+ 211 0092 64E0     		b	.L4
+ 212              	.L18:
+  47:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send nlp_key content success\r\n");
+ 213              		.loc 1 47 3
+ 214 0094 3C49     		ldr	r1, .L23+32
+ 215 0096 3748     		ldr	r0, .L23+12
+ 216 0098 FFF7FEFF 		bl	UsartPrintf
+  48:hardware/src/nlp.c **** 	}
+  49:hardware/src/nlp.c **** 	else{
+  50:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send nlp_key content fail\r\n");
+  51:hardware/src/nlp.c ****         return 1;
+  52:hardware/src/nlp.c **** 	}
+  53:hardware/src/nlp.c **** /*    send wifi ssid string    */
+  54:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd("wifi_ssid","OK")){
+ 217              		.loc 1 54 6
+ 218 009c 3249     		ldr	r1, .L23
+ARM GAS  /tmp/ccMQokYu.s 			page 7
+
+
+ 219 009e 3B48     		ldr	r0, .L23+36
+ 220 00a0 FFF7FEFF 		bl	ESP8266_SendCmd
+ 221 00a4 0346     		mov	r3, r0
+ 222              		.loc 1 54 5
+ 223 00a6 83F00103 		eor	r3, r3, #1
+ 224 00aa DBB2     		uxtb	r3, r3
+ 225              		.loc 1 54 4
+ 226 00ac 002B     		cmp	r3, #0
+ 227 00ae 18D0     		beq	.L9
+ 228 00b0 05E0     		b	.L19
+ 229              	.L7:
+  50:hardware/src/nlp.c ****         return 1;
+ 230              		.loc 1 50 3
+ 231 00b2 3749     		ldr	r1, .L23+40
+ 232 00b4 2F48     		ldr	r0, .L23+12
+ 233 00b6 FFF7FEFF 		bl	UsartPrintf
+  51:hardware/src/nlp.c **** 	}
+ 234              		.loc 1 51 16
+ 235 00ba 0123     		movs	r3, #1
+ 236 00bc 4FE0     		b	.L4
+ 237              	.L19:
+  55:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "ready to send wifi_ssid\r\n");
+ 238              		.loc 1 55 3
+ 239 00be 3549     		ldr	r1, .L23+44
+ 240 00c0 2C48     		ldr	r0, .L23+12
+ 241 00c2 FFF7FEFF 		bl	UsartPrintf
+  56:hardware/src/nlp.c **** 	}
+  57:hardware/src/nlp.c **** 	else{
+  58:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_ssid not ready\r\n");
+  59:hardware/src/nlp.c ****         return 1;
+  60:hardware/src/nlp.c **** 	}
+  61:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd(*(nlp_data+1),"OK")){
+ 242              		.loc 1 61 32
+ 243 00c6 7B68     		ldr	r3, [r7, #4]
+ 244 00c8 0433     		adds	r3, r3, #4
+ 245              		.loc 1 61 6
+ 246 00ca 1B68     		ldr	r3, [r3]
+ 247 00cc 2649     		ldr	r1, .L23
+ 248 00ce 1846     		mov	r0, r3
+ 249 00d0 FFF7FEFF 		bl	ESP8266_SendCmd
+ 250 00d4 0346     		mov	r3, r0
+ 251              		.loc 1 61 5
+ 252 00d6 83F00103 		eor	r3, r3, #1
+ 253 00da DBB2     		uxtb	r3, r3
+ 254              		.loc 1 61 4
+ 255 00dc 002B     		cmp	r3, #0
+ 256 00de 15D0     		beq	.L11
+ 257 00e0 05E0     		b	.L20
+ 258              	.L9:
+  58:hardware/src/nlp.c ****         return 1;
+ 259              		.loc 1 58 3
+ 260 00e2 2D49     		ldr	r1, .L23+48
+ 261 00e4 2348     		ldr	r0, .L23+12
+ 262 00e6 FFF7FEFF 		bl	UsartPrintf
+  59:hardware/src/nlp.c **** 	}
+ 263              		.loc 1 59 16
+ 264 00ea 0123     		movs	r3, #1
+ARM GAS  /tmp/ccMQokYu.s 			page 8
+
+
+ 265 00ec 37E0     		b	.L4
+ 266              	.L20:
+  62:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_ssid content success\r\n");
+ 267              		.loc 1 62 3
+ 268 00ee 2B49     		ldr	r1, .L23+52
+ 269 00f0 2048     		ldr	r0, .L23+12
+ 270 00f2 FFF7FEFF 		bl	UsartPrintf
+  63:hardware/src/nlp.c **** 	}
+  64:hardware/src/nlp.c **** 	else{
+  65:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_ssid content fail\r\n");
+  66:hardware/src/nlp.c ****         return 1;
+  67:hardware/src/nlp.c **** 	}
+  68:hardware/src/nlp.c **** /*    send wifi password string    */
+  69:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd("wifi_password","OK")){
+ 271              		.loc 1 69 6
+ 272 00f6 1C49     		ldr	r1, .L23
+ 273 00f8 2948     		ldr	r0, .L23+56
+ 274 00fa FFF7FEFF 		bl	ESP8266_SendCmd
+ 275 00fe 0346     		mov	r3, r0
+ 276              		.loc 1 69 5
+ 277 0100 83F00103 		eor	r3, r3, #1
+ 278 0104 DBB2     		uxtb	r3, r3
+ 279              		.loc 1 69 4
+ 280 0106 002B     		cmp	r3, #0
+ 281 0108 18D0     		beq	.L13
+ 282 010a 05E0     		b	.L21
+ 283              	.L11:
+  65:hardware/src/nlp.c ****         return 1;
+ 284              		.loc 1 65 3
+ 285 010c 2549     		ldr	r1, .L23+60
+ 286 010e 1948     		ldr	r0, .L23+12
+ 287 0110 FFF7FEFF 		bl	UsartPrintf
+  66:hardware/src/nlp.c **** 	}
+ 288              		.loc 1 66 16
+ 289 0114 0123     		movs	r3, #1
+ 290 0116 22E0     		b	.L4
+ 291              	.L21:
+  70:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "ready to send wifi_password\r\n");
+ 292              		.loc 1 70 3
+ 293 0118 2349     		ldr	r1, .L23+64
+ 294 011a 1648     		ldr	r0, .L23+12
+ 295 011c FFF7FEFF 		bl	UsartPrintf
+  71:hardware/src/nlp.c **** 	}
+  72:hardware/src/nlp.c **** 	else{
+  73:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_password not ready\r\n");
+  74:hardware/src/nlp.c ****         return 1;
+  75:hardware/src/nlp.c **** 	}
+  76:hardware/src/nlp.c **** 	if(!ESP8266_SendCmd(*(nlp_data+2),"OK")){
+ 296              		.loc 1 76 32
+ 297 0120 7B68     		ldr	r3, [r7, #4]
+ 298 0122 0833     		adds	r3, r3, #8
+ 299              		.loc 1 76 6
+ 300 0124 1B68     		ldr	r3, [r3]
+ 301 0126 1049     		ldr	r1, .L23
+ 302 0128 1846     		mov	r0, r3
+ 303 012a FFF7FEFF 		bl	ESP8266_SendCmd
+ 304 012e 0346     		mov	r3, r0
+ARM GAS  /tmp/ccMQokYu.s 			page 9
+
+
+ 305              		.loc 1 76 5
+ 306 0130 83F00103 		eor	r3, r3, #1
+ 307 0134 DBB2     		uxtb	r3, r3
+ 308              		.loc 1 76 4
+ 309 0136 002B     		cmp	r3, #0
+ 310 0138 0CD0     		beq	.L15
+ 311 013a 05E0     		b	.L22
+ 312              	.L13:
+  73:hardware/src/nlp.c ****         return 1;
+ 313              		.loc 1 73 3
+ 314 013c 1B49     		ldr	r1, .L23+68
+ 315 013e 0D48     		ldr	r0, .L23+12
+ 316 0140 FFF7FEFF 		bl	UsartPrintf
+  74:hardware/src/nlp.c **** 	}
+ 317              		.loc 1 74 16
+ 318 0144 0123     		movs	r3, #1
+ 319 0146 0AE0     		b	.L4
+ 320              	.L22:
+  77:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_password content success\r\n");
+ 321              		.loc 1 77 3
+ 322 0148 1949     		ldr	r1, .L23+72
+ 323 014a 0A48     		ldr	r0, .L23+12
+ 324 014c FFF7FEFF 		bl	UsartPrintf
+  78:hardware/src/nlp.c **** 	}
+  79:hardware/src/nlp.c **** 	else{
+  80:hardware/src/nlp.c **** 		UsartPrintf(USART_DEBUG, "send wifi_password content fail\r\n");
+  81:hardware/src/nlp.c ****         return 1;
+  82:hardware/src/nlp.c **** 	}
+  83:hardware/src/nlp.c **** 
+  84:hardware/src/nlp.c ****     return 0;
+ 325              		.loc 1 84 12
+ 326 0150 0023     		movs	r3, #0
+ 327 0152 04E0     		b	.L4
+ 328              	.L15:
+  80:hardware/src/nlp.c ****         return 1;
+ 329              		.loc 1 80 3
+ 330 0154 1749     		ldr	r1, .L23+76
+ 331 0156 0748     		ldr	r0, .L23+12
+ 332 0158 FFF7FEFF 		bl	UsartPrintf
+  81:hardware/src/nlp.c **** 	}
+ 333              		.loc 1 81 16
+ 334 015c 0123     		movs	r3, #1
+ 335              	.L4:
+  85:hardware/src/nlp.c **** }
+ 336              		.loc 1 85 1
+ 337 015e 1846     		mov	r0, r3
+ 338 0160 0837     		adds	r7, r7, #8
+ 339              	.LCFI3:
+ 340              		.cfi_def_cfa_offset 8
+ 341 0162 BD46     		mov	sp, r7
+ 342              	.LCFI4:
+ 343              		.cfi_def_cfa_register 13
+ 344              		@ sp needed
+ 345 0164 80BD     		pop	{r7, pc}
+ 346              	.L24:
+ 347 0166 00BF     		.align	2
+ 348              	.L23:
+ARM GAS  /tmp/ccMQokYu.s 			page 10
+
+
+ 349 0168 00000000 		.word	.LC0
+ 350 016c 04000000 		.word	.LC1
+ 351 0170 08000000 		.word	.LC2
+ 352 0174 00380140 		.word	1073821696
+ 353 0178 2C000000 		.word	.LC4
+ 354 017c 1C000000 		.word	.LC3
+ 355 0180 34000000 		.word	.LC5
+ 356 0184 4C000000 		.word	.LC6
+ 357 0188 68000000 		.word	.LC7
+ 358 018c A4000000 		.word	.LC9
+ 359 0190 88000000 		.word	.LC8
+ 360 0194 B0000000 		.word	.LC10
+ 361 0198 CC000000 		.word	.LC11
+ 362 019c E8000000 		.word	.LC12
+ 363 01a0 2C010000 		.word	.LC14
+ 364 01a4 0C010000 		.word	.LC13
+ 365 01a8 3C010000 		.word	.LC15
+ 366 01ac 5C010000 		.word	.LC16
+ 367 01b0 7C010000 		.word	.LC17
+ 368 01b4 A4010000 		.word	.LC18
+ 369              		.cfi_endproc
+ 370              	.LFE66:
+ 372              		.section	.text.Lcs_len,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	Lcs_len
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.fpu softvfp
+ 380              	Lcs_len:
+ 381              	.LFB67:
+  86:hardware/src/nlp.c **** 
+  87:hardware/src/nlp.c **** /***函数一、判断LCS长度***/
+  88:hardware/src/nlp.c **** int Lcs_len(char *str1, char *str2, int **char1, int **char2)
+  89:hardware/src/nlp.c **** {
+ 382              		.loc 1 89 1
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 32
+ 385              		@ frame_needed = 1, uses_anonymous_args = 0
+ 386 0000 80B5     		push	{r7, lr}
+ 387              	.LCFI5:
+ 388              		.cfi_def_cfa_offset 8
+ 389              		.cfi_offset 7, -8
+ 390              		.cfi_offset 14, -4
+ 391 0002 88B0     		sub	sp, sp, #32
+ 392              	.LCFI6:
+ 393              		.cfi_def_cfa_offset 40
+ 394 0004 00AF     		add	r7, sp, #0
+ 395              	.LCFI7:
+ 396              		.cfi_def_cfa_register 7
+ 397 0006 F860     		str	r0, [r7, #12]
+ 398 0008 B960     		str	r1, [r7, #8]
+ 399 000a 7A60     		str	r2, [r7, #4]
+ 400 000c 3B60     		str	r3, [r7]
+  90:hardware/src/nlp.c ****     int m = strlen(str1);
+ 401              		.loc 1 90 13
+ 402 000e F868     		ldr	r0, [r7, #12]
+ARM GAS  /tmp/ccMQokYu.s 			page 11
+
+
+ 403 0010 FFF7FEFF 		bl	strlen
+ 404 0014 0346     		mov	r3, r0
+ 405              		.loc 1 90 9
+ 406 0016 7B61     		str	r3, [r7, #20]
+  91:hardware/src/nlp.c ****     int n = strlen(str2);  //求出两个数组的边界长度
+ 407              		.loc 1 91 13
+ 408 0018 B868     		ldr	r0, [r7, #8]
+ 409 001a FFF7FEFF 		bl	strlen
+ 410 001e 0346     		mov	r3, r0
+ 411              		.loc 1 91 9
+ 412 0020 3B61     		str	r3, [r7, #16]
+  92:hardware/src/nlp.c ****     int i, j;
+  93:hardware/src/nlp.c **** 
+  94:hardware/src/nlp.c ****     for (i = 0; i <=  m; i++)
+ 413              		.loc 1 94 12
+ 414 0022 0023     		movs	r3, #0
+ 415 0024 FB61     		str	r3, [r7, #28]
+ 416              		.loc 1 94 5
+ 417 0026 09E0     		b	.L26
+ 418              	.L27:
+  95:hardware/src/nlp.c ****     {
+  96:hardware/src/nlp.c ****         char1[i][0] = 0;
+ 419              		.loc 1 96 14 discriminator 3
+ 420 0028 FB69     		ldr	r3, [r7, #28]
+ 421 002a 9B00     		lsls	r3, r3, #2
+ 422 002c 7A68     		ldr	r2, [r7, #4]
+ 423 002e 1344     		add	r3, r3, r2
+ 424 0030 1B68     		ldr	r3, [r3]
+ 425              		.loc 1 96 21 discriminator 3
+ 426 0032 0022     		movs	r2, #0
+ 427 0034 1A60     		str	r2, [r3]
+  94:hardware/src/nlp.c ****     {
+ 428              		.loc 1 94 27 discriminator 3
+ 429 0036 FB69     		ldr	r3, [r7, #28]
+ 430 0038 0133     		adds	r3, r3, #1
+ 431 003a FB61     		str	r3, [r7, #28]
+ 432              	.L26:
+  94:hardware/src/nlp.c ****     {
+ 433              		.loc 1 94 5 discriminator 1
+ 434 003c FA69     		ldr	r2, [r7, #28]
+ 435 003e 7B69     		ldr	r3, [r7, #20]
+ 436 0040 9A42     		cmp	r2, r3
+ 437 0042 F1DD     		ble	.L27
+  97:hardware/src/nlp.c ****     }
+  98:hardware/src/nlp.c ****  
+  99:hardware/src/nlp.c ****     for (j = 0; j <=  n; j++)  //初始化边界条件
+ 438              		.loc 1 99 12
+ 439 0044 0023     		movs	r3, #0
+ 440 0046 BB61     		str	r3, [r7, #24]
+ 441              		.loc 1 99 5
+ 442 0048 09E0     		b	.L28
+ 443              	.L29:
+ 100:hardware/src/nlp.c ****     {
+ 101:hardware/src/nlp.c ****         char1[0][j] = 0;
+ 444              		.loc 1 101 14 discriminator 3
+ 445 004a 7B68     		ldr	r3, [r7, #4]
+ 446 004c 1A68     		ldr	r2, [r3]
+ARM GAS  /tmp/ccMQokYu.s 			page 12
+
+
+ 447              		.loc 1 101 17 discriminator 3
+ 448 004e BB69     		ldr	r3, [r7, #24]
+ 449 0050 9B00     		lsls	r3, r3, #2
+ 450 0052 1344     		add	r3, r3, r2
+ 451              		.loc 1 101 21 discriminator 3
+ 452 0054 0022     		movs	r2, #0
+ 453 0056 1A60     		str	r2, [r3]
+  99:hardware/src/nlp.c ****     {
+ 454              		.loc 1 99 27 discriminator 3
+ 455 0058 BB69     		ldr	r3, [r7, #24]
+ 456 005a 0133     		adds	r3, r3, #1
+ 457 005c BB61     		str	r3, [r7, #24]
+ 458              	.L28:
+  99:hardware/src/nlp.c ****     {
+ 459              		.loc 1 99 5 discriminator 1
+ 460 005e BA69     		ldr	r2, [r7, #24]
+ 461 0060 3B69     		ldr	r3, [r7, #16]
+ 462 0062 9A42     		cmp	r2, r3
+ 463 0064 F1DD     		ble	.L29
+ 102:hardware/src/nlp.c ****     }
+ 103:hardware/src/nlp.c ****  
+ 104:hardware/src/nlp.c ****     for ( i = 1; i <= m; i++)
+ 464              		.loc 1 104 13
+ 465 0066 0123     		movs	r3, #1
+ 466 0068 FB61     		str	r3, [r7, #28]
+ 467              		.loc 1 104 5
+ 468 006a 96E0     		b	.L30
+ 469              	.L36:
+ 105:hardware/src/nlp.c ****     {
+ 106:hardware/src/nlp.c ****         for ( j = 1; j <= n; j++)
+ 470              		.loc 1 106 17
+ 471 006c 0123     		movs	r3, #1
+ 472 006e BB61     		str	r3, [r7, #24]
+ 473              		.loc 1 106 9
+ 474 0070 8BE0     		b	.L31
+ 475              	.L35:
+ 107:hardware/src/nlp.c ****         {
+ 108:hardware/src/nlp.c ****             if( str1[i-1] == str2[j-1] )
+ 476              		.loc 1 108 21
+ 477 0072 FB69     		ldr	r3, [r7, #28]
+ 478 0074 013B     		subs	r3, r3, #1
+ 479 0076 FA68     		ldr	r2, [r7, #12]
+ 480 0078 1344     		add	r3, r3, r2
+ 481 007a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 482              		.loc 1 108 34
+ 483 007c BB69     		ldr	r3, [r7, #24]
+ 484 007e 013B     		subs	r3, r3, #1
+ 485 0080 B968     		ldr	r1, [r7, #8]
+ 486 0082 0B44     		add	r3, r3, r1
+ 487 0084 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 488              		.loc 1 108 15
+ 489 0086 9A42     		cmp	r2, r3
+ 490 0088 23D1     		bne	.L32
+ 109:hardware/src/nlp.c ****     // 这里使用i-1以及j-1是由于数组的下标从0开始
+ 110:hardware/src/nlp.c ****     //另一种实现方式是逆序实现，对于路径的确定更方便
+ 111:hardware/src/nlp.c ****             {
+ 112:hardware/src/nlp.c ****                 char1[i][j] = char1[i-1][j-1] + 1;
+ARM GAS  /tmp/ccMQokYu.s 			page 13
+
+
+ 491              		.loc 1 112 36
+ 492 008a FB69     		ldr	r3, [r7, #28]
+ 493 008c 03F18043 		add	r3, r3, #1073741824
+ 494 0090 013B     		subs	r3, r3, #1
+ 495 0092 9B00     		lsls	r3, r3, #2
+ 496 0094 7A68     		ldr	r2, [r7, #4]
+ 497 0096 1344     		add	r3, r3, r2
+ 498 0098 1A68     		ldr	r2, [r3]
+ 499              		.loc 1 112 41
+ 500 009a BB69     		ldr	r3, [r7, #24]
+ 501 009c 03F18043 		add	r3, r3, #1073741824
+ 502 00a0 013B     		subs	r3, r3, #1
+ 503 00a2 9B00     		lsls	r3, r3, #2
+ 504 00a4 1344     		add	r3, r3, r2
+ 505 00a6 1A68     		ldr	r2, [r3]
+ 506              		.loc 1 112 22
+ 507 00a8 FB69     		ldr	r3, [r7, #28]
+ 508 00aa 9B00     		lsls	r3, r3, #2
+ 509 00ac 7968     		ldr	r1, [r7, #4]
+ 510 00ae 0B44     		add	r3, r3, r1
+ 511 00b0 1968     		ldr	r1, [r3]
+ 512              		.loc 1 112 25
+ 513 00b2 BB69     		ldr	r3, [r7, #24]
+ 514 00b4 9B00     		lsls	r3, r3, #2
+ 515 00b6 0B44     		add	r3, r3, r1
+ 516              		.loc 1 112 47
+ 517 00b8 0132     		adds	r2, r2, #1
+ 518              		.loc 1 112 29
+ 519 00ba 1A60     		str	r2, [r3]
+ 113:hardware/src/nlp.c ****                 char2[i][j] = EQUAL;
+ 520              		.loc 1 113 22
+ 521 00bc FB69     		ldr	r3, [r7, #28]
+ 522 00be 9B00     		lsls	r3, r3, #2
+ 523 00c0 3A68     		ldr	r2, [r7]
+ 524 00c2 1344     		add	r3, r3, r2
+ 525 00c4 1A68     		ldr	r2, [r3]
+ 526              		.loc 1 113 25
+ 527 00c6 BB69     		ldr	r3, [r7, #24]
+ 528 00c8 9B00     		lsls	r3, r3, #2
+ 529 00ca 1344     		add	r3, r3, r2
+ 530              		.loc 1 113 29
+ 531 00cc 0122     		movs	r2, #1
+ 532 00ce 1A60     		str	r2, [r3]
+ 533 00d0 58E0     		b	.L33
+ 534              	.L32:
+ 114:hardware/src/nlp.c ****             }
+ 115:hardware/src/nlp.c ****             else if (char1[i-1][j] >= char1[i][j-1])//在j循环时若字符串不等
+ 535              		.loc 1 115 27
+ 536 00d2 FB69     		ldr	r3, [r7, #28]
+ 537 00d4 03F18043 		add	r3, r3, #1073741824
+ 538 00d8 013B     		subs	r3, r3, #1
+ 539 00da 9B00     		lsls	r3, r3, #2
+ 540 00dc 7A68     		ldr	r2, [r7, #4]
+ 541 00de 1344     		add	r3, r3, r2
+ 542 00e0 1A68     		ldr	r2, [r3]
+ 543              		.loc 1 115 32
+ 544 00e2 BB69     		ldr	r3, [r7, #24]
+ARM GAS  /tmp/ccMQokYu.s 			page 14
+
+
+ 545 00e4 9B00     		lsls	r3, r3, #2
+ 546 00e6 1344     		add	r3, r3, r2
+ 547 00e8 1A68     		ldr	r2, [r3]
+ 548              		.loc 1 115 44
+ 549 00ea FB69     		ldr	r3, [r7, #28]
+ 550 00ec 9B00     		lsls	r3, r3, #2
+ 551 00ee 7968     		ldr	r1, [r7, #4]
+ 552 00f0 0B44     		add	r3, r3, r1
+ 553 00f2 1968     		ldr	r1, [r3]
+ 554              		.loc 1 115 47
+ 555 00f4 BB69     		ldr	r3, [r7, #24]
+ 556 00f6 03F18043 		add	r3, r3, #1073741824
+ 557 00fa 013B     		subs	r3, r3, #1
+ 558 00fc 9B00     		lsls	r3, r3, #2
+ 559 00fe 0B44     		add	r3, r3, r1
+ 560 0100 1B68     		ldr	r3, [r3]
+ 561              		.loc 1 115 21
+ 562 0102 9A42     		cmp	r2, r3
+ 563 0104 1FDB     		blt	.L34
+ 116:hardware/src/nlp.c ****                 {                                // 则只用判断char中的元素
+ 117:hardware/src/nlp.c ****                 char1[i][j] = char1[i-1][j];
+ 564              		.loc 1 117 36
+ 565 0106 FB69     		ldr	r3, [r7, #28]
+ 566 0108 03F18043 		add	r3, r3, #1073741824
+ 567 010c 013B     		subs	r3, r3, #1
+ 568 010e 9B00     		lsls	r3, r3, #2
+ 569 0110 7A68     		ldr	r2, [r7, #4]
+ 570 0112 1344     		add	r3, r3, r2
+ 571 0114 1A68     		ldr	r2, [r3]
+ 572              		.loc 1 117 41
+ 573 0116 BB69     		ldr	r3, [r7, #24]
+ 574 0118 9B00     		lsls	r3, r3, #2
+ 575 011a 1A44     		add	r2, r2, r3
+ 576              		.loc 1 117 22
+ 577 011c FB69     		ldr	r3, [r7, #28]
+ 578 011e 9B00     		lsls	r3, r3, #2
+ 579 0120 7968     		ldr	r1, [r7, #4]
+ 580 0122 0B44     		add	r3, r3, r1
+ 581 0124 1968     		ldr	r1, [r3]
+ 582              		.loc 1 117 25
+ 583 0126 BB69     		ldr	r3, [r7, #24]
+ 584 0128 9B00     		lsls	r3, r3, #2
+ 585 012a 0B44     		add	r3, r3, r1
+ 586              		.loc 1 117 41
+ 587 012c 1268     		ldr	r2, [r2]
+ 588              		.loc 1 117 29
+ 589 012e 1A60     		str	r2, [r3]
+ 118:hardware/src/nlp.c ****                 char2[i][j] = UP;
+ 590              		.loc 1 118 22
+ 591 0130 FB69     		ldr	r3, [r7, #28]
+ 592 0132 9B00     		lsls	r3, r3, #2
+ 593 0134 3A68     		ldr	r2, [r7]
+ 594 0136 1344     		add	r3, r3, r2
+ 595 0138 1A68     		ldr	r2, [r3]
+ 596              		.loc 1 118 25
+ 597 013a BB69     		ldr	r3, [r7, #24]
+ 598 013c 9B00     		lsls	r3, r3, #2
+ARM GAS  /tmp/ccMQokYu.s 			page 15
+
+
+ 599 013e 1344     		add	r3, r3, r2
+ 600              		.loc 1 118 29
+ 601 0140 0222     		movs	r2, #2
+ 602 0142 1A60     		str	r2, [r3]
+ 603 0144 1EE0     		b	.L33
+ 604              	.L34:
+ 119:hardware/src/nlp.c ****                 }
+ 120:hardware/src/nlp.c ****             else
+ 121:hardware/src/nlp.c ****                 {
+ 122:hardware/src/nlp.c ****                 char1[i][j] = char1[i][j-1];
+ 605              		.loc 1 122 36
+ 606 0146 FB69     		ldr	r3, [r7, #28]
+ 607 0148 9B00     		lsls	r3, r3, #2
+ 608 014a 7A68     		ldr	r2, [r7, #4]
+ 609 014c 1344     		add	r3, r3, r2
+ 610 014e 1A68     		ldr	r2, [r3]
+ 611              		.loc 1 122 39
+ 612 0150 BB69     		ldr	r3, [r7, #24]
+ 613 0152 03F18043 		add	r3, r3, #1073741824
+ 614 0156 013B     		subs	r3, r3, #1
+ 615 0158 9B00     		lsls	r3, r3, #2
+ 616 015a 1A44     		add	r2, r2, r3
+ 617              		.loc 1 122 22
+ 618 015c FB69     		ldr	r3, [r7, #28]
+ 619 015e 9B00     		lsls	r3, r3, #2
+ 620 0160 7968     		ldr	r1, [r7, #4]
+ 621 0162 0B44     		add	r3, r3, r1
+ 622 0164 1968     		ldr	r1, [r3]
+ 623              		.loc 1 122 25
+ 624 0166 BB69     		ldr	r3, [r7, #24]
+ 625 0168 9B00     		lsls	r3, r3, #2
+ 626 016a 0B44     		add	r3, r3, r1
+ 627              		.loc 1 122 39
+ 628 016c 1268     		ldr	r2, [r2]
+ 629              		.loc 1 122 29
+ 630 016e 1A60     		str	r2, [r3]
+ 123:hardware/src/nlp.c ****                 char2[i][j] = LEFT;
+ 631              		.loc 1 123 22
+ 632 0170 FB69     		ldr	r3, [r7, #28]
+ 633 0172 9B00     		lsls	r3, r3, #2
+ 634 0174 3A68     		ldr	r2, [r7]
+ 635 0176 1344     		add	r3, r3, r2
+ 636 0178 1A68     		ldr	r2, [r3]
+ 637              		.loc 1 123 25
+ 638 017a BB69     		ldr	r3, [r7, #24]
+ 639 017c 9B00     		lsls	r3, r3, #2
+ 640 017e 1344     		add	r3, r3, r2
+ 641              		.loc 1 123 29
+ 642 0180 0322     		movs	r2, #3
+ 643 0182 1A60     		str	r2, [r3]
+ 644              	.L33:
+ 106:hardware/src/nlp.c ****         {
+ 645              		.loc 1 106 31 discriminator 2
+ 646 0184 BB69     		ldr	r3, [r7, #24]
+ 647 0186 0133     		adds	r3, r3, #1
+ 648 0188 BB61     		str	r3, [r7, #24]
+ 649              	.L31:
+ARM GAS  /tmp/ccMQokYu.s 			page 16
+
+
+ 106:hardware/src/nlp.c ****         {
+ 650              		.loc 1 106 9 discriminator 1
+ 651 018a BA69     		ldr	r2, [r7, #24]
+ 652 018c 3B69     		ldr	r3, [r7, #16]
+ 653 018e 9A42     		cmp	r2, r3
+ 654 0190 7FF76FAF 		ble	.L35
+ 104:hardware/src/nlp.c ****     {
+ 655              		.loc 1 104 27 discriminator 2
+ 656 0194 FB69     		ldr	r3, [r7, #28]
+ 657 0196 0133     		adds	r3, r3, #1
+ 658 0198 FB61     		str	r3, [r7, #28]
+ 659              	.L30:
+ 104:hardware/src/nlp.c ****     {
+ 660              		.loc 1 104 5 discriminator 1
+ 661 019a FA69     		ldr	r2, [r7, #28]
+ 662 019c 7B69     		ldr	r3, [r7, #20]
+ 663 019e 9A42     		cmp	r2, r3
+ 664 01a0 7FF764AF 		ble	.L36
+ 124:hardware/src/nlp.c ****                 }
+ 125:hardware/src/nlp.c ****         }
+ 126:hardware/src/nlp.c ****  
+ 127:hardware/src/nlp.c ****  
+ 128:hardware/src/nlp.c ****     }
+ 129:hardware/src/nlp.c ****     return char1[m][n];  //递归的最终位存储的数字就是LCS长度
+ 665              		.loc 1 129 17
+ 666 01a4 7B69     		ldr	r3, [r7, #20]
+ 667 01a6 9B00     		lsls	r3, r3, #2
+ 668 01a8 7A68     		ldr	r2, [r7, #4]
+ 669 01aa 1344     		add	r3, r3, r2
+ 670 01ac 1A68     		ldr	r2, [r3]
+ 671              		.loc 1 129 20
+ 672 01ae 3B69     		ldr	r3, [r7, #16]
+ 673 01b0 9B00     		lsls	r3, r3, #2
+ 674 01b2 1344     		add	r3, r3, r2
+ 675 01b4 1B68     		ldr	r3, [r3]
+ 130:hardware/src/nlp.c **** }
+ 676              		.loc 1 130 1
+ 677 01b6 1846     		mov	r0, r3
+ 678 01b8 2037     		adds	r7, r7, #32
+ 679              	.LCFI8:
+ 680              		.cfi_def_cfa_offset 8
+ 681 01ba BD46     		mov	sp, r7
+ 682              	.LCFI9:
+ 683              		.cfi_def_cfa_register 13
+ 684              		@ sp needed
+ 685 01bc 80BD     		pop	{r7, pc}
+ 686              		.cfi_endproc
+ 687              	.LFE67:
+ 689              		.section	.text.Print_Lcs,"ax",%progbits
+ 690              		.align	1
+ 691              		.global	Print_Lcs
+ 692              		.syntax unified
+ 693              		.thumb
+ 694              		.thumb_func
+ 695              		.fpu softvfp
+ 697              	Print_Lcs:
+ 698              	.LFB68:
+ARM GAS  /tmp/ccMQokYu.s 			page 17
+
+
+ 131:hardware/src/nlp.c ****  
+ 132:hardware/src/nlp.c **** /***函数二、输出LCS***/
+ 133:hardware/src/nlp.c **** void Print_Lcs( char *str, int **b, int i, int j)
+ 134:hardware/src/nlp.c **** {
+ 699              		.loc 1 134 1
+ 700              		.cfi_startproc
+ 701              		@ args = 0, pretend = 0, frame = 16
+ 702              		@ frame_needed = 1, uses_anonymous_args = 0
+ 703 0000 80B5     		push	{r7, lr}
+ 704              	.LCFI10:
+ 705              		.cfi_def_cfa_offset 8
+ 706              		.cfi_offset 7, -8
+ 707              		.cfi_offset 14, -4
+ 708 0002 84B0     		sub	sp, sp, #16
+ 709              	.LCFI11:
+ 710              		.cfi_def_cfa_offset 24
+ 711 0004 00AF     		add	r7, sp, #0
+ 712              	.LCFI12:
+ 713              		.cfi_def_cfa_register 7
+ 714 0006 F860     		str	r0, [r7, #12]
+ 715 0008 B960     		str	r1, [r7, #8]
+ 716 000a 7A60     		str	r2, [r7, #4]
+ 717 000c 3B60     		str	r3, [r7]
+ 135:hardware/src/nlp.c ****     if( i == 0 || j == 0)
+ 718              		.loc 1 135 7
+ 719 000e 7B68     		ldr	r3, [r7, #4]
+ 720 0010 002B     		cmp	r3, #0
+ 721 0012 3DD0     		beq	.L44
+ 722              		.loc 1 135 16 discriminator 1
+ 723 0014 3B68     		ldr	r3, [r7]
+ 724 0016 002B     		cmp	r3, #0
+ 725 0018 3AD0     		beq	.L44
+ 136:hardware/src/nlp.c ****         return;    //递归至边界则扫描完毕
+ 137:hardware/src/nlp.c ****     if( b[i][j] == EQUAL)
+ 726              		.loc 1 137 10
+ 727 001a 7B68     		ldr	r3, [r7, #4]
+ 728 001c 9B00     		lsls	r3, r3, #2
+ 729 001e BA68     		ldr	r2, [r7, #8]
+ 730 0020 1344     		add	r3, r3, r2
+ 731 0022 1A68     		ldr	r2, [r3]
+ 732              		.loc 1 137 13
+ 733 0024 3B68     		ldr	r3, [r7]
+ 734 0026 9B00     		lsls	r3, r3, #2
+ 735 0028 1344     		add	r3, r3, r2
+ 736 002a 1B68     		ldr	r3, [r3]
+ 737              		.loc 1 137 7
+ 738 002c 012B     		cmp	r3, #1
+ 739 002e 14D1     		bne	.L42
+ 138:hardware/src/nlp.c ****     {                     //对于相等的元素，其路径为左上方对角移动
+ 139:hardware/src/nlp.c ****         Print_Lcs(str, b, i - 1, j - 1);
+ 740              		.loc 1 139 9
+ 741 0030 7B68     		ldr	r3, [r7, #4]
+ 742 0032 5A1E     		subs	r2, r3, #1
+ 743 0034 3B68     		ldr	r3, [r7]
+ 744 0036 013B     		subs	r3, r3, #1
+ 745 0038 B968     		ldr	r1, [r7, #8]
+ 746 003a F868     		ldr	r0, [r7, #12]
+ARM GAS  /tmp/ccMQokYu.s 			page 18
+
+
+ 747 003c FFF7FEFF 		bl	Print_Lcs
+ 140:hardware/src/nlp.c **** #if defined(PRINT_NLP_INFO) && PRINT_NLP_INFO
+ 141:hardware/src/nlp.c ****         // printf("%c ", str[i-1]);  //相等的话，原字符序列向前递归一位并打印出
+ 142:hardware/src/nlp.c ****         printf("%02x ", str[i-1]);  //相等的话，原字符序列向前递归一位并打印出�
+ 143:hardware/src/nlp.c **** #endif
+ 144:hardware/src/nlp.c **** 		same_str[same_index++] = str[i-1];
+ 748              		.loc 1 144 31
+ 749 0040 7B68     		ldr	r3, [r7, #4]
+ 750 0042 013B     		subs	r3, r3, #1
+ 751 0044 FA68     		ldr	r2, [r7, #12]
+ 752 0046 1A44     		add	r2, r2, r3
+ 753              		.loc 1 144 22
+ 754 0048 134B     		ldr	r3, .L45
+ 755 004a 1B68     		ldr	r3, [r3]
+ 756 004c 591C     		adds	r1, r3, #1
+ 757 004e 1248     		ldr	r0, .L45
+ 758 0050 0160     		str	r1, [r0]
+ 759              		.loc 1 144 31
+ 760 0052 1178     		ldrb	r1, [r2]	@ zero_extendqisi2
+ 761              		.loc 1 144 26
+ 762 0054 114A     		ldr	r2, .L45+4
+ 763 0056 D154     		strb	r1, [r2, r3]
+ 764 0058 1BE0     		b	.L38
+ 765              	.L42:
+ 145:hardware/src/nlp.c ****     }
+ 146:hardware/src/nlp.c ****     else if ( b[i][j] == UP )  //不相等时判断方向：向上则数组向上位移
+ 766              		.loc 1 146 16
+ 767 005a 7B68     		ldr	r3, [r7, #4]
+ 768 005c 9B00     		lsls	r3, r3, #2
+ 769 005e BA68     		ldr	r2, [r7, #8]
+ 770 0060 1344     		add	r3, r3, r2
+ 771 0062 1A68     		ldr	r2, [r3]
+ 772              		.loc 1 146 19
+ 773 0064 3B68     		ldr	r3, [r7]
+ 774 0066 9B00     		lsls	r3, r3, #2
+ 775 0068 1344     		add	r3, r3, r2
+ 776 006a 1B68     		ldr	r3, [r3]
+ 777              		.loc 1 146 13
+ 778 006c 022B     		cmp	r3, #2
+ 779 006e 07D1     		bne	.L43
+ 147:hardware/src/nlp.c ****         Print_Lcs(str, b, i - 1, j);
+ 780              		.loc 1 147 9
+ 781 0070 7B68     		ldr	r3, [r7, #4]
+ 782 0072 5A1E     		subs	r2, r3, #1
+ 783 0074 3B68     		ldr	r3, [r7]
+ 784 0076 B968     		ldr	r1, [r7, #8]
+ 785 0078 F868     		ldr	r0, [r7, #12]
+ 786 007a FFF7FEFF 		bl	Print_Lcs
+ 787 007e 08E0     		b	.L38
+ 788              	.L43:
+ 148:hardware/src/nlp.c ****     else
+ 149:hardware/src/nlp.c ****         Print_Lcs(str, b, i , j - 1); //否则数组下标向左位移一位
+ 789              		.loc 1 149 9
+ 790 0080 3B68     		ldr	r3, [r7]
+ 791 0082 013B     		subs	r3, r3, #1
+ 792 0084 7A68     		ldr	r2, [r7, #4]
+ 793 0086 B968     		ldr	r1, [r7, #8]
+ARM GAS  /tmp/ccMQokYu.s 			page 19
+
+
+ 794 0088 F868     		ldr	r0, [r7, #12]
+ 795 008a FFF7FEFF 		bl	Print_Lcs
+ 796 008e 00E0     		b	.L38
+ 797              	.L44:
+ 136:hardware/src/nlp.c ****     if( b[i][j] == EQUAL)
+ 798              		.loc 1 136 9
+ 799 0090 00BF     		nop
+ 800              	.L38:
+ 150:hardware/src/nlp.c ****  
+ 151:hardware/src/nlp.c **** }
+ 801              		.loc 1 151 1
+ 802 0092 1037     		adds	r7, r7, #16
+ 803              	.LCFI13:
+ 804              		.cfi_def_cfa_offset 8
+ 805 0094 BD46     		mov	sp, r7
+ 806              	.LCFI14:
+ 807              		.cfi_def_cfa_register 13
+ 808              		@ sp needed
+ 809 0096 80BD     		pop	{r7, pc}
+ 810              	.L46:
+ 811              		.align	2
+ 812              	.L45:
+ 813 0098 00000000 		.word	same_index
+ 814 009c 00000000 		.word	same_str
+ 815              		.cfi_endproc
+ 816              	.LFE68:
+ 818              		.global	__aeabi_i2f
+ 819              		.global	__aeabi_ui2f
+ 820              		.global	__aeabi_fdiv
+ 821              		.global	__aeabi_fmul
+ 822              		.global	__aeabi_f2iz
+ 823              		.section	.text.Find_Lcs,"ax",%progbits
+ 824              		.align	1
+ 825              		.global	Find_Lcs
+ 826              		.syntax unified
+ 827              		.thumb
+ 828              		.thumb_func
+ 829              		.fpu softvfp
+ 831              	Find_Lcs:
+ 832              	.LFB69:
+ 152:hardware/src/nlp.c ****  
+ 153:hardware/src/nlp.c **** /***函数三、整合LCS函数***/
+ 154:hardware/src/nlp.c **** uint8_t Find_Lcs( char *str1, char *str2)
+ 155:hardware/src/nlp.c **** {
+ 833              		.loc 1 155 1
+ 834              		.cfi_startproc
+ 835              		@ args = 0, pretend = 0, frame = 40
+ 836              		@ frame_needed = 1, uses_anonymous_args = 0
+ 837 0000 90B5     		push	{r4, r7, lr}
+ 838              	.LCFI15:
+ 839              		.cfi_def_cfa_offset 12
+ 840              		.cfi_offset 4, -12
+ 841              		.cfi_offset 7, -8
+ 842              		.cfi_offset 14, -4
+ 843 0002 8BB0     		sub	sp, sp, #44
+ 844              	.LCFI16:
+ 845              		.cfi_def_cfa_offset 56
+ARM GAS  /tmp/ccMQokYu.s 			page 20
+
+
+ 846 0004 00AF     		add	r7, sp, #0
+ 847              	.LCFI17:
+ 848              		.cfi_def_cfa_register 7
+ 849 0006 7860     		str	r0, [r7, #4]
+ 850 0008 3960     		str	r1, [r7]
+ 156:hardware/src/nlp.c ****     int i,j,length,result_same;
+ 157:hardware/src/nlp.c ****     int len1 = strlen(str1),
+ 851              		.loc 1 157 16
+ 852 000a 7868     		ldr	r0, [r7, #4]
+ 853 000c FFF7FEFF 		bl	strlen
+ 854 0010 0346     		mov	r3, r0
+ 855              		.loc 1 157 9
+ 856 0012 FB61     		str	r3, [r7, #28]
+ 158:hardware/src/nlp.c ****         len2 = strlen(str2);
+ 857              		.loc 1 158 16
+ 858 0014 3868     		ldr	r0, [r7]
+ 859 0016 FFF7FEFF 		bl	strlen
+ 860 001a 0346     		mov	r3, r0
+ 861              		.loc 1 158 9
+ 862 001c BB61     		str	r3, [r7, #24]
+ 159:hardware/src/nlp.c ****     //申请二维数组
+ 160:hardware/src/nlp.c ****     int **c = (int **)malloc(sizeof(int*) * (len1 + 1));
+ 863              		.loc 1 160 51
+ 864 001e FB69     		ldr	r3, [r7, #28]
+ 865 0020 0133     		adds	r3, r3, #1
+ 866              		.loc 1 160 23
+ 867 0022 9B00     		lsls	r3, r3, #2
+ 868 0024 1846     		mov	r0, r3
+ 869 0026 FFF7FEFF 		bl	malloc
+ 870 002a 0346     		mov	r3, r0
+ 871 002c 7B61     		str	r3, [r7, #20]
+ 161:hardware/src/nlp.c ****     int **b = (int **)malloc(sizeof(int*) * (len1 + 1));
+ 872              		.loc 1 161 51
+ 873 002e FB69     		ldr	r3, [r7, #28]
+ 874 0030 0133     		adds	r3, r3, #1
+ 875              		.loc 1 161 23
+ 876 0032 9B00     		lsls	r3, r3, #2
+ 877 0034 1846     		mov	r0, r3
+ 878 0036 FFF7FEFF 		bl	malloc
+ 879 003a 0346     		mov	r3, r0
+ 880 003c 3B61     		str	r3, [r7, #16]
+ 162:hardware/src/nlp.c **** 	same_index = 0;
+ 881              		.loc 1 162 13
+ 882 003e 4E4B     		ldr	r3, .L57
+ 883 0040 0022     		movs	r2, #0
+ 884 0042 1A60     		str	r2, [r3]
+ 163:hardware/src/nlp.c ****     for( i = 0; i<= len1; i++ )  //这个等号之前没加，导致内存泄漏
+ 885              		.loc 1 163 12
+ 886 0044 0023     		movs	r3, #0
+ 887 0046 7B62     		str	r3, [r7, #36]
+ 888              		.loc 1 163 5
+ 889 0048 1AE0     		b	.L48
+ 890              	.L49:
+ 164:hardware/src/nlp.c ****     {
+ 165:hardware/src/nlp.c ****         c[i] = (int *)malloc(sizeof(int) * (len2 + 1));
+ 891              		.loc 1 165 50 discriminator 3
+ 892 004a BB69     		ldr	r3, [r7, #24]
+ARM GAS  /tmp/ccMQokYu.s 			page 21
+
+
+ 893 004c 0133     		adds	r3, r3, #1
+ 894              		.loc 1 165 23 discriminator 3
+ 895 004e 9900     		lsls	r1, r3, #2
+ 896              		.loc 1 165 10 discriminator 3
+ 897 0050 7B6A     		ldr	r3, [r7, #36]
+ 898 0052 9B00     		lsls	r3, r3, #2
+ 899 0054 7A69     		ldr	r2, [r7, #20]
+ 900 0056 D418     		adds	r4, r2, r3
+ 901              		.loc 1 165 23 discriminator 3
+ 902 0058 0846     		mov	r0, r1
+ 903 005a FFF7FEFF 		bl	malloc
+ 904 005e 0346     		mov	r3, r0
+ 905              		.loc 1 165 14 discriminator 3
+ 906 0060 2360     		str	r3, [r4]
+ 166:hardware/src/nlp.c ****         b[i] = (int *)malloc(sizeof(int) * (len2 + 1));
+ 907              		.loc 1 166 50 discriminator 3
+ 908 0062 BB69     		ldr	r3, [r7, #24]
+ 909 0064 0133     		adds	r3, r3, #1
+ 910              		.loc 1 166 23 discriminator 3
+ 911 0066 9900     		lsls	r1, r3, #2
+ 912              		.loc 1 166 10 discriminator 3
+ 913 0068 7B6A     		ldr	r3, [r7, #36]
+ 914 006a 9B00     		lsls	r3, r3, #2
+ 915 006c 3A69     		ldr	r2, [r7, #16]
+ 916 006e D418     		adds	r4, r2, r3
+ 917              		.loc 1 166 23 discriminator 3
+ 918 0070 0846     		mov	r0, r1
+ 919 0072 FFF7FEFF 		bl	malloc
+ 920 0076 0346     		mov	r3, r0
+ 921              		.loc 1 166 14 discriminator 3
+ 922 0078 2360     		str	r3, [r4]
+ 163:hardware/src/nlp.c ****     for( i = 0; i<= len1; i++ )  //这个等号之前没加，导致内存泄漏
+ 923              		.loc 1 163 28 discriminator 3
+ 924 007a 7B6A     		ldr	r3, [r7, #36]
+ 925 007c 0133     		adds	r3, r3, #1
+ 926 007e 7B62     		str	r3, [r7, #36]
+ 927              	.L48:
+ 163:hardware/src/nlp.c ****     for( i = 0; i<= len1; i++ )  //这个等号之前没加，导致内存泄漏
+ 928              		.loc 1 163 5 discriminator 1
+ 929 0080 7A6A     		ldr	r2, [r7, #36]
+ 930 0082 FB69     		ldr	r3, [r7, #28]
+ 931 0084 9A42     		cmp	r2, r3
+ 932 0086 E0DD     		ble	.L49
+ 167:hardware/src/nlp.c ****     }
+ 168:hardware/src/nlp.c ****  
+ 169:hardware/src/nlp.c ****     //将c[len1][len2]和b[len1][len2]初始化为0
+ 170:hardware/src/nlp.c ****     for ( i = 0; i<= len1; i++)
+ 933              		.loc 1 170 13
+ 934 0088 0023     		movs	r3, #0
+ 935 008a 7B62     		str	r3, [r7, #36]
+ 936              		.loc 1 170 5
+ 937 008c 20E0     		b	.L50
+ 938              	.L53:
+ 171:hardware/src/nlp.c ****         for( j = 0; j <= len2; j++)
+ 939              		.loc 1 171 16
+ 940 008e 0023     		movs	r3, #0
+ 941 0090 3B62     		str	r3, [r7, #32]
+ARM GAS  /tmp/ccMQokYu.s 			page 22
+
+
+ 942              		.loc 1 171 9
+ 943 0092 16E0     		b	.L51
+ 944              	.L52:
+ 172:hardware/src/nlp.c ****         {
+ 173:hardware/src/nlp.c ****             c[i][j] = 0;
+ 945              		.loc 1 173 14 discriminator 3
+ 946 0094 7B6A     		ldr	r3, [r7, #36]
+ 947 0096 9B00     		lsls	r3, r3, #2
+ 948 0098 7A69     		ldr	r2, [r7, #20]
+ 949 009a 1344     		add	r3, r3, r2
+ 950 009c 1A68     		ldr	r2, [r3]
+ 951              		.loc 1 173 17 discriminator 3
+ 952 009e 3B6A     		ldr	r3, [r7, #32]
+ 953 00a0 9B00     		lsls	r3, r3, #2
+ 954 00a2 1344     		add	r3, r3, r2
+ 955              		.loc 1 173 21 discriminator 3
+ 956 00a4 0022     		movs	r2, #0
+ 957 00a6 1A60     		str	r2, [r3]
+ 174:hardware/src/nlp.c ****             b[i][j] = 0;
+ 958              		.loc 1 174 14 discriminator 3
+ 959 00a8 7B6A     		ldr	r3, [r7, #36]
+ 960 00aa 9B00     		lsls	r3, r3, #2
+ 961 00ac 3A69     		ldr	r2, [r7, #16]
+ 962 00ae 1344     		add	r3, r3, r2
+ 963 00b0 1A68     		ldr	r2, [r3]
+ 964              		.loc 1 174 17 discriminator 3
+ 965 00b2 3B6A     		ldr	r3, [r7, #32]
+ 966 00b4 9B00     		lsls	r3, r3, #2
+ 967 00b6 1344     		add	r3, r3, r2
+ 968              		.loc 1 174 21 discriminator 3
+ 969 00b8 0022     		movs	r2, #0
+ 970 00ba 1A60     		str	r2, [r3]
+ 171:hardware/src/nlp.c ****         for( j = 0; j <= len2; j++)
+ 971              		.loc 1 171 33 discriminator 3
+ 972 00bc 3B6A     		ldr	r3, [r7, #32]
+ 973 00be 0133     		adds	r3, r3, #1
+ 974 00c0 3B62     		str	r3, [r7, #32]
+ 975              	.L51:
+ 171:hardware/src/nlp.c ****         for( j = 0; j <= len2; j++)
+ 976              		.loc 1 171 9 discriminator 1
+ 977 00c2 3A6A     		ldr	r2, [r7, #32]
+ 978 00c4 BB69     		ldr	r3, [r7, #24]
+ 979 00c6 9A42     		cmp	r2, r3
+ 980 00c8 E4DD     		ble	.L52
+ 170:hardware/src/nlp.c ****         for( j = 0; j <= len2; j++)
+ 981              		.loc 1 170 29 discriminator 2
+ 982 00ca 7B6A     		ldr	r3, [r7, #36]
+ 983 00cc 0133     		adds	r3, r3, #1
+ 984 00ce 7B62     		str	r3, [r7, #36]
+ 985              	.L50:
+ 170:hardware/src/nlp.c ****         for( j = 0; j <= len2; j++)
+ 986              		.loc 1 170 5 discriminator 1
+ 987 00d0 7A6A     		ldr	r2, [r7, #36]
+ 988 00d2 FB69     		ldr	r3, [r7, #28]
+ 989 00d4 9A42     		cmp	r2, r3
+ 990 00d6 DADD     		ble	.L53
+ 175:hardware/src/nlp.c ****         }
+ARM GAS  /tmp/ccMQokYu.s 			page 23
+
+
+ 176:hardware/src/nlp.c ****  
+ 177:hardware/src/nlp.c ****     //计算LCS的长度
+ 178:hardware/src/nlp.c ****     length = Lcs_len(str1, str2, c, b);
+ 991              		.loc 1 178 14
+ 992 00d8 3B69     		ldr	r3, [r7, #16]
+ 993 00da 7A69     		ldr	r2, [r7, #20]
+ 994 00dc 3968     		ldr	r1, [r7]
+ 995 00de 7868     		ldr	r0, [r7, #4]
+ 996 00e0 FFF7FEFF 		bl	Lcs_len
+ 997 00e4 F860     		str	r0, [r7, #12]
+ 179:hardware/src/nlp.c **** #if defined(PRINT_NLP_INFO) && PRINT_NLP_INFO
+ 180:hardware/src/nlp.c ****     printf("The number of the Longest-Common-Subsequence is %d\n", length);
+ 181:hardware/src/nlp.c ****     //利用数组b输出最长子序列
+ 182:hardware/src/nlp.c ****     printf("The Longest-Common-Subsequence is: ");
+ 183:hardware/src/nlp.c **** #endif
+ 184:hardware/src/nlp.c ****     Print_Lcs(str1, b, len1, len2);
+ 998              		.loc 1 184 5
+ 999 00e6 BB69     		ldr	r3, [r7, #24]
+ 1000 00e8 FA69     		ldr	r2, [r7, #28]
+ 1001 00ea 3969     		ldr	r1, [r7, #16]
+ 1002 00ec 7868     		ldr	r0, [r7, #4]
+ 1003 00ee FFF7FEFF 		bl	Print_Lcs
+ 185:hardware/src/nlp.c **** #if defined(PRINT_NLP_INFO) && PRINT_NLP_INFO
+ 186:hardware/src/nlp.c **** 	same_str[same_index] = '\0';
+ 187:hardware/src/nlp.c **** 	printf("\r\nthe result is:%s\r\n",same_str);
+ 188:hardware/src/nlp.c **** #endif
+ 189:hardware/src/nlp.c ****     //动态内存释放
+ 190:hardware/src/nlp.c ****     for ( i = 0; i <= len1; i++)
+ 1004              		.loc 1 190 13
+ 1005 00f2 0023     		movs	r3, #0
+ 1006 00f4 7B62     		str	r3, [r7, #36]
+ 1007              		.loc 1 190 5
+ 1008 00f6 12E0     		b	.L54
+ 1009              	.L55:
+ 1010              	.LBB2:
+ 191:hardware/src/nlp.c ****     {
+ 192:hardware/src/nlp.c ****         free(c[i]);
+ 1011              		.loc 1 192 15 discriminator 3
+ 1012 00f8 7B6A     		ldr	r3, [r7, #36]
+ 1013 00fa 9B00     		lsls	r3, r3, #2
+ 1014 00fc 7A69     		ldr	r2, [r7, #20]
+ 1015 00fe 1344     		add	r3, r3, r2
+ 1016              		.loc 1 192 9 discriminator 3
+ 1017 0100 1B68     		ldr	r3, [r3]
+ 1018 0102 1846     		mov	r0, r3
+ 1019 0104 FFF7FEFF 		bl	free
+ 193:hardware/src/nlp.c ****         free(b[i]);
+ 1020              		.loc 1 193 15 discriminator 3
+ 1021 0108 7B6A     		ldr	r3, [r7, #36]
+ 1022 010a 9B00     		lsls	r3, r3, #2
+ 1023 010c 3A69     		ldr	r2, [r7, #16]
+ 1024 010e 1344     		add	r3, r3, r2
+ 1025              		.loc 1 193 9 discriminator 3
+ 1026 0110 1B68     		ldr	r3, [r3]
+ 1027 0112 1846     		mov	r0, r3
+ 1028 0114 FFF7FEFF 		bl	free
+ 1029              	.LBE2:
+ARM GAS  /tmp/ccMQokYu.s 			page 24
+
+
+ 190:hardware/src/nlp.c ****     {
+ 1030              		.loc 1 190 30 discriminator 3
+ 1031 0118 7B6A     		ldr	r3, [r7, #36]
+ 1032 011a 0133     		adds	r3, r3, #1
+ 1033 011c 7B62     		str	r3, [r7, #36]
+ 1034              	.L54:
+ 190:hardware/src/nlp.c ****     {
+ 1035              		.loc 1 190 5 discriminator 1
+ 1036 011e 7A6A     		ldr	r2, [r7, #36]
+ 1037 0120 FB69     		ldr	r3, [r7, #28]
+ 1038 0122 9A42     		cmp	r2, r3
+ 1039 0124 E8DD     		ble	.L55
+ 194:hardware/src/nlp.c ****     }
+ 195:hardware/src/nlp.c ****     free(c);
+ 1040              		.loc 1 195 5
+ 1041 0126 7869     		ldr	r0, [r7, #20]
+ 1042 0128 FFF7FEFF 		bl	free
+ 196:hardware/src/nlp.c ****     free(b);
+ 1043              		.loc 1 196 5
+ 1044 012c 3869     		ldr	r0, [r7, #16]
+ 1045 012e FFF7FEFF 		bl	free
+ 197:hardware/src/nlp.c **** 	result_same = (int)((float)same_index/strlen(str1)*100);
+ 1046              		.loc 1 197 22
+ 1047 0132 114B     		ldr	r3, .L57
+ 1048 0134 1B68     		ldr	r3, [r3]
+ 1049 0136 1846     		mov	r0, r3
+ 1050 0138 FFF7FEFF 		bl	__aeabi_i2f
+ 1051 013c 0446     		mov	r4, r0
+ 1052              		.loc 1 197 40
+ 1053 013e 7868     		ldr	r0, [r7, #4]
+ 1054 0140 FFF7FEFF 		bl	strlen
+ 1055 0144 0346     		mov	r3, r0
+ 1056              		.loc 1 197 39
+ 1057 0146 1846     		mov	r0, r3
+ 1058 0148 FFF7FEFF 		bl	__aeabi_ui2f
+ 1059 014c 0346     		mov	r3, r0
+ 1060 014e 1946     		mov	r1, r3
+ 1061 0150 2046     		mov	r0, r4
+ 1062 0152 FFF7FEFF 		bl	__aeabi_fdiv
+ 1063 0156 0346     		mov	r3, r0
+ 1064              		.loc 1 197 52
+ 1065 0158 0849     		ldr	r1, .L57+4
+ 1066 015a 1846     		mov	r0, r3
+ 1067 015c FFF7FEFF 		bl	__aeabi_fmul
+ 1068 0160 0346     		mov	r3, r0
+ 1069              		.loc 1 197 14
+ 1070 0162 1846     		mov	r0, r3
+ 1071 0164 FFF7FEFF 		bl	__aeabi_f2iz
+ 1072 0168 0346     		mov	r3, r0
+ 1073 016a BB60     		str	r3, [r7, #8]
+ 198:hardware/src/nlp.c **** #if defined(PRINT_NLP_INFO) && PRINT_NLP_INFO
+ 199:hardware/src/nlp.c **** 	printf("same_index:%d,strlen(str1):%d,result_same:%d\r\n",same_index,strlen(str1),result_same);
+ 200:hardware/src/nlp.c **** #endif
+ 201:hardware/src/nlp.c **** 	return result_same;
+ 1074              		.loc 1 201 9
+ 1075 016c BB68     		ldr	r3, [r7, #8]
+ 1076 016e DBB2     		uxtb	r3, r3
+ARM GAS  /tmp/ccMQokYu.s 			page 25
+
+
+ 202:hardware/src/nlp.c **** }
+ 1077              		.loc 1 202 1
+ 1078 0170 1846     		mov	r0, r3
+ 1079 0172 2C37     		adds	r7, r7, #44
+ 1080              	.LCFI18:
+ 1081              		.cfi_def_cfa_offset 12
+ 1082 0174 BD46     		mov	sp, r7
+ 1083              	.LCFI19:
+ 1084              		.cfi_def_cfa_register 13
+ 1085              		@ sp needed
+ 1086 0176 90BD     		pop	{r4, r7, pc}
+ 1087              	.L58:
+ 1088              		.align	2
+ 1089              	.L57:
+ 1090 0178 00000000 		.word	same_index
+ 1091 017c 0000C842 		.word	1120403456
+ 1092              		.cfi_endproc
+ 1093              	.LFE69:
+ 1095              		.text
+ 1096              	.Letext0:
+ 1097              		.file 2 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+ 1098              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 1099              		.file 4 "Inc/stm32f10x.h"
+ 1100              		.file 5 "<built-in>"
+ARM GAS  /tmp/ccMQokYu.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 nlp.c
+     /tmp/ccMQokYu.s:20     .bss.same_str:0000000000000000 same_str
+     /tmp/ccMQokYu.s:17     .bss.same_str:0000000000000000 $d
+     /tmp/ccMQokYu.s:27     .bss.same_index:0000000000000000 same_index
+     /tmp/ccMQokYu.s:24     .bss.same_index:0000000000000000 $d
+     /tmp/ccMQokYu.s:34     .data.nlp_key:0000000000000000 nlp_key
+     /tmp/ccMQokYu.s:31     .data.nlp_key:0000000000000000 $d
+     /tmp/ccMQokYu.s:41     .data.wifi_ssid:0000000000000000 wifi_ssid
+     /tmp/ccMQokYu.s:38     .data.wifi_ssid:0000000000000000 $d
+     /tmp/ccMQokYu.s:48     .data.wifi_password:0000000000000000 wifi_password
+     /tmp/ccMQokYu.s:45     .data.wifi_password:0000000000000000 $d
+     /tmp/ccMQokYu.s:51     .rodata:0000000000000000 $d
+     /tmp/ccMQokYu.s:109    .text.setup_nlp:0000000000000000 $t
+     /tmp/ccMQokYu.s:117    .text.setup_nlp:0000000000000000 setup_nlp
+     /tmp/ccMQokYu.s:349    .text.setup_nlp:0000000000000168 $d
+     /tmp/ccMQokYu.s:373    .text.Lcs_len:0000000000000000 $t
+     /tmp/ccMQokYu.s:380    .text.Lcs_len:0000000000000000 Lcs_len
+     /tmp/ccMQokYu.s:690    .text.Print_Lcs:0000000000000000 $t
+     /tmp/ccMQokYu.s:697    .text.Print_Lcs:0000000000000000 Print_Lcs
+     /tmp/ccMQokYu.s:813    .text.Print_Lcs:0000000000000098 $d
+     /tmp/ccMQokYu.s:824    .text.Find_Lcs:0000000000000000 $t
+     /tmp/ccMQokYu.s:831    .text.Find_Lcs:0000000000000000 Find_Lcs
+     /tmp/ccMQokYu.s:1090   .text.Find_Lcs:0000000000000178 $d
+
+UNDEFINED SYMBOLS
+uart1_init
+Usart2_Init
+reset_esp_process
+ESP8266_Clear
+ESP8266_SendCmd
+UsartPrintf
+strlen
+__aeabi_i2f
+__aeabi_ui2f
+__aeabi_fdiv
+__aeabi_fmul
+__aeabi_f2iz
+malloc
+free

@@ -1,0 +1,704 @@
+ARM GAS  /tmp/ccRLG3og.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"timer_c8.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.TIM2_CH2_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	TIM2_CH2_init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	TIM2_CH2_init:
+  25              	.LFB66:
+  26              		.file 1 "hardware/src/timer_c8.c"
+   1:hardware/src/timer_c8.c **** #include "time.h"
+   2:hardware/src/timer_c8.c **** #include "stm32f10x.h"
+   3:hardware/src/timer_c8.c **** #include "stdio.h"
+   4:hardware/src/timer_c8.c **** 
+   5:hardware/src/timer_c8.c **** void TIM2_CH2_init(uint16_t arr,uint16_t psc)
+   6:hardware/src/timer_c8.c **** {
+  27              		.loc 1 6 1
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 40
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 8AB0     		sub	sp, sp, #40
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 48
+  39 0004 00AF     		add	r7, sp, #0
+  40              	.LCFI2:
+  41              		.cfi_def_cfa_register 7
+  42 0006 0346     		mov	r3, r0
+  43 0008 0A46     		mov	r2, r1
+  44 000a FB80     		strh	r3, [r7, #6]	@ movhi
+  45 000c 1346     		mov	r3, r2	@ movhi
+  46 000e BB80     		strh	r3, [r7, #4]	@ movhi
+   7:hardware/src/timer_c8.c ****     GPIO_InitTypeDef     GPIO_InitStrue;
+   8:hardware/src/timer_c8.c ****     TIM_OCInitTypeDef     TIM_OCInitStrue;
+   9:hardware/src/timer_c8.c ****     TIM_TimeBaseInitTypeDef     TIM_TimeBaseInitStrue;
+  10:hardware/src/timer_c8.c **** 
+  11:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+  47              		.loc 1 11 5
+ARM GAS  /tmp/ccRLG3og.s 			page 2
+
+
+  48 0010 0121     		movs	r1, #1
+  49 0012 0420     		movs	r0, #4
+  50 0014 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  12:hardware/src/timer_c8.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);
+  51              		.loc 1 12 5
+  52 0018 0121     		movs	r1, #1
+  53 001a 0120     		movs	r0, #1
+  54 001c FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  13:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+  55              		.loc 1 13 5
+  56 0020 0121     		movs	r1, #1
+  57 0022 0120     		movs	r0, #1
+  58 0024 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  14:hardware/src/timer_c8.c **** 
+  15:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_1;
+  59              		.loc 1 15 28
+  60 0028 0223     		movs	r3, #2
+  61 002a BB84     		strh	r3, [r7, #36]	@ movhi
+  16:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Mode=GPIO_Mode_AF_PP;
+  62              		.loc 1 16 29
+  63 002c 1823     		movs	r3, #24
+  64 002e 87F82730 		strb	r3, [r7, #39]
+  17:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Speed=GPIO_Speed_50MHz;
+  65              		.loc 1 17 30
+  66 0032 0323     		movs	r3, #3
+  67 0034 87F82630 		strb	r3, [r7, #38]
+  18:hardware/src/timer_c8.c ****     GPIO_Init(GPIOA,&GPIO_InitStrue);
+  68              		.loc 1 18 5
+  69 0038 07F12403 		add	r3, r7, #36
+  70 003c 1946     		mov	r1, r3
+  71 003e 1648     		ldr	r0, .L2
+  72 0040 FFF7FEFF 		bl	GPIO_Init
+  19:hardware/src/timer_c8.c **** 
+  20:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Period=arr;    //设置自动重装载值
+  73              		.loc 1 20 37
+  74 0044 FB88     		ldrh	r3, [r7, #6]	@ movhi
+  75 0046 BB81     		strh	r3, [r7, #12]	@ movhi
+  21:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Prescaler=psc;        //预分频系数
+  76              		.loc 1 21 40
+  77 0048 BB88     		ldrh	r3, [r7, #4]	@ movhi
+  78 004a 3B81     		strh	r3, [r7, #8]	@ movhi
+  22:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_CounterMode=TIM_CounterMode_Up;    //计数器向上溢出
+  79              		.loc 1 22 42
+  80 004c 0023     		movs	r3, #0
+  81 004e 7B81     		strh	r3, [r7, #10]	@ movhi
+  23:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_ClockDivision=TIM_CKD_DIV1;        //时钟的分频因子，起到了一点点的延
+  82              		.loc 1 23 44
+  83 0050 0023     		movs	r3, #0
+  84 0052 FB81     		strh	r3, [r7, #14]	@ movhi
+  24:hardware/src/timer_c8.c ****     TIM_TimeBaseInit(TIM2,&TIM_TimeBaseInitStrue);        //TIM3初始化设置(设置PWM的周期)
+  85              		.loc 1 24 5
+  86 0054 07F10803 		add	r3, r7, #8
+  87 0058 1946     		mov	r1, r3
+  88 005a 4FF08040 		mov	r0, #1073741824
+  89 005e FFF7FEFF 		bl	TIM_TimeBaseInit
+  25:hardware/src/timer_c8.c ****     
+  26:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCMode=TIM_OCMode_PWM1;        // PWM模式2:CNT>CCR时输出有效
+ARM GAS  /tmp/ccRLG3og.s 			page 3
+
+
+  90              		.loc 1 26 31
+  91 0062 6023     		movs	r3, #96
+  92 0064 BB82     		strh	r3, [r7, #20]	@ movhi
+  27:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCPolarity=TIM_OCPolarity_High;// 设置极性-有效为高电平
+  93              		.loc 1 27 35
+  94 0066 0023     		movs	r3, #0
+  95 0068 BB83     		strh	r3, [r7, #28]	@ movhi
+  28:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OutputState=TIM_OutputState_Enable;// 输出使能
+  96              		.loc 1 28 36
+  97 006a 0123     		movs	r3, #1
+  98 006c FB82     		strh	r3, [r7, #22]	@ movhi
+  29:hardware/src/timer_c8.c **** 	TIM_OC2Init(TIM2,&TIM_OCInitStrue);
+  99              		.loc 1 29 2
+ 100 006e 07F11403 		add	r3, r7, #20
+ 101 0072 1946     		mov	r1, r3
+ 102 0074 4FF08040 		mov	r0, #1073741824
+ 103 0078 FFF7FEFF 		bl	TIM_OC2Init
+  30:hardware/src/timer_c8.c ****  
+  31:hardware/src/timer_c8.c ****     TIM_OC2PreloadConfig(TIM2,TIM_OCPreload_Enable);
+ 104              		.loc 1 31 5
+ 105 007c 0821     		movs	r1, #8
+ 106 007e 4FF08040 		mov	r0, #1073741824
+ 107 0082 FFF7FEFF 		bl	TIM_OC2PreloadConfig
+  32:hardware/src/timer_c8.c ****     
+  33:hardware/src/timer_c8.c ****     TIM_Cmd(TIM2,ENABLE);
+ 108              		.loc 1 33 5
+ 109 0086 0121     		movs	r1, #1
+ 110 0088 4FF08040 		mov	r0, #1073741824
+ 111 008c FFF7FEFF 		bl	TIM_Cmd
+  34:hardware/src/timer_c8.c **** }
+ 112              		.loc 1 34 1
+ 113 0090 00BF     		nop
+ 114 0092 2837     		adds	r7, r7, #40
+ 115              	.LCFI3:
+ 116              		.cfi_def_cfa_offset 8
+ 117 0094 BD46     		mov	sp, r7
+ 118              	.LCFI4:
+ 119              		.cfi_def_cfa_register 13
+ 120              		@ sp needed
+ 121 0096 80BD     		pop	{r7, pc}
+ 122              	.L3:
+ 123              		.align	2
+ 124              	.L2:
+ 125 0098 00080140 		.word	1073809408
+ 126              		.cfi_endproc
+ 127              	.LFE66:
+ 129              		.section	.text.TIM2_CH3_init,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	TIM2_CH3_init
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.fpu softvfp
+ 137              	TIM2_CH3_init:
+ 138              	.LFB67:
+  35:hardware/src/timer_c8.c **** 
+  36:hardware/src/timer_c8.c **** void TIM2_CH3_init(uint16_t arr,uint16_t psc)
+ARM GAS  /tmp/ccRLG3og.s 			page 4
+
+
+  37:hardware/src/timer_c8.c **** {
+ 139              		.loc 1 37 1
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 40
+ 142              		@ frame_needed = 1, uses_anonymous_args = 0
+ 143 0000 80B5     		push	{r7, lr}
+ 144              	.LCFI5:
+ 145              		.cfi_def_cfa_offset 8
+ 146              		.cfi_offset 7, -8
+ 147              		.cfi_offset 14, -4
+ 148 0002 8AB0     		sub	sp, sp, #40
+ 149              	.LCFI6:
+ 150              		.cfi_def_cfa_offset 48
+ 151 0004 00AF     		add	r7, sp, #0
+ 152              	.LCFI7:
+ 153              		.cfi_def_cfa_register 7
+ 154 0006 0346     		mov	r3, r0
+ 155 0008 0A46     		mov	r2, r1
+ 156 000a FB80     		strh	r3, [r7, #6]	@ movhi
+ 157 000c 1346     		mov	r3, r2	@ movhi
+ 158 000e BB80     		strh	r3, [r7, #4]	@ movhi
+  38:hardware/src/timer_c8.c ****     GPIO_InitTypeDef     GPIO_InitStrue;
+  39:hardware/src/timer_c8.c ****     TIM_OCInitTypeDef     TIM_OCInitStrue;
+  40:hardware/src/timer_c8.c ****     TIM_TimeBaseInitTypeDef     TIM_TimeBaseInitStrue;
+  41:hardware/src/timer_c8.c **** 
+  42:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+ 159              		.loc 1 42 5
+ 160 0010 0121     		movs	r1, #1
+ 161 0012 0420     		movs	r0, #4
+ 162 0014 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  43:hardware/src/timer_c8.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2,ENABLE);
+ 163              		.loc 1 43 5
+ 164 0018 0121     		movs	r1, #1
+ 165 001a 0120     		movs	r0, #1
+ 166 001c FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  44:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+ 167              		.loc 1 44 5
+ 168 0020 0121     		movs	r1, #1
+ 169 0022 0120     		movs	r0, #1
+ 170 0024 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  45:hardware/src/timer_c8.c **** 
+  46:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_2;
+ 171              		.loc 1 46 28
+ 172 0028 0423     		movs	r3, #4
+ 173 002a BB84     		strh	r3, [r7, #36]	@ movhi
+  47:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Mode=GPIO_Mode_AF_PP;
+ 174              		.loc 1 47 29
+ 175 002c 1823     		movs	r3, #24
+ 176 002e 87F82730 		strb	r3, [r7, #39]
+  48:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Speed=GPIO_Speed_50MHz;
+ 177              		.loc 1 48 30
+ 178 0032 0323     		movs	r3, #3
+ 179 0034 87F82630 		strb	r3, [r7, #38]
+  49:hardware/src/timer_c8.c ****     GPIO_Init(GPIOA,&GPIO_InitStrue);
+ 180              		.loc 1 49 5
+ 181 0038 07F12403 		add	r3, r7, #36
+ 182 003c 1946     		mov	r1, r3
+ARM GAS  /tmp/ccRLG3og.s 			page 5
+
+
+ 183 003e 1648     		ldr	r0, .L5
+ 184 0040 FFF7FEFF 		bl	GPIO_Init
+  50:hardware/src/timer_c8.c **** 
+  51:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Period=arr;    //设置自动重装载值
+ 185              		.loc 1 51 37
+ 186 0044 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 187 0046 BB81     		strh	r3, [r7, #12]	@ movhi
+  52:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Prescaler=psc;        //预分频系数
+ 188              		.loc 1 52 40
+ 189 0048 BB88     		ldrh	r3, [r7, #4]	@ movhi
+ 190 004a 3B81     		strh	r3, [r7, #8]	@ movhi
+  53:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_CounterMode=TIM_CounterMode_Up;    //计数器向上溢出
+ 191              		.loc 1 53 42
+ 192 004c 0023     		movs	r3, #0
+ 193 004e 7B81     		strh	r3, [r7, #10]	@ movhi
+  54:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_ClockDivision=TIM_CKD_DIV1;        //时钟的分频因子，起到了一点点的延
+ 194              		.loc 1 54 44
+ 195 0050 0023     		movs	r3, #0
+ 196 0052 FB81     		strh	r3, [r7, #14]	@ movhi
+  55:hardware/src/timer_c8.c ****     TIM_TimeBaseInit(TIM2,&TIM_TimeBaseInitStrue);        //TIM3初始化设置(设置PWM的周期)
+ 197              		.loc 1 55 5
+ 198 0054 07F10803 		add	r3, r7, #8
+ 199 0058 1946     		mov	r1, r3
+ 200 005a 4FF08040 		mov	r0, #1073741824
+ 201 005e FFF7FEFF 		bl	TIM_TimeBaseInit
+  56:hardware/src/timer_c8.c ****     
+  57:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCMode=TIM_OCMode_PWM1;        // PWM模式2:CNT>CCR时输出有效
+ 202              		.loc 1 57 31
+ 203 0062 6023     		movs	r3, #96
+ 204 0064 BB82     		strh	r3, [r7, #20]	@ movhi
+  58:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCPolarity=TIM_OCPolarity_High;// 设置极性-有效为高电平
+ 205              		.loc 1 58 35
+ 206 0066 0023     		movs	r3, #0
+ 207 0068 BB83     		strh	r3, [r7, #28]	@ movhi
+  59:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OutputState=TIM_OutputState_Enable;// 输出使能
+ 208              		.loc 1 59 36
+ 209 006a 0123     		movs	r3, #1
+ 210 006c FB82     		strh	r3, [r7, #22]	@ movhi
+  60:hardware/src/timer_c8.c **** 	TIM_OC3Init(TIM2,&TIM_OCInitStrue);
+ 211              		.loc 1 60 2
+ 212 006e 07F11403 		add	r3, r7, #20
+ 213 0072 1946     		mov	r1, r3
+ 214 0074 4FF08040 		mov	r0, #1073741824
+ 215 0078 FFF7FEFF 		bl	TIM_OC3Init
+  61:hardware/src/timer_c8.c ****  
+  62:hardware/src/timer_c8.c ****     TIM_OC3PreloadConfig(TIM2,TIM_OCPreload_Enable);
+ 216              		.loc 1 62 5
+ 217 007c 0821     		movs	r1, #8
+ 218 007e 4FF08040 		mov	r0, #1073741824
+ 219 0082 FFF7FEFF 		bl	TIM_OC3PreloadConfig
+  63:hardware/src/timer_c8.c ****     
+  64:hardware/src/timer_c8.c ****     TIM_Cmd(TIM2,ENABLE);
+ 220              		.loc 1 64 5
+ 221 0086 0121     		movs	r1, #1
+ 222 0088 4FF08040 		mov	r0, #1073741824
+ 223 008c FFF7FEFF 		bl	TIM_Cmd
+  65:hardware/src/timer_c8.c **** }
+ARM GAS  /tmp/ccRLG3og.s 			page 6
+
+
+ 224              		.loc 1 65 1
+ 225 0090 00BF     		nop
+ 226 0092 2837     		adds	r7, r7, #40
+ 227              	.LCFI8:
+ 228              		.cfi_def_cfa_offset 8
+ 229 0094 BD46     		mov	sp, r7
+ 230              	.LCFI9:
+ 231              		.cfi_def_cfa_register 13
+ 232              		@ sp needed
+ 233 0096 80BD     		pop	{r7, pc}
+ 234              	.L6:
+ 235              		.align	2
+ 236              	.L5:
+ 237 0098 00080140 		.word	1073809408
+ 238              		.cfi_endproc
+ 239              	.LFE67:
+ 241              		.section	.text.TIM3_CH12_init,"ax",%progbits
+ 242              		.align	1
+ 243              		.global	TIM3_CH12_init
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 247              		.fpu softvfp
+ 249              	TIM3_CH12_init:
+ 250              	.LFB68:
+  66:hardware/src/timer_c8.c **** 
+  67:hardware/src/timer_c8.c **** void TIM3_CH12_init(uint16_t arr,uint16_t psc)
+  68:hardware/src/timer_c8.c **** {
+ 251              		.loc 1 68 1
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 40
+ 254              		@ frame_needed = 1, uses_anonymous_args = 0
+ 255 0000 80B5     		push	{r7, lr}
+ 256              	.LCFI10:
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 7, -8
+ 259              		.cfi_offset 14, -4
+ 260 0002 8AB0     		sub	sp, sp, #40
+ 261              	.LCFI11:
+ 262              		.cfi_def_cfa_offset 48
+ 263 0004 00AF     		add	r7, sp, #0
+ 264              	.LCFI12:
+ 265              		.cfi_def_cfa_register 7
+ 266 0006 0346     		mov	r3, r0
+ 267 0008 0A46     		mov	r2, r1
+ 268 000a FB80     		strh	r3, [r7, #6]	@ movhi
+ 269 000c 1346     		mov	r3, r2	@ movhi
+ 270 000e BB80     		strh	r3, [r7, #4]	@ movhi
+  69:hardware/src/timer_c8.c ****     GPIO_InitTypeDef     GPIO_InitStrue;
+  70:hardware/src/timer_c8.c ****     TIM_OCInitTypeDef     TIM_OCInitStrue;
+  71:hardware/src/timer_c8.c ****     TIM_TimeBaseInitTypeDef     TIM_TimeBaseInitStrue;
+  72:hardware/src/timer_c8.c **** 
+  73:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+ 271              		.loc 1 73 5
+ 272 0010 0121     		movs	r1, #1
+ 273 0012 0420     		movs	r0, #4
+ 274 0014 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+ARM GAS  /tmp/ccRLG3og.s 			page 7
+
+
+  74:hardware/src/timer_c8.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
+ 275              		.loc 1 74 5
+ 276 0018 0121     		movs	r1, #1
+ 277 001a 0220     		movs	r0, #2
+ 278 001c FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  75:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+ 279              		.loc 1 75 5
+ 280 0020 0121     		movs	r1, #1
+ 281 0022 0120     		movs	r0, #1
+ 282 0024 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+  76:hardware/src/timer_c8.c **** 
+  77:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_6;
+ 283              		.loc 1 77 28
+ 284 0028 4023     		movs	r3, #64
+ 285 002a BB84     		strh	r3, [r7, #36]	@ movhi
+  78:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Mode=GPIO_Mode_AF_PP;
+ 286              		.loc 1 78 29
+ 287 002c 1823     		movs	r3, #24
+ 288 002e 87F82730 		strb	r3, [r7, #39]
+  79:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Speed=GPIO_Speed_50MHz;
+ 289              		.loc 1 79 30
+ 290 0032 0323     		movs	r3, #3
+ 291 0034 87F82630 		strb	r3, [r7, #38]
+  80:hardware/src/timer_c8.c ****     GPIO_Init(GPIOA,&GPIO_InitStrue);
+ 292              		.loc 1 80 5
+ 293 0038 07F12403 		add	r3, r7, #36
+ 294 003c 1946     		mov	r1, r3
+ 295 003e 1D48     		ldr	r0, .L8
+ 296 0040 FFF7FEFF 		bl	GPIO_Init
+  81:hardware/src/timer_c8.c **** 
+  82:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_7;
+ 297              		.loc 1 82 28
+ 298 0044 8023     		movs	r3, #128
+ 299 0046 BB84     		strh	r3, [r7, #36]	@ movhi
+  83:hardware/src/timer_c8.c ****     GPIO_Init(GPIOA,&GPIO_InitStrue);
+ 300              		.loc 1 83 5
+ 301 0048 07F12403 		add	r3, r7, #36
+ 302 004c 1946     		mov	r1, r3
+ 303 004e 1948     		ldr	r0, .L8
+ 304 0050 FFF7FEFF 		bl	GPIO_Init
+  84:hardware/src/timer_c8.c **** 
+  85:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Period=arr;    //设置自动重装载值
+ 305              		.loc 1 85 37
+ 306 0054 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 307 0056 BB81     		strh	r3, [r7, #12]	@ movhi
+  86:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Prescaler=psc;        //预分频系数
+ 308              		.loc 1 86 40
+ 309 0058 BB88     		ldrh	r3, [r7, #4]	@ movhi
+ 310 005a 3B81     		strh	r3, [r7, #8]	@ movhi
+  87:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_CounterMode=TIM_CounterMode_Up;    //计数器向上溢出
+ 311              		.loc 1 87 42
+ 312 005c 0023     		movs	r3, #0
+ 313 005e 7B81     		strh	r3, [r7, #10]	@ movhi
+  88:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_ClockDivision=TIM_CKD_DIV1;        //时钟的分频因子，起到了一点点的延
+ 314              		.loc 1 88 44
+ 315 0060 0023     		movs	r3, #0
+ 316 0062 FB81     		strh	r3, [r7, #14]	@ movhi
+ARM GAS  /tmp/ccRLG3og.s 			page 8
+
+
+  89:hardware/src/timer_c8.c ****     TIM_TimeBaseInit(TIM3,&TIM_TimeBaseInitStrue);        //TIM3初始化设置(设置PWM的周期)
+ 317              		.loc 1 89 5
+ 318 0064 07F10803 		add	r3, r7, #8
+ 319 0068 1946     		mov	r1, r3
+ 320 006a 1348     		ldr	r0, .L8+4
+ 321 006c FFF7FEFF 		bl	TIM_TimeBaseInit
+  90:hardware/src/timer_c8.c ****     
+  91:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCMode=TIM_OCMode_PWM1;        // PWM模式2:CNT>CCR时输出有效
+ 322              		.loc 1 91 31
+ 323 0070 6023     		movs	r3, #96
+ 324 0072 BB82     		strh	r3, [r7, #20]	@ movhi
+  92:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCPolarity=TIM_OCPolarity_High;// 设置极性-有效为高电平
+ 325              		.loc 1 92 35
+ 326 0074 0023     		movs	r3, #0
+ 327 0076 BB83     		strh	r3, [r7, #28]	@ movhi
+  93:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OutputState=TIM_OutputState_Enable;// 输出使能
+ 328              		.loc 1 93 36
+ 329 0078 0123     		movs	r3, #1
+ 330 007a FB82     		strh	r3, [r7, #22]	@ movhi
+  94:hardware/src/timer_c8.c **** 	TIM_OC1Init(TIM3,&TIM_OCInitStrue);
+ 331              		.loc 1 94 2
+ 332 007c 07F11403 		add	r3, r7, #20
+ 333 0080 1946     		mov	r1, r3
+ 334 0082 0D48     		ldr	r0, .L8+4
+ 335 0084 FFF7FEFF 		bl	TIM_OC1Init
+  95:hardware/src/timer_c8.c **** 	TIM_OC2Init(TIM3,&TIM_OCInitStrue);
+ 336              		.loc 1 95 2
+ 337 0088 07F11403 		add	r3, r7, #20
+ 338 008c 1946     		mov	r1, r3
+ 339 008e 0A48     		ldr	r0, .L8+4
+ 340 0090 FFF7FEFF 		bl	TIM_OC2Init
+  96:hardware/src/timer_c8.c ****  
+  97:hardware/src/timer_c8.c ****     TIM_OC1PreloadConfig(TIM3,TIM_OCPreload_Enable);
+ 341              		.loc 1 97 5
+ 342 0094 0821     		movs	r1, #8
+ 343 0096 0848     		ldr	r0, .L8+4
+ 344 0098 FFF7FEFF 		bl	TIM_OC1PreloadConfig
+  98:hardware/src/timer_c8.c ****     TIM_OC2PreloadConfig(TIM3,TIM_OCPreload_Enable);
+ 345              		.loc 1 98 5
+ 346 009c 0821     		movs	r1, #8
+ 347 009e 0648     		ldr	r0, .L8+4
+ 348 00a0 FFF7FEFF 		bl	TIM_OC2PreloadConfig
+  99:hardware/src/timer_c8.c ****     
+ 100:hardware/src/timer_c8.c ****     TIM_Cmd(TIM3,ENABLE);
+ 349              		.loc 1 100 5
+ 350 00a4 0121     		movs	r1, #1
+ 351 00a6 0448     		ldr	r0, .L8+4
+ 352 00a8 FFF7FEFF 		bl	TIM_Cmd
+ 101:hardware/src/timer_c8.c **** }
+ 353              		.loc 1 101 1
+ 354 00ac 00BF     		nop
+ 355 00ae 2837     		adds	r7, r7, #40
+ 356              	.LCFI13:
+ 357              		.cfi_def_cfa_offset 8
+ 358 00b0 BD46     		mov	sp, r7
+ 359              	.LCFI14:
+ 360              		.cfi_def_cfa_register 13
+ARM GAS  /tmp/ccRLG3og.s 			page 9
+
+
+ 361              		@ sp needed
+ 362 00b2 80BD     		pop	{r7, pc}
+ 363              	.L9:
+ 364              		.align	2
+ 365              	.L8:
+ 366 00b4 00080140 		.word	1073809408
+ 367 00b8 00040040 		.word	1073742848
+ 368              		.cfi_endproc
+ 369              	.LFE68:
+ 371              		.section	.text.TIM3_CH34_init,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	TIM3_CH34_init
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu softvfp
+ 379              	TIM3_CH34_init:
+ 380              	.LFB69:
+ 102:hardware/src/timer_c8.c **** 
+ 103:hardware/src/timer_c8.c **** void TIM3_CH34_init(uint16_t arr,uint16_t psc)
+ 104:hardware/src/timer_c8.c **** {
+ 381              		.loc 1 104 1
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 40
+ 384              		@ frame_needed = 1, uses_anonymous_args = 0
+ 385 0000 80B5     		push	{r7, lr}
+ 386              	.LCFI15:
+ 387              		.cfi_def_cfa_offset 8
+ 388              		.cfi_offset 7, -8
+ 389              		.cfi_offset 14, -4
+ 390 0002 8AB0     		sub	sp, sp, #40
+ 391              	.LCFI16:
+ 392              		.cfi_def_cfa_offset 48
+ 393 0004 00AF     		add	r7, sp, #0
+ 394              	.LCFI17:
+ 395              		.cfi_def_cfa_register 7
+ 396 0006 0346     		mov	r3, r0
+ 397 0008 0A46     		mov	r2, r1
+ 398 000a FB80     		strh	r3, [r7, #6]	@ movhi
+ 399 000c 1346     		mov	r3, r2	@ movhi
+ 400 000e BB80     		strh	r3, [r7, #4]	@ movhi
+ 105:hardware/src/timer_c8.c ****     GPIO_InitTypeDef     GPIO_InitStrue;
+ 106:hardware/src/timer_c8.c ****     TIM_OCInitTypeDef     TIM_OCInitStrue;
+ 107:hardware/src/timer_c8.c ****     TIM_TimeBaseInitTypeDef     TIM_TimeBaseInitStrue;
+ 108:hardware/src/timer_c8.c **** 
+ 109:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+ 401              		.loc 1 109 5
+ 402 0010 0121     		movs	r1, #1
+ 403 0012 0820     		movs	r0, #8
+ 404 0014 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+ 110:hardware/src/timer_c8.c ****     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
+ 405              		.loc 1 110 5
+ 406 0018 0121     		movs	r1, #1
+ 407 001a 0220     		movs	r0, #2
+ 408 001c FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+ 111:hardware/src/timer_c8.c ****     RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+ 409              		.loc 1 111 5
+ARM GAS  /tmp/ccRLG3og.s 			page 10
+
+
+ 410 0020 0121     		movs	r1, #1
+ 411 0022 0120     		movs	r0, #1
+ 412 0024 FFF7FEFF 		bl	RCC_APB2PeriphClockCmd
+ 112:hardware/src/timer_c8.c **** 
+ 113:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_0;
+ 413              		.loc 1 113 28
+ 414 0028 0123     		movs	r3, #1
+ 415 002a BB84     		strh	r3, [r7, #36]	@ movhi
+ 114:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Mode=GPIO_Mode_AF_PP;
+ 416              		.loc 1 114 29
+ 417 002c 1823     		movs	r3, #24
+ 418 002e 87F82730 		strb	r3, [r7, #39]
+ 115:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Speed=GPIO_Speed_50MHz;
+ 419              		.loc 1 115 30
+ 420 0032 0323     		movs	r3, #3
+ 421 0034 87F82630 		strb	r3, [r7, #38]
+ 116:hardware/src/timer_c8.c ****     GPIO_Init(GPIOB,&GPIO_InitStrue);
+ 422              		.loc 1 116 5
+ 423 0038 07F12403 		add	r3, r7, #36
+ 424 003c 1946     		mov	r1, r3
+ 425 003e 1D48     		ldr	r0, .L11
+ 426 0040 FFF7FEFF 		bl	GPIO_Init
+ 117:hardware/src/timer_c8.c **** 
+ 118:hardware/src/timer_c8.c ****     GPIO_InitStrue.GPIO_Pin=GPIO_Pin_1;
+ 427              		.loc 1 118 28
+ 428 0044 0223     		movs	r3, #2
+ 429 0046 BB84     		strh	r3, [r7, #36]	@ movhi
+ 119:hardware/src/timer_c8.c ****     GPIO_Init(GPIOB,&GPIO_InitStrue);
+ 430              		.loc 1 119 5
+ 431 0048 07F12403 		add	r3, r7, #36
+ 432 004c 1946     		mov	r1, r3
+ 433 004e 1948     		ldr	r0, .L11
+ 434 0050 FFF7FEFF 		bl	GPIO_Init
+ 120:hardware/src/timer_c8.c **** 
+ 121:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Period=arr;    //设置自动重装载值
+ 435              		.loc 1 121 37
+ 436 0054 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 437 0056 BB81     		strh	r3, [r7, #12]	@ movhi
+ 122:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_Prescaler=psc;        //预分频系数
+ 438              		.loc 1 122 40
+ 439 0058 BB88     		ldrh	r3, [r7, #4]	@ movhi
+ 440 005a 3B81     		strh	r3, [r7, #8]	@ movhi
+ 123:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_CounterMode=TIM_CounterMode_Up;    //计数器向上溢出
+ 441              		.loc 1 123 42
+ 442 005c 0023     		movs	r3, #0
+ 443 005e 7B81     		strh	r3, [r7, #10]	@ movhi
+ 124:hardware/src/timer_c8.c ****     TIM_TimeBaseInitStrue.TIM_ClockDivision=TIM_CKD_DIV1;        //时钟的分频因子，起到了一点点的延
+ 444              		.loc 1 124 44
+ 445 0060 0023     		movs	r3, #0
+ 446 0062 FB81     		strh	r3, [r7, #14]	@ movhi
+ 125:hardware/src/timer_c8.c ****     TIM_TimeBaseInit(TIM3,&TIM_TimeBaseInitStrue);        //TIM3初始化设置(设置PWM的周期)
+ 447              		.loc 1 125 5
+ 448 0064 07F10803 		add	r3, r7, #8
+ 449 0068 1946     		mov	r1, r3
+ 450 006a 1348     		ldr	r0, .L11+4
+ 451 006c FFF7FEFF 		bl	TIM_TimeBaseInit
+ 126:hardware/src/timer_c8.c ****     
+ARM GAS  /tmp/ccRLG3og.s 			page 11
+
+
+ 127:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCMode=TIM_OCMode_PWM1;        // PWM模式2:CNT>CCR时输出有效
+ 452              		.loc 1 127 31
+ 453 0070 6023     		movs	r3, #96
+ 454 0072 BB82     		strh	r3, [r7, #20]	@ movhi
+ 128:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OCPolarity=TIM_OCPolarity_High;// 设置极性-有效为高电平
+ 455              		.loc 1 128 35
+ 456 0074 0023     		movs	r3, #0
+ 457 0076 BB83     		strh	r3, [r7, #28]	@ movhi
+ 129:hardware/src/timer_c8.c ****     TIM_OCInitStrue.TIM_OutputState=TIM_OutputState_Enable;// 输出使能
+ 458              		.loc 1 129 36
+ 459 0078 0123     		movs	r3, #1
+ 460 007a FB82     		strh	r3, [r7, #22]	@ movhi
+ 130:hardware/src/timer_c8.c **** 	TIM_OC3Init(TIM3,&TIM_OCInitStrue);
+ 461              		.loc 1 130 2
+ 462 007c 07F11403 		add	r3, r7, #20
+ 463 0080 1946     		mov	r1, r3
+ 464 0082 0D48     		ldr	r0, .L11+4
+ 465 0084 FFF7FEFF 		bl	TIM_OC3Init
+ 131:hardware/src/timer_c8.c **** 	TIM_OC4Init(TIM3,&TIM_OCInitStrue);
+ 466              		.loc 1 131 2
+ 467 0088 07F11403 		add	r3, r7, #20
+ 468 008c 1946     		mov	r1, r3
+ 469 008e 0A48     		ldr	r0, .L11+4
+ 470 0090 FFF7FEFF 		bl	TIM_OC4Init
+ 132:hardware/src/timer_c8.c ****  
+ 133:hardware/src/timer_c8.c ****     TIM_OC3PreloadConfig(TIM3,TIM_OCPreload_Enable);
+ 471              		.loc 1 133 5
+ 472 0094 0821     		movs	r1, #8
+ 473 0096 0848     		ldr	r0, .L11+4
+ 474 0098 FFF7FEFF 		bl	TIM_OC3PreloadConfig
+ 134:hardware/src/timer_c8.c ****     TIM_OC4PreloadConfig(TIM3,TIM_OCPreload_Enable);
+ 475              		.loc 1 134 5
+ 476 009c 0821     		movs	r1, #8
+ 477 009e 0648     		ldr	r0, .L11+4
+ 478 00a0 FFF7FEFF 		bl	TIM_OC4PreloadConfig
+ 135:hardware/src/timer_c8.c ****     
+ 136:hardware/src/timer_c8.c ****     TIM_Cmd(TIM3,ENABLE);
+ 479              		.loc 1 136 5
+ 480 00a4 0121     		movs	r1, #1
+ 481 00a6 0448     		ldr	r0, .L11+4
+ 482 00a8 FFF7FEFF 		bl	TIM_Cmd
+ 137:hardware/src/timer_c8.c **** }
+ 483              		.loc 1 137 1
+ 484 00ac 00BF     		nop
+ 485 00ae 2837     		adds	r7, r7, #40
+ 486              	.LCFI18:
+ 487              		.cfi_def_cfa_offset 8
+ 488 00b0 BD46     		mov	sp, r7
+ 489              	.LCFI19:
+ 490              		.cfi_def_cfa_register 13
+ 491              		@ sp needed
+ 492 00b2 80BD     		pop	{r7, pc}
+ 493              	.L12:
+ 494              		.align	2
+ 495              	.L11:
+ 496 00b4 000C0140 		.word	1073810432
+ 497 00b8 00040040 		.word	1073742848
+ARM GAS  /tmp/ccRLG3og.s 			page 12
+
+
+ 498              		.cfi_endproc
+ 499              	.LFE69:
+ 501              		.text
+ 502              	.Letext0:
+ 503              		.file 2 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+ 504              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 505              		.file 4 "Inc/stm32f10x.h"
+ 506              		.file 5 "Drivers/Inc/stm32f10x_gpio.h"
+ 507              		.file 6 "Drivers/Inc/stm32f10x_tim.h"
+ARM GAS  /tmp/ccRLG3og.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 timer_c8.c
+     /tmp/ccRLG3og.s:16     .text.TIM2_CH2_init:0000000000000000 $t
+     /tmp/ccRLG3og.s:24     .text.TIM2_CH2_init:0000000000000000 TIM2_CH2_init
+     /tmp/ccRLG3og.s:125    .text.TIM2_CH2_init:0000000000000098 $d
+     /tmp/ccRLG3og.s:130    .text.TIM2_CH3_init:0000000000000000 $t
+     /tmp/ccRLG3og.s:137    .text.TIM2_CH3_init:0000000000000000 TIM2_CH3_init
+     /tmp/ccRLG3og.s:237    .text.TIM2_CH3_init:0000000000000098 $d
+     /tmp/ccRLG3og.s:242    .text.TIM3_CH12_init:0000000000000000 $t
+     /tmp/ccRLG3og.s:249    .text.TIM3_CH12_init:0000000000000000 TIM3_CH12_init
+     /tmp/ccRLG3og.s:366    .text.TIM3_CH12_init:00000000000000b4 $d
+     /tmp/ccRLG3og.s:372    .text.TIM3_CH34_init:0000000000000000 $t
+     /tmp/ccRLG3og.s:379    .text.TIM3_CH34_init:0000000000000000 TIM3_CH34_init
+     /tmp/ccRLG3og.s:496    .text.TIM3_CH34_init:00000000000000b4 $d
+
+UNDEFINED SYMBOLS
+RCC_APB2PeriphClockCmd
+RCC_APB1PeriphClockCmd
+GPIO_Init
+TIM_TimeBaseInit
+TIM_OC2Init
+TIM_OC2PreloadConfig
+TIM_Cmd
+TIM_OC3Init
+TIM_OC3PreloadConfig
+TIM_OC1Init
+TIM_OC1PreloadConfig
+TIM_OC4Init
+TIM_OC4PreloadConfig

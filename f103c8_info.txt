@@ -1,0 +1,6 @@
+led:PC13
+key:PA0
+电机驱动：PA6 PA7 PB0 PB1
+舵机：PA1
+UART2：PA2 PA3
+reset esp pin:PC15

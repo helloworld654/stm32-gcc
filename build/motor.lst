@@ -1,0 +1,500 @@
+ARM GAS  /tmp/ccTcitl7.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"motor.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.motor_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	motor_init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	motor_init:
+  25              	.LFB66:
+  26              		.file 1 "hardware/src/motor.c"
+   1:hardware/src/motor.c **** #include "motor.h"
+   2:hardware/src/motor.c **** #include "stm32f10x.h"
+   3:hardware/src/motor.c **** #include "stdio.h"
+   4:hardware/src/motor.c **** 
+   5:hardware/src/motor.c **** #define MAX_ARR     899
+   6:hardware/src/motor.c **** #define MIN_ARR    800
+   7:hardware/src/motor.c **** #define CHANGE_MOTOR_ONE    0    //the right motor
+   8:hardware/src/motor.c **** #define CHANGE_MOTOR_TWO    1    //the left motor
+   9:hardware/src/motor.c **** 
+  10:hardware/src/motor.c **** void motor_init(char motor_n)
+  11:hardware/src/motor.c **** {
+  27              		.loc 1 11 1
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 16
+  39 0004 00AF     		add	r7, sp, #0
+  40              	.LCFI2:
+  41              		.cfi_def_cfa_register 7
+  42 0006 0346     		mov	r3, r0
+  43 0008 FB71     		strb	r3, [r7, #7]
+  12:hardware/src/motor.c ****     switch(motor_n){
+  44              		.loc 1 12 5
+  45 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  46 000c 012B     		cmp	r3, #1
+ARM GAS  /tmp/ccTcitl7.s 			page 2
+
+
+  47 000e 02D0     		beq	.L2
+  48 0010 022B     		cmp	r3, #2
+  49 0012 06D0     		beq	.L3
+  50              	.LBB2:
+  13:hardware/src/motor.c ****         case 1:
+  14:hardware/src/motor.c ****             TIM3_CH12_init(MAX_ARR,0);
+  15:hardware/src/motor.c ****             break;
+  16:hardware/src/motor.c ****         case 2:
+  17:hardware/src/motor.c ****             TIM3_CH34_init(MAX_ARR,0);
+  18:hardware/src/motor.c ****             break;
+  19:hardware/src/motor.c ****         default:
+  20:hardware/src/motor.c ****             break;
+  51              		.loc 1 20 13
+  52 0014 0BE0     		b	.L5
+  53              	.L2:
+  14:hardware/src/motor.c ****             break;
+  54              		.loc 1 14 13
+  55 0016 0021     		movs	r1, #0
+  56 0018 40F28330 		movw	r0, #899
+  57 001c FFF7FEFF 		bl	TIM3_CH12_init
+  15:hardware/src/motor.c ****         case 2:
+  58              		.loc 1 15 13
+  59 0020 05E0     		b	.L5
+  60              	.L3:
+  17:hardware/src/motor.c ****             break;
+  61              		.loc 1 17 13
+  62 0022 0021     		movs	r1, #0
+  63 0024 40F28330 		movw	r0, #899
+  64 0028 FFF7FEFF 		bl	TIM3_CH34_init
+  18:hardware/src/motor.c ****         default:
+  65              		.loc 1 18 13
+  66 002c 00BF     		nop
+  67              	.L5:
+  68              	.LBE2:
+  21:hardware/src/motor.c ****     }
+  22:hardware/src/motor.c **** }
+  69              		.loc 1 22 1
+  70 002e 00BF     		nop
+  71 0030 0837     		adds	r7, r7, #8
+  72              	.LCFI3:
+  73              		.cfi_def_cfa_offset 8
+  74 0032 BD46     		mov	sp, r7
+  75              	.LCFI4:
+  76              		.cfi_def_cfa_register 13
+  77              		@ sp needed
+  78 0034 80BD     		pop	{r7, pc}
+  79              		.cfi_endproc
+  80              	.LFE66:
+  82              		.section	.rodata
+  83              		.align	2
+  84              	.LC0:
+  85 0000 6572726F 		.ascii	"error speed input!\015\000"
+  85      72207370 
+  85      65656420 
+  85      696E7075 
+  85      74210D00 
+  86              		.global	__aeabi_i2d
+ARM GAS  /tmp/ccTcitl7.s 			page 3
+
+
+  87              		.global	__aeabi_ddiv
+  88              		.global	__aeabi_d2iz
+  89              		.align	2
+  90              	.LC1:
+  91 0014 6572726F 		.ascii	"error motor_n input\015\000"
+  91      72206D6F 
+  91      746F725F 
+  91      6E20696E 
+  91      7075740D 
+  92              		.section	.text.motor_setSpeed,"ax",%progbits
+  93              		.align	1
+  94              		.global	motor_setSpeed
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  98              		.fpu softvfp
+ 100              	motor_setSpeed:
+ 101              	.LFB67:
+  23:hardware/src/motor.c **** 
+  24:hardware/src/motor.c **** void motor_setSpeed(char motor_n,signed char speed)
+  25:hardware/src/motor.c **** {
+ 102              		.loc 1 25 1
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 8
+ 105              		@ frame_needed = 1, uses_anonymous_args = 0
+ 106 0000 80B5     		push	{r7, lr}
+ 107              	.LCFI5:
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 7, -8
+ 110              		.cfi_offset 14, -4
+ 111 0002 82B0     		sub	sp, sp, #8
+ 112              	.LCFI6:
+ 113              		.cfi_def_cfa_offset 16
+ 114 0004 00AF     		add	r7, sp, #0
+ 115              	.LCFI7:
+ 116              		.cfi_def_cfa_register 7
+ 117 0006 0346     		mov	r3, r0
+ 118 0008 0A46     		mov	r2, r1
+ 119 000a FB71     		strb	r3, [r7, #7]
+ 120 000c 1346     		mov	r3, r2
+ 121 000e BB71     		strb	r3, [r7, #6]
+  26:hardware/src/motor.c ****     if(speed>100 || speed<-100){
+ 122              		.loc 1 26 7
+ 123 0010 97F90630 		ldrsb	r3, [r7, #6]
+ 124 0014 642B     		cmp	r3, #100
+ 125 0016 04DC     		bgt	.L7
+ 126              		.loc 1 26 18 discriminator 1
+ 127 0018 97F90630 		ldrsb	r3, [r7, #6]
+ 128 001c 13F1640F 		cmn	r3, #100
+ 129 0020 03DA     		bge	.L8
+ 130              	.L7:
+  27:hardware/src/motor.c ****         printf("error speed input!\r\n");
+ 131              		.loc 1 27 9
+ 132 0022 6248     		ldr	r0, .L21
+ 133 0024 FFF7FEFF 		bl	puts
+  28:hardware/src/motor.c ****         return ;
+ 134              		.loc 1 28 9
+ARM GAS  /tmp/ccTcitl7.s 			page 4
+
+
+ 135 0028 BCE0     		b	.L6
+ 136              	.L8:
+  29:hardware/src/motor.c ****     }
+  30:hardware/src/motor.c **** #if defined(CHANGE_MOTOR_ONE) && CHANGE_MOTOR_ONE
+  31:hardware/src/motor.c ****     if(motor_n == 1)
+  32:hardware/src/motor.c ****         speed = -speed;
+  33:hardware/src/motor.c **** #endif
+  34:hardware/src/motor.c **** #if defined(CHANGE_MOTOR_TWO) && CHANGE_MOTOR_TWO
+  35:hardware/src/motor.c ****     if(motor_n == 2)
+ 137              		.loc 1 35 7
+ 138 002a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 139 002c 022B     		cmp	r3, #2
+ 140 002e 03D1     		bne	.L10
+  36:hardware/src/motor.c ****         speed = -speed;
+ 141              		.loc 1 36 15
+ 142 0030 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 143 0032 5B42     		rsbs	r3, r3, #0
+ 144 0034 DBB2     		uxtb	r3, r3
+ 145 0036 BB71     		strb	r3, [r7, #6]
+ 146              	.L10:
+  37:hardware/src/motor.c **** #endif
+  38:hardware/src/motor.c ****     switch(motor_n){
+ 147              		.loc 1 38 5
+ 148 0038 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 149 003a 012B     		cmp	r3, #1
+ 150 003c 02D0     		beq	.L11
+ 151 003e 022B     		cmp	r3, #2
+ 152 0040 56D0     		beq	.L12
+ 153 0042 ABE0     		b	.L20
+ 154              	.L11:
+  39:hardware/src/motor.c ****         case 1:
+  40:hardware/src/motor.c ****             if(speed == 0){
+ 155              		.loc 1 40 15
+ 156 0044 97F90630 		ldrsb	r3, [r7, #6]
+ 157 0048 002B     		cmp	r3, #0
+ 158 004a 08D1     		bne	.L14
+  41:hardware/src/motor.c ****                 TIM_SetCompare1(TIM3,0);
+ 159              		.loc 1 41 17
+ 160 004c 0021     		movs	r1, #0
+ 161 004e 5848     		ldr	r0, .L21+4
+ 162 0050 FFF7FEFF 		bl	TIM_SetCompare1
+  42:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+ 163              		.loc 1 42 17
+ 164 0054 0021     		movs	r1, #0
+ 165 0056 5648     		ldr	r0, .L21+4
+ 166 0058 FFF7FEFF 		bl	TIM_SetCompare2
+  43:hardware/src/motor.c ****             }
+  44:hardware/src/motor.c **** 	    else if(speed >  0){
+  45:hardware/src/motor.c ****                 TIM_SetCompare1(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*speed/100.0));
+  46:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+  47:hardware/src/motor.c ****             }
+  48:hardware/src/motor.c ****             else{
+  49:hardware/src/motor.c ****                 TIM_SetCompare1(TIM3,0);
+  50:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*(-speed)/100.0));
+  51:hardware/src/motor.c ****             }
+  52:hardware/src/motor.c ****             break;
+ 167              		.loc 1 52 13
+ARM GAS  /tmp/ccTcitl7.s 			page 5
+
+
+ 168 005c A2E0     		b	.L6
+ 169              	.L14:
+  44:hardware/src/motor.c ****                 TIM_SetCompare1(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*speed/100.0));
+ 170              		.loc 1 44 13
+ 171 005e 97F90630 		ldrsb	r3, [r7, #6]
+ 172 0062 002B     		cmp	r3, #0
+ 173 0064 22DD     		ble	.L16
+  45:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+ 174              		.loc 1 45 69
+ 175 0066 97F90620 		ldrsb	r2, [r7, #6]
+ 176 006a 1346     		mov	r3, r2
+ 177 006c 5B00     		lsls	r3, r3, #1
+ 178 006e 1344     		add	r3, r3, r2
+ 179 0070 5A01     		lsls	r2, r3, #5
+ 180 0072 1344     		add	r3, r3, r2
+  45:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+ 181              		.loc 1 45 75
+ 182 0074 1846     		mov	r0, r3
+ 183 0076 FFF7FEFF 		bl	__aeabi_i2d
+ 184 007a 4FF00002 		mov	r2, #0
+ 185 007e 4D4B     		ldr	r3, .L21+8
+ 186 0080 FFF7FEFF 		bl	__aeabi_ddiv
+ 187 0084 0246     		mov	r2, r0
+ 188 0086 0B46     		mov	r3, r1
+  45:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+ 189              		.loc 1 45 46
+ 190 0088 1046     		mov	r0, r2
+ 191 008a 1946     		mov	r1, r3
+ 192 008c FFF7FEFF 		bl	__aeabi_d2iz
+ 193 0090 0346     		mov	r3, r0
+  45:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,0);
+ 194              		.loc 1 45 17
+ 195 0092 9BB2     		uxth	r3, r3
+ 196 0094 03F54873 		add	r3, r3, #800
+ 197 0098 9BB2     		uxth	r3, r3
+ 198 009a 1946     		mov	r1, r3
+ 199 009c 4448     		ldr	r0, .L21+4
+ 200 009e FFF7FEFF 		bl	TIM_SetCompare1
+  46:hardware/src/motor.c ****             }
+ 201              		.loc 1 46 17
+ 202 00a2 0021     		movs	r1, #0
+ 203 00a4 4248     		ldr	r0, .L21+4
+ 204 00a6 FFF7FEFF 		bl	TIM_SetCompare2
+ 205              		.loc 1 52 13
+ 206 00aa 7BE0     		b	.L6
+ 207              	.L16:
+  49:hardware/src/motor.c ****                 TIM_SetCompare2(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*(-speed)/100.0));
+ 208              		.loc 1 49 17
+ 209 00ac 0021     		movs	r1, #0
+ 210 00ae 4048     		ldr	r0, .L21+4
+ 211 00b0 FFF7FEFF 		bl	TIM_SetCompare1
+  50:hardware/src/motor.c ****             }
+ 212              		.loc 1 50 69
+ 213 00b4 97F90630 		ldrsb	r3, [r7, #6]
+ 214 00b8 6FF06202 		mvn	r2, #98
+ 215 00bc 02FB03F3 		mul	r3, r2, r3
+  50:hardware/src/motor.c ****             }
+ARM GAS  /tmp/ccTcitl7.s 			page 6
+
+
+ 216              		.loc 1 50 78
+ 217 00c0 1846     		mov	r0, r3
+ 218 00c2 FFF7FEFF 		bl	__aeabi_i2d
+ 219 00c6 4FF00002 		mov	r2, #0
+ 220 00ca 3A4B     		ldr	r3, .L21+8
+ 221 00cc FFF7FEFF 		bl	__aeabi_ddiv
+ 222 00d0 0246     		mov	r2, r0
+ 223 00d2 0B46     		mov	r3, r1
+  50:hardware/src/motor.c ****             }
+ 224              		.loc 1 50 46
+ 225 00d4 1046     		mov	r0, r2
+ 226 00d6 1946     		mov	r1, r3
+ 227 00d8 FFF7FEFF 		bl	__aeabi_d2iz
+ 228 00dc 0346     		mov	r3, r0
+  50:hardware/src/motor.c ****             }
+ 229              		.loc 1 50 17
+ 230 00de 9BB2     		uxth	r3, r3
+ 231 00e0 03F54873 		add	r3, r3, #800
+ 232 00e4 9BB2     		uxth	r3, r3
+ 233 00e6 1946     		mov	r1, r3
+ 234 00e8 3148     		ldr	r0, .L21+4
+ 235 00ea FFF7FEFF 		bl	TIM_SetCompare2
+ 236              		.loc 1 52 13
+ 237 00ee 59E0     		b	.L6
+ 238              	.L12:
+  53:hardware/src/motor.c ****         case 2:
+  54:hardware/src/motor.c ****             if(speed == 0){
+ 239              		.loc 1 54 15
+ 240 00f0 97F90630 		ldrsb	r3, [r7, #6]
+ 241 00f4 002B     		cmp	r3, #0
+ 242 00f6 08D1     		bne	.L17
+  55:hardware/src/motor.c ****                 TIM_SetCompare3(TIM3,0);
+ 243              		.loc 1 55 17
+ 244 00f8 0021     		movs	r1, #0
+ 245 00fa 2D48     		ldr	r0, .L21+4
+ 246 00fc FFF7FEFF 		bl	TIM_SetCompare3
+  56:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+ 247              		.loc 1 56 17
+ 248 0100 0021     		movs	r1, #0
+ 249 0102 2B48     		ldr	r0, .L21+4
+ 250 0104 FFF7FEFF 		bl	TIM_SetCompare4
+  57:hardware/src/motor.c ****             }
+  58:hardware/src/motor.c **** 	    else if(speed > 0){
+  59:hardware/src/motor.c ****                 TIM_SetCompare3(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*speed/100.0));
+  60:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+  61:hardware/src/motor.c ****             }
+  62:hardware/src/motor.c ****             else{
+  63:hardware/src/motor.c ****                 TIM_SetCompare3(TIM3,0);
+  64:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*(-speed)/100.0));
+  65:hardware/src/motor.c ****             }
+  66:hardware/src/motor.c ****             break;
+ 251              		.loc 1 66 13
+ 252 0108 4CE0     		b	.L6
+ 253              	.L17:
+  58:hardware/src/motor.c ****                 TIM_SetCompare3(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*speed/100.0));
+ 254              		.loc 1 58 13
+ 255 010a 97F90630 		ldrsb	r3, [r7, #6]
+ARM GAS  /tmp/ccTcitl7.s 			page 7
+
+
+ 256 010e 002B     		cmp	r3, #0
+ 257 0110 22DD     		ble	.L19
+  59:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+ 258              		.loc 1 59 69
+ 259 0112 97F90620 		ldrsb	r2, [r7, #6]
+ 260 0116 1346     		mov	r3, r2
+ 261 0118 5B00     		lsls	r3, r3, #1
+ 262 011a 1344     		add	r3, r3, r2
+ 263 011c 5A01     		lsls	r2, r3, #5
+ 264 011e 1344     		add	r3, r3, r2
+  59:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+ 265              		.loc 1 59 75
+ 266 0120 1846     		mov	r0, r3
+ 267 0122 FFF7FEFF 		bl	__aeabi_i2d
+ 268 0126 4FF00002 		mov	r2, #0
+ 269 012a 224B     		ldr	r3, .L21+8
+ 270 012c FFF7FEFF 		bl	__aeabi_ddiv
+ 271 0130 0246     		mov	r2, r0
+ 272 0132 0B46     		mov	r3, r1
+  59:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+ 273              		.loc 1 59 46
+ 274 0134 1046     		mov	r0, r2
+ 275 0136 1946     		mov	r1, r3
+ 276 0138 FFF7FEFF 		bl	__aeabi_d2iz
+ 277 013c 0346     		mov	r3, r0
+  59:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,0);
+ 278              		.loc 1 59 17
+ 279 013e 9BB2     		uxth	r3, r3
+ 280 0140 03F54873 		add	r3, r3, #800
+ 281 0144 9BB2     		uxth	r3, r3
+ 282 0146 1946     		mov	r1, r3
+ 283 0148 1948     		ldr	r0, .L21+4
+ 284 014a FFF7FEFF 		bl	TIM_SetCompare3
+  60:hardware/src/motor.c ****             }
+ 285              		.loc 1 60 17
+ 286 014e 0021     		movs	r1, #0
+ 287 0150 1748     		ldr	r0, .L21+4
+ 288 0152 FFF7FEFF 		bl	TIM_SetCompare4
+ 289              		.loc 1 66 13
+ 290 0156 25E0     		b	.L6
+ 291              	.L19:
+  63:hardware/src/motor.c ****                 TIM_SetCompare4(TIM3,MIN_ARR+(int)((MAX_ARR-MIN_ARR)*(-speed)/100.0));
+ 292              		.loc 1 63 17
+ 293 0158 0021     		movs	r1, #0
+ 294 015a 1548     		ldr	r0, .L21+4
+ 295 015c FFF7FEFF 		bl	TIM_SetCompare3
+  64:hardware/src/motor.c ****             }
+ 296              		.loc 1 64 69
+ 297 0160 97F90630 		ldrsb	r3, [r7, #6]
+ 298 0164 6FF06202 		mvn	r2, #98
+ 299 0168 02FB03F3 		mul	r3, r2, r3
+  64:hardware/src/motor.c ****             }
+ 300              		.loc 1 64 78
+ 301 016c 1846     		mov	r0, r3
+ 302 016e FFF7FEFF 		bl	__aeabi_i2d
+ 303 0172 4FF00002 		mov	r2, #0
+ 304 0176 0F4B     		ldr	r3, .L21+8
+ARM GAS  /tmp/ccTcitl7.s 			page 8
+
+
+ 305 0178 FFF7FEFF 		bl	__aeabi_ddiv
+ 306 017c 0246     		mov	r2, r0
+ 307 017e 0B46     		mov	r3, r1
+  64:hardware/src/motor.c ****             }
+ 308              		.loc 1 64 46
+ 309 0180 1046     		mov	r0, r2
+ 310 0182 1946     		mov	r1, r3
+ 311 0184 FFF7FEFF 		bl	__aeabi_d2iz
+ 312 0188 0346     		mov	r3, r0
+  64:hardware/src/motor.c ****             }
+ 313              		.loc 1 64 17
+ 314 018a 9BB2     		uxth	r3, r3
+ 315 018c 03F54873 		add	r3, r3, #800
+ 316 0190 9BB2     		uxth	r3, r3
+ 317 0192 1946     		mov	r1, r3
+ 318 0194 0648     		ldr	r0, .L21+4
+ 319 0196 FFF7FEFF 		bl	TIM_SetCompare4
+ 320              		.loc 1 66 13
+ 321 019a 03E0     		b	.L6
+ 322              	.L20:
+  67:hardware/src/motor.c ****         default:
+  68:hardware/src/motor.c ****             printf("error motor_n input\r\n");
+ 323              		.loc 1 68 13
+ 324 019c 0648     		ldr	r0, .L21+12
+ 325 019e FFF7FEFF 		bl	puts
+  69:hardware/src/motor.c ****             break;
+ 326              		.loc 1 69 13
+ 327 01a2 00BF     		nop
+ 328              	.L6:
+  70:hardware/src/motor.c ****     }
+  71:hardware/src/motor.c **** }
+ 329              		.loc 1 71 1
+ 330 01a4 0837     		adds	r7, r7, #8
+ 331              	.LCFI8:
+ 332              		.cfi_def_cfa_offset 8
+ 333 01a6 BD46     		mov	sp, r7
+ 334              	.LCFI9:
+ 335              		.cfi_def_cfa_register 13
+ 336              		@ sp needed
+ 337 01a8 80BD     		pop	{r7, pc}
+ 338              	.L22:
+ 339 01aa 00BF     		.align	2
+ 340              	.L21:
+ 341 01ac 00000000 		.word	.LC0
+ 342 01b0 00040040 		.word	1073742848
+ 343 01b4 00005940 		.word	1079574528
+ 344 01b8 14000000 		.word	.LC1
+ 345              		.cfi_endproc
+ 346              	.LFE67:
+ 348              		.text
+ 349              	.Letext0:
+ 350              		.file 2 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+ 351              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 352              		.file 4 "Inc/stm32f10x.h"
+ARM GAS  /tmp/ccTcitl7.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 motor.c
+     /tmp/ccTcitl7.s:16     .text.motor_init:0000000000000000 $t
+     /tmp/ccTcitl7.s:24     .text.motor_init:0000000000000000 motor_init
+     /tmp/ccTcitl7.s:83     .rodata:0000000000000000 $d
+     /tmp/ccTcitl7.s:93     .text.motor_setSpeed:0000000000000000 $t
+     /tmp/ccTcitl7.s:100    .text.motor_setSpeed:0000000000000000 motor_setSpeed
+     /tmp/ccTcitl7.s:341    .text.motor_setSpeed:00000000000001ac $d
+
+UNDEFINED SYMBOLS
+TIM3_CH12_init
+TIM3_CH34_init
+__aeabi_i2d
+__aeabi_ddiv
+__aeabi_d2iz
+puts
+TIM_SetCompare1
+TIM_SetCompare2
+TIM_SetCompare3
+TIM_SetCompare4

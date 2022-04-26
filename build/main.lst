@@ -1,0 +1,282 @@
+ARM GAS  /tmp/ccogV9Jw.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	RUNNING
+  16              		.section	.bss.RUNNING,"aw",%nobits
+  19              	RUNNING:
+  20 0000 00       		.space	1
+  21              		.section	.rodata
+  22              		.align	2
+  23              	.LC0:
+  24 0000 68656C6C 		.ascii	"hello new teetttest\015\000"
+  24      6F206E65 
+  24      77207465 
+  24      65747474 
+  24      6573740D 
+  25              		.section	.text.main,"ax",%progbits
+  26              		.align	1
+  27              		.global	main
+  28              		.arch armv7-m
+  29              		.syntax unified
+  30              		.thumb
+  31              		.thumb_func
+  32              		.fpu softvfp
+  34              	main:
+  35              	.LFB63:
+  36              		.file 1 "Src/main.c"
+   1:Src/main.c    **** #include "stm32f10x.h"
+   2:Src/main.c    **** #include "AllHead.h"
+   3:Src/main.c    **** #include "inout.h"
+   4:Src/main.c    **** #include "servo.h"
+   5:Src/main.c    **** #include "usart.h"
+   6:Src/main.c    **** #include "delay.h"
+   7:Src/main.c    **** #include "sys.h"
+   8:Src/main.c    **** #include "lcd.h"
+   9:Src/main.c    **** #include "ov7670.h"
+  10:Src/main.c    **** #include "time.h"
+  11:Src/main.c    **** #include "exti.h"
+  12:Src/main.c    **** #include "grey.h"
+  13:Src/main.c    **** #include "a4950.h"
+  14:Src/main.c    **** #include "nlp.h"
+  15:Src/main.c    **** 	
+  16:Src/main.c    **** void JTAG_Set(u8 mode);
+  17:Src/main.c    **** u8 RUNNING = 0;
+  18:Src/main.c    **** extern uint8_t receive_flag,mess1_receive_flag,mess2_receive_flag,mess3_receive_flag,mess4_receive_
+  19:Src/main.c    **** 
+  20:Src/main.c    **** // user pre-def functions
+ARM GAS  /tmp/ccogV9Jw.s 			page 2
+
+
+  21:Src/main.c    **** 
+  22:Src/main.c    **** int main(void)
+  23:Src/main.c    **** {	 
+  37              		.loc 1 23 1
+  38              		.cfi_startproc
+  39              		@ args = 0, pretend = 0, frame = 0
+  40              		@ frame_needed = 1, uses_anonymous_args = 0
+  41 0000 80B5     		push	{r7, lr}
+  42              	.LCFI0:
+  43              		.cfi_def_cfa_offset 8
+  44              		.cfi_offset 7, -8
+  45              		.cfi_offset 14, -4
+  46 0002 00AF     		add	r7, sp, #0
+  47              	.LCFI1:
+  48              		.cfi_def_cfa_register 7
+  24:Src/main.c    **** 	JTAG_Set(0x01);
+  49              		.loc 1 24 2
+  50 0004 0120     		movs	r0, #1
+  51 0006 FFF7FEFF 		bl	JTAG_Set
+  25:Src/main.c    **** 	delay_init();
+  52              		.loc 1 25 2
+  53 000a FFF7FEFF 		bl	delay_init
+  26:Src/main.c    **** 	NVIC_Configuration(); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+  54              		.loc 1 26 2
+  55 000e FFF7FEFF 		bl	NVIC_Configuration
+  27:Src/main.c    **** #if defined(REMOTE_TEST) && REMOTE_TEST
+  28:Src/main.c    **** // user init functions
+  29:Src/main.c    **** 	uart1_init(115200);
+  56              		.loc 1 29 2
+  57 0012 4FF4E130 		mov	r0, #115200
+  58 0016 FFF7FEFF 		bl	uart1_init
+  59              	.L2:
+  60              	.LBB2:
+  30:Src/main.c    **** #else
+  31:Src/main.c    **** 	uart1_init(115200);
+  32:Src/main.c    **** #endif
+  33:Src/main.c    **** #if defined(REMOTE_TEST) && REMOTE_TEST
+  34:Src/main.c    **** 	while(1){
+  35:Src/main.c    **** // user while functions
+  36:Src/main.c    **** 		printf("hello new teetttest\r\n");
+  61              		.loc 1 36 3 discriminator 1
+  62 001a 0448     		ldr	r0, .L3
+  63 001c FFF7FEFF 		bl	puts
+  37:Src/main.c    **** 		delay_ms(1200);
+  64              		.loc 1 37 3 discriminator 1
+  65 0020 4FF49660 		mov	r0, #1200
+  66 0024 FFF7FEFF 		bl	delay_ms
+  67              	.LBE2:
+  34:Src/main.c    **** // user while functions
+  68              		.loc 1 34 10 discriminator 1
+  69 0028 F7E7     		b	.L2
+  70              	.L4:
+  71 002a 00BF     		.align	2
+  72              	.L3:
+  73 002c 00000000 		.word	.LC0
+  74              		.cfi_endproc
+  75              	.LFE63:
+ARM GAS  /tmp/ccogV9Jw.s 			page 3
+
+
+  77              		.section	.text.JTAG_Set,"ax",%progbits
+  78              		.align	1
+  79              		.global	JTAG_Set
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  83              		.fpu softvfp
+  85              	JTAG_Set:
+  86              	.LFB64:
+  38:Src/main.c    **** 	}
+  39:Src/main.c    **** #else
+  40:Src/main.c    **** #if defined(BIKING) && BIKING
+  41:Src/main.c    **** #if defined(START_TEST) && START_TEST
+  42:Src/main.c    **** 	MotorA_start();
+  43:Src/main.c    **** 	motorA_test();
+  44:Src/main.c    **** #endif
+  45:Src/main.c    **** #endif
+  46:Src/main.c    **** 	LCD_Init(); 
+  47:Src/main.c    **** 	if(lcddev.id==0X6804||lcddev.id==0X5310) 	//强制设置屏幕分辨率为320*240.以支持3.5寸�
+  48:Src/main.c    **** 	{
+  49:Src/main.c    **** 		lcddev.width=240;
+  50:Src/main.c    **** 		lcddev.height=320; 
+  51:Src/main.c    **** 	}
+  52:Src/main.c    **** 	// usmart_dev.init(72);	//初始化USMART			    
+  53:Src/main.c    ****  	POINT_COLOR=RED;//设置字体为红色 
+  54:Src/main.c    **** 	LCD_ShowString(60,50,200,16,16,"WarShip STM32");	
+  55:Src/main.c    **** 	LCD_ShowString(60,70,200,16,16,"OV7670 TEST");	
+  56:Src/main.c    **** 	LCD_ShowString(60,90,200,16,16,"hello world logial");
+  57:Src/main.c    **** 	LCD_ShowString(60,110,200,16,16,"2021/7/30");  
+  58:Src/main.c    ****   	LCD_ShowString(60,230,200,16,16,"OV7670 Init...");	  
+  59:Src/main.c    **** 	while(OV7670_Init())//初始化OV7670
+  60:Src/main.c    **** 	{
+  61:Src/main.c    **** 		LCD_ShowString(60,230,200,16,16,"OV7670 Error!!");
+  62:Src/main.c    **** 		delay_ms(200);
+  63:Src/main.c    **** 	    LCD_Fill(60,230,239,246,WHITE);
+  64:Src/main.c    **** 		delay_ms(200);
+  65:Src/main.c    **** 	}
+  66:Src/main.c    ****  	LCD_ShowString(60,230,200,16,16,"OV7670 Init OK");
+  67:Src/main.c    **** 	delay_ms(500);	 	   	   
+  68:Src/main.c    **** 	LCD_Clear(BLACK); 
+  69:Src/main.c    **** 	
+  70:Src/main.c    **** 	TIM6_Int_Init(10000,7199);			//10Khz计数频率,1秒钟中断									  
+  71:Src/main.c    **** 	EXTI11_Init();		// PC12 for ov7670 VSYNC interput pin in exti.c
+  72:Src/main.c    **** 	OV7670_Window_Set(10,174,240,320);	//设置窗口	  
+  73:Src/main.c    ****   	OV7670_CS=0;						 	 
+  74:Src/main.c    ****  	while(1)
+  75:Src/main.c    **** 	{	
+  76:Src/main.c    **** 		cameraOperation();
+  77:Src/main.c    **** 	}	   
+  78:Src/main.c    **** #endif
+  79:Src/main.c    **** }
+  80:Src/main.c    **** 
+  81:Src/main.c    **** /*针对调试和使用冲突问题*/
+  82:Src/main.c    **** void JTAG_Set(u8 mode)
+  83:Src/main.c    **** {
+  87              		.loc 1 83 1
+  88              		.cfi_startproc
+ARM GAS  /tmp/ccogV9Jw.s 			page 4
+
+
+  89              		@ args = 0, pretend = 0, frame = 16
+  90              		@ frame_needed = 1, uses_anonymous_args = 0
+  91              		@ link register save eliminated.
+  92 0000 80B4     		push	{r7}
+  93              	.LCFI2:
+  94              		.cfi_def_cfa_offset 4
+  95              		.cfi_offset 7, -4
+  96 0002 85B0     		sub	sp, sp, #20
+  97              	.LCFI3:
+  98              		.cfi_def_cfa_offset 24
+  99 0004 00AF     		add	r7, sp, #0
+ 100              	.LCFI4:
+ 101              		.cfi_def_cfa_register 7
+ 102 0006 0346     		mov	r3, r0
+ 103 0008 FB71     		strb	r3, [r7, #7]
+  84:Src/main.c    **** 	u32 temp;
+  85:Src/main.c    **** 	temp = mode;
+ 104              		.loc 1 85 7
+ 105 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 106 000c FB60     		str	r3, [r7, #12]
+  86:Src/main.c    **** 	temp <<= 25;
+ 107              		.loc 1 86 7
+ 108 000e FB68     		ldr	r3, [r7, #12]
+ 109 0010 5B06     		lsls	r3, r3, #25
+ 110 0012 FB60     		str	r3, [r7, #12]
+  87:Src/main.c    **** 	RCC->APB2ENR |= 1<<0;
+ 111              		.loc 1 87 15
+ 112 0014 0B4B     		ldr	r3, .L6
+ 113 0016 9B69     		ldr	r3, [r3, #24]
+ 114 0018 0A4A     		ldr	r2, .L6
+ 115 001a 43F00103 		orr	r3, r3, #1
+ 116 001e 9361     		str	r3, [r2, #24]
+  88:Src/main.c    **** 	AFIO->MAPR &= 0xF8FFFFFF;
+ 117              		.loc 1 88 13
+ 118 0020 094B     		ldr	r3, .L6+4
+ 119 0022 5B68     		ldr	r3, [r3, #4]
+ 120 0024 084A     		ldr	r2, .L6+4
+ 121 0026 23F0E063 		bic	r3, r3, #117440512
+ 122 002a 5360     		str	r3, [r2, #4]
+  89:Src/main.c    **** 	AFIO->MAPR |= temp;
+ 123              		.loc 1 89 13
+ 124 002c 064B     		ldr	r3, .L6+4
+ 125 002e 5A68     		ldr	r2, [r3, #4]
+ 126 0030 0549     		ldr	r1, .L6+4
+ 127 0032 FB68     		ldr	r3, [r7, #12]
+ 128 0034 1343     		orrs	r3, r3, r2
+ 129 0036 4B60     		str	r3, [r1, #4]
+  90:Src/main.c    **** }
+ 130              		.loc 1 90 1
+ 131 0038 00BF     		nop
+ 132 003a 1437     		adds	r7, r7, #20
+ 133              	.LCFI5:
+ 134              		.cfi_def_cfa_offset 4
+ 135 003c BD46     		mov	sp, r7
+ 136              	.LCFI6:
+ 137              		.cfi_def_cfa_register 13
+ 138              		@ sp needed
+ARM GAS  /tmp/ccogV9Jw.s 			page 5
+
+
+ 139 003e 80BC     		pop	{r7}
+ 140              	.LCFI7:
+ 141              		.cfi_restore 7
+ 142              		.cfi_def_cfa_offset 0
+ 143 0040 7047     		bx	lr
+ 144              	.L7:
+ 145 0042 00BF     		.align	2
+ 146              	.L6:
+ 147 0044 00100240 		.word	1073876992
+ 148 0048 00000140 		.word	1073807360
+ 149              		.cfi_endproc
+ 150              	.LFE64:
+ 152              		.text
+ 153              	.Letext0:
+ 154              		.file 2 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+ 155              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ 156              		.file 4 "Inc/stm32f10x.h"
+ 157              		.file 5 "<built-in>"
+ARM GAS  /tmp/ccogV9Jw.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccogV9Jw.s:19     .bss.RUNNING:0000000000000000 RUNNING
+     /tmp/ccogV9Jw.s:20     .bss.RUNNING:0000000000000000 $d
+     /tmp/ccogV9Jw.s:22     .rodata:0000000000000000 $d
+     /tmp/ccogV9Jw.s:26     .text.main:0000000000000000 $t
+     /tmp/ccogV9Jw.s:34     .text.main:0000000000000000 main
+     /tmp/ccogV9Jw.s:85     .text.JTAG_Set:0000000000000000 JTAG_Set
+     /tmp/ccogV9Jw.s:73     .text.main:000000000000002c $d
+     /tmp/ccogV9Jw.s:78     .text.JTAG_Set:0000000000000000 $t
+     /tmp/ccogV9Jw.s:147    .text.JTAG_Set:0000000000000044 $d
+
+UNDEFINED SYMBOLS
+delay_init
+NVIC_Configuration
+uart1_init
+puts
+delay_ms

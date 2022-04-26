@@ -1,0 +1,95 @@
+ARM GAS  /tmp/cc3nCSm7.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"sys.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.NVIC_Configuration,"ax",%progbits
+  16              		.align	1
+  17              		.global	NVIC_Configuration
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	NVIC_Configuration:
+  25              	.LFB63:
+  26              		.file 1 "Src/sys.c"
+   1:Src/sys.c     **** #include "sys.h"
+   2:Src/sys.c     **** 
+   3:Src/sys.c     **** // //THUMB÷∏¡Ó≤ª÷ß≥÷ª„±‡ƒ⁄¡™
+   4:Src/sys.c     **** // //≤…”√»Áœ¬∑Ω∑® µœ÷÷¥––ª„±‡÷∏¡ÓWFI  
+   5:Src/sys.c     **** // void WFI_SET(void)
+   6:Src/sys.c     **** // {
+   7:Src/sys.c     **** // 	__ASM volatile("wfi");		  
+   8:Src/sys.c     **** // }
+   9:Src/sys.c     **** // //πÿ±’À˘”–÷–∂œ
+  10:Src/sys.c     **** // void INTX_DISABLE(void)
+  11:Src/sys.c     **** // {		  
+  12:Src/sys.c     **** // 	__ASM volatile("cpsid i");
+  13:Src/sys.c     **** // }
+  14:Src/sys.c     **** // //ø™∆ÙÀ˘”–÷–∂œ
+  15:Src/sys.c     **** // void INTX_ENABLE(void)
+  16:Src/sys.c     **** // {
+  17:Src/sys.c     **** // 	__ASM volatile("cpsie i");		  
+  18:Src/sys.c     **** // }
+  19:Src/sys.c     **** // //…Ë÷√’ª∂•µÿ÷∑
+  20:Src/sys.c     **** // //addr:’ª∂•µÿ÷∑
+  21:Src/sys.c     **** // __asm void MSR_MSP(u32 addr) 
+  22:Src/sys.c     **** // {
+  23:Src/sys.c     **** //     MSR MSP, r0 			//set Main Stack value
+  24:Src/sys.c     **** //     BX r14
+  25:Src/sys.c     **** // }
+  26:Src/sys.c     **** 
+  27:Src/sys.c     **** void NVIC_Configuration(void)
+  28:Src/sys.c     **** {
+  27              		.loc 1 28 1
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  /tmp/cc3nCSm7.s 			page 2
+
+
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_register 7
+  29:Src/sys.c     ****     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//…Ë÷√NVIC÷–∂œ∑÷◊È2:2Œª«¿’º”≈œ»º∂£¨2ŒªœÏ”¶”≈œ»º
+  39              		.loc 1 29 5
+  40 0004 4FF4A060 		mov	r0, #1280
+  41 0008 FFF7FEFF 		bl	NVIC_PriorityGroupConfig
+  30:Src/sys.c     **** }
+  42              		.loc 1 30 1
+  43 000c 00BF     		nop
+  44 000e 80BD     		pop	{r7, pc}
+  45              		.cfi_endproc
+  46              	.LFE63:
+  48              		.text
+  49              	.Letext0:
+  50              		.file 2 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/machine/_defaul
+  51              		.file 3 "/home/pico/tools/gcc-arm-none-eabi-10-2020-q4-major/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  /tmp/cc3nCSm7.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sys.c
+     /tmp/cc3nCSm7.s:16     .text.NVIC_Configuration:0000000000000000 $t
+     /tmp/cc3nCSm7.s:24     .text.NVIC_Configuration:0000000000000000 NVIC_Configuration
+
+UNDEFINED SYMBOLS
+NVIC_PriorityGroupConfig

@@ -1,0 +1,15 @@
+########C8T6############
+leds:
+PC13
+keys:
+PA0:KEY
+
+servo:
+PA1:TIM2CH2
+PA2:TIM2CH3
+
+motor:
+PA6:TIM3CH1
+PA7:TIM3CH2
+PB0:TIM3CH3
+PB1:TIM3CH4
